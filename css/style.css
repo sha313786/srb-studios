@@ -2002,6 +2002,53 @@ dialog::backdrop {
   margin-bottom: 8px;
 }
 
+/* Currency Selector Pill */
+.budget-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.budget-label-row label {
+  margin-bottom: 0 !important;
+}
+
+.currency-toggle-wrapper {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(18, 18, 26, 0.95);
+  border: 1px solid var(--border-gold-subtle);
+  border-radius: 20px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.currency-pill-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 3px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.currency-pill-btn:hover {
+  color: #FFF;
+}
+
+.currency-pill-btn.active {
+  background: var(--grad-gold-btn);
+  color: #060608;
+  font-weight: 800;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}
+
 .form-control {
   width: 100%;
   background: #08080C;

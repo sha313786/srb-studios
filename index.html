@@ -749,12 +749,18 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="inpageBudget">Estimated Budget</label>
+              <div class="budget-label-row">
+                <label for="inpageBudget">Estimated Budget</label>
+                <div class="currency-toggle-wrapper" role="group" aria-label="Currency Selector">
+                  <button type="button" class="currency-pill-btn active" data-currency="INR" title="Switch to Indian Rupees">₹ INR</button>
+                  <button type="button" class="currency-pill-btn" data-currency="USD" title="Switch to US Dollars">$ USD</button>
+                </div>
+              </div>
               <select id="inpageBudget" class="form-control">
-                <option value="Standard ($1,000 - $3,000)">Standard Project ($1,000 - $3,000)</option>
-                <option value="Growth ($3,000 - $7,500)">Growth / Portal ($3,000 - $7,500)</option>
-                <option value="Enterprise ($7,500+)">Enterprise / Custom Ecosystem ($7,500+)</option>
-                <option value="Discuss">Let's Discuss Options</option>
+                <option value="Standard Project (₹15,000 – ₹35,000)">Standard Project (₹15,000 – ₹35,000)</option>
+                <option value="Growth / Dynamic Portal (₹35,000 – ₹85,000)">Growth / Dynamic Portal (₹35,000 – ₹85,000)</option>
+                <option value="Enterprise / Custom Ecosystem (₹85,000 – ₹2,50,000+)">Enterprise / Custom Ecosystem (₹85,000 – ₹2,50,000+)</option>
+                <option value="Custom Quote (Let's Discuss)">Custom Quote (Let's Discuss)</option>
               </select>
             </div>
             <div class="form-group full-width">
@@ -879,12 +885,18 @@
         </div>
 
         <div class="form-group">
-          <label for="budgetRangeSelect">Estimated Budget</label>
+          <div class="budget-label-row">
+            <label for="budgetRangeSelect">Estimated Budget</label>
+            <div class="currency-toggle-wrapper" role="group" aria-label="Currency Selector">
+              <button type="button" class="currency-pill-btn active" data-currency="INR" title="Switch to Indian Rupees">₹ INR</button>
+              <button type="button" class="currency-pill-btn" data-currency="USD" title="Switch to US Dollars">$ USD</button>
+            </div>
+          </div>
           <select id="budgetRangeSelect" class="form-control">
-            <option value="Standard ($1,000 - $3,000)">Standard Project ($1,000 - $3,000)</option>
-            <option value="Growth ($3,000 - $7,500)">Growth / Portal ($3,000 - $7,500)</option>
-            <option value="Enterprise ($7,500+)">Enterprise / Custom Ecosystem ($7,500+)</option>
-            <option value="Let's Discuss">Let's Discuss Options</option>
+            <option value="Standard Project (₹15,000 – ₹35,000)">Standard Project (₹15,000 – ₹35,000)</option>
+            <option value="Growth / Dynamic Portal (₹35,000 – ₹85,000)">Growth / Dynamic Portal (₹35,000 – ₹85,000)</option>
+            <option value="Enterprise / Custom Ecosystem (₹85,000 – ₹2,50,000+)">Enterprise / Custom Ecosystem (₹85,000 – ₹2,50,000+)</option>
+            <option value="Custom Quote (Let's Discuss)">Custom Quote (Let's Discuss)</option>
           </select>
         </div>
 

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initDeviceStage();
   initModals();
+  initCurrencyBudget();
   initPortfolioFilter();
   initConsultationForm();
   initPerformanceGauge();
@@ -265,6 +266,95 @@ function initPortfolioFilter() {
       });
     });
   });
+}
+
+/* ==========================================================================
+   4b. REGION & CURRENCY BUDGET SYSTEM (INR & USD)
+   ========================================================================== */
+const BUDGET_TIERS = {
+  INR: [
+    { value: "Standard Project (₹15,000 – ₹35,000)", label: "Standard Project (₹15,000 – ₹35,000)" },
+    { value: "Growth / Dynamic Portal (₹35,000 – ₹85,000)", label: "Growth / Dynamic Portal (₹35,000 – ₹85,000)" },
+    { value: "Enterprise / Custom Ecosystem (₹85,000 – ₹2,50,000+)", label: "Enterprise / Custom Ecosystem (₹85,000 – ₹2,50,000+)" },
+    { value: "Custom Quote (Let's Discuss)", label: "Custom Quote (Let's Discuss)" }
+  ],
+  USD: [
+    { value: "Standard Project ($500 – $1,500)", label: "Standard Project ($500 – $1,500)" },
+    { value: "Growth / Dynamic Portal ($1,500 – $4,000)", label: "Growth / Dynamic Portal ($1,500 – $4,000)" },
+    { value: "Enterprise / Custom Ecosystem ($4,000+)", label: "Enterprise / Custom Ecosystem ($4,000+)" },
+    { value: "Custom Quote (Let's Discuss)", label: "Custom Quote (Let's Discuss)" }
+  ]
+};
+
+function initCurrencyBudget() {
+  function detectUserRegion() {
+    try {
+      const saved = localStorage.getItem('srb_currency');
+      if (saved && (saved === 'INR' || saved === 'USD')) {
+        return saved;
+      }
+      const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
+      const offset = new Date().getTimezoneOffset(); // -330 for IST
+      if (tz.includes('kolkata') || tz.includes('calcutta') || offset === -330) {
+        return 'INR';
+      }
+      const lang = (navigator.language || '').toLowerCase();
+      const languages = (navigator.languages || []).map(l => l.toLowerCase());
+      if (lang.includes('-in') || languages.some(l => l.includes('-in'))) {
+        return 'INR';
+      }
+    } catch (_) {}
+    return 'USD';
+  }
+
+  function setCurrency(currency) {
+    const tiers = BUDGET_TIERS[currency] || BUDGET_TIERS.INR;
+    const selects = [
+      document.getElementById('budgetRangeSelect'),
+      document.getElementById('inpageBudget')
+    ];
+
+    selects.forEach(select => {
+      if (!select) return;
+      const currentIdx = select.selectedIndex >= 0 ? select.selectedIndex : 0;
+      select.innerHTML = '';
+      tiers.forEach(tier => {
+        const opt = document.createElement('option');
+        opt.value = tier.value;
+        opt.textContent = tier.label;
+        select.appendChild(opt);
+      });
+      if (currentIdx < select.options.length) {
+        select.selectedIndex = currentIdx;
+      }
+    });
+
+    document.querySelectorAll('.currency-pill-btn').forEach(btn => {
+      if (btn.getAttribute('data-currency') === currency) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    try {
+      localStorage.setItem('srb_currency', currency);
+    } catch (_) {}
+  }
+
+  document.querySelectorAll('.currency-pill-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const targetCurrency = btn.getAttribute('data-currency');
+      if (targetCurrency) {
+        setCurrency(targetCurrency);
+      }
+    });
+  });
+
+  const initialCurrency = detectUserRegion();
+  setCurrency(initialCurrency);
 }
 
 /* ==========================================================================
