@@ -17,6 +17,35 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
+  // Handle POST /api/consultation endpoint
+  if (req.method === 'POST' && req.url.startsWith('/api/consultation')) {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const lead = JSON.parse(body || '{}');
+        lead.receivedAt = new Date().toISOString();
+        const leadsFile = path.join(__dirname, 'leads.json');
+        let leads = [];
+        if (fs.existsSync(leadsFile)) {
+          try { leads = JSON.parse(fs.readFileSync(leadsFile, 'utf8')); } catch (_) {}
+        }
+        leads.unshift(lead);
+        fs.writeFileSync(leadsFile, JSON.stringify(leads, null, 2), 'utf8');
+        console.log(`\n📬 [NEW PROJECT REQUEST RECEIVED] from ${lead.name} (${lead.email}) - Budget: ${lead.budget}`);
+        res.writeHead(200, {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Access-Control-Allow-Origin': '*'
+        });
+        res.end(JSON.stringify({ success: true, message: 'Consultation request logged successfully' }));
+      } catch (err) {
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=UTF-8' });
+        res.end(JSON.stringify({ success: false, error: err.message }));
+      }
+    });
+    return;
+  }
+
   let safePath = path.normalize(decodeURI(req.url.split('?')[0])).replace(/^(\.\.[\/\\])+/, '');
   if (safePath === '/' || safePath === '\\') safePath = '/index.html';
 

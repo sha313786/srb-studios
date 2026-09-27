@@ -175,6 +175,10 @@ function initModals() {
       modal.removeAttribute('open');
     }
     document.body.classList.remove('modal-open');
+    const modalForm = document.getElementById('consultationForm');
+    const successState = document.getElementById('modalSuccessState');
+    if (modalForm) modalForm.style.display = '';
+    if (successState) successState.style.display = 'none';
   }
 
   // Triggers for Consultation
@@ -358,43 +362,101 @@ function initCurrencyBudget() {
 }
 
 /* ==========================================================================
-   5. CONSULTATION FORMS & SUBMISSION (Modal & In-Page)
+   5. CONSULTATION FORMS & INSTANT BACKGROUND SUBMISSION
    ========================================================================== */
 function initConsultationForm() {
-  function handleFormSubmit(name, email, service, budget, notes, resetCallback) {
+  async function handleFormSubmit(formEl, submitBtn, name, email, service, budget, notes, isModal) {
     if (!name || !email) {
       showToast('⚠️ Please enter your Name and Email address.');
       return;
     }
 
-    const subject = encodeURIComponent(`Consultation Request: ${name} (${service})`);
-    const body = encodeURIComponent(
-      `Hello SRB Studio,\n\n` +
-      `I would like to request a consultation for our digital project.\n\n` +
-      `• Name / Company: ${name}\n` +
-      `• Email: ${email}\n` +
-      `• Service Architecture: ${service}\n` +
-      `• Estimated Budget: ${budget}\n` +
-      `• Project Overview:\n${notes}\n\n` +
-      `Looking forward to elevating our presence with SRB Studio!`
-    );
-
-    const plainTextBrief = `SRB Studio Consultation Request:\nClient: ${name} (${email})\nService: ${service}\nBudget: ${budget}\nNotes: ${notes}`;
-    try {
-      navigator.clipboard?.writeText(plainTextBrief);
-    } catch (_) {}
-
-    window.location.href = `mailto:srbstudiosofficial@gmail.com?subject=${subject}&body=${body}`;
-
-    const modal = document.getElementById('consultationModal');
-    if (modal) {
-      if (typeof modal.close === 'function') modal.close();
-      else modal.removeAttribute('open');
-      document.body.classList.remove('modal-open');
+    const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>Submitting Request...</span> <span class="spinner" aria-hidden="true">⏳</span>`;
     }
 
-    showToast('✨ Consultation request prepared! Opening your mail client...');
-    if (typeof resetCallback === 'function') resetCallback();
+    const payload = {
+      name: name,
+      email: email,
+      service: service,
+      budget: budget,
+      message: notes || 'No additional notes provided',
+      _subject: `🚀 SRB Studio Project Request: ${name} (${service})`,
+      _template: 'table',
+      _captcha: 'false'
+    };
+
+    let sent = false;
+
+    // 1. Local Node server backup log (appends directly to leads.json)
+    try {
+      fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+    } catch (_) {}
+
+    // 2. Instant background delivery to srbstudiosofficial@gmail.com
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/srbstudiosofficial@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        sent = true;
+      }
+    } catch (err) {
+      console.warn('Background send network error:', err);
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+    }
+
+    if (sent) {
+      formEl.reset();
+
+      if (isModal) {
+        const modalForm = document.getElementById('consultationForm');
+        const successState = document.getElementById('modalSuccessState');
+        const successLeadName = document.getElementById('successLeadName');
+        if (successLeadName) successLeadName.textContent = name;
+        if (modalForm) modalForm.style.display = 'none';
+        if (successState) successState.style.display = 'block';
+      } else {
+        const inpageForm = document.getElementById('inpageConsultationForm');
+        const inpageSuccessState = document.getElementById('inpageSuccessState');
+        const inpageLeadName = document.getElementById('inpageSuccessLeadName');
+        if (inpageLeadName) inpageLeadName.textContent = name;
+        if (inpageForm) inpageForm.style.display = 'none';
+        if (inpageSuccessState) inpageSuccessState.style.display = 'block';
+      }
+      showToast('✨ Project brief received! Delivered to srbstudiosofficial@gmail.com');
+    } else {
+      // Graceful fallback to mail client if user was offline or network failed
+      showToast('📬 Preparing your email draft to srbstudiosofficial@gmail.com...');
+      const subject = encodeURIComponent(`Project Request: ${name} (${service})`);
+      const body = encodeURIComponent(
+        `Hello SRB Studio,\n\n` +
+        `I would like to request a consultation for our digital project.\n\n` +
+        `• Name / Company: ${name}\n` +
+        `• Email: ${email}\n` +
+        `• Service Architecture: ${service}\n` +
+        `• Estimated Budget: ${budget}\n` +
+        `• Project Overview:\n${notes}\n\n` +
+        `Looking forward to elevating our presence with SRB Studio!`
+      );
+      window.location.href = `mailto:srbstudiosofficial@gmail.com?subject=${subject}&body=${body}`;
+    }
   }
 
   // Modal Form
@@ -402,12 +464,28 @@ function initConsultationForm() {
   if (modalForm) {
     modalForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      const submitBtn = modalForm.querySelector('button[type="submit"]');
       const name = document.getElementById('clientName')?.value.trim();
       const email = document.getElementById('clientEmail')?.value.trim();
       const service = document.getElementById('projectTypeSelect')?.value;
       const budget = document.getElementById('budgetRangeSelect')?.value;
       const notes = document.getElementById('projectNotes')?.value.trim();
-      handleFormSubmit(name, email, service, budget, notes, () => modalForm.reset());
+      handleFormSubmit(modalForm, submitBtn, name, email, service, budget, notes, true);
+    });
+  }
+
+  // Close Success Modal Button
+  const closeModalSuccessBtn = document.getElementById('closeModalSuccessBtn');
+  if (closeModalSuccessBtn) {
+    closeModalSuccessBtn.addEventListener('click', () => {
+      const modal = document.getElementById('consultationModal');
+      closeModalSafe(modal);
+      setTimeout(() => {
+        const modalForm = document.getElementById('consultationForm');
+        const successState = document.getElementById('modalSuccessState');
+        if (modalForm) modalForm.style.display = '';
+        if (successState) successState.style.display = 'none';
+      }, 300);
     });
   }
 
@@ -416,12 +494,24 @@ function initConsultationForm() {
   if (inpageForm) {
     inpageForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      const submitBtn = inpageForm.querySelector('button[type="submit"]');
       const name = document.getElementById('inpageName')?.value.trim();
       const email = document.getElementById('inpageEmail')?.value.trim();
       const service = document.getElementById('inpageService')?.value;
       const budget = document.getElementById('inpageBudget')?.value;
       const notes = document.getElementById('inpageNotes')?.value.trim();
-      handleFormSubmit(name, email, service, budget, notes, () => inpageForm.reset());
+      handleFormSubmit(inpageForm, submitBtn, name, email, service, budget, notes, false);
+    });
+  }
+
+  // In-Page Reset Button
+  const inpageResetBtn = document.getElementById('inpageResetBtn');
+  if (inpageResetBtn) {
+    inpageResetBtn.addEventListener('click', () => {
+      const inpageForm = document.getElementById('inpageConsultationForm');
+      const inpageSuccessState = document.getElementById('inpageSuccessState');
+      if (inpageForm) inpageForm.style.display = '';
+      if (inpageSuccessState) inpageSuccessState.style.display = 'none';
     });
   }
 }

@@ -774,6 +774,20 @@
               </button>
             </div>
           </form>
+
+          <!-- In-Page Instant Submission Success State -->
+          <div id="inpageSuccessState" style="display: none; text-align: center; padding: 30px 16px;">
+            <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(245, 158, 11, 0.15); border: 1px solid var(--gold-400); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2rem; color: var(--gold-400); box-shadow: 0 0 25px var(--gold-glow);">
+              ✓
+            </div>
+            <h3 style="color: #FFF; font-size: 1.4rem; margin-bottom: 10px; font-family: var(--font-heading);">Project Brief Received</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 480px; margin: 0 auto 20px;">
+              Thank you, <strong id="inpageSuccessLeadName" style="color: var(--gold-300);"></strong>. Your consultation request has been delivered to <strong>srbstudiosofficial@gmail.com</strong>. We will review your architecture requirements and email you back within 24 hours.
+            </p>
+            <button type="button" class="btn-primary-gold" id="inpageResetBtn" style="padding: 10px 24px; font-size: 0.85rem;">
+              <span>Submit Another Request</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -910,6 +924,20 @@
           <span class="arrow-circle" aria-hidden="true">›</span>
         </button>
       </form>
+
+      <!-- Modal Instant Submission Success State -->
+      <div id="modalSuccessState" style="display: none; text-align: center; padding: 28px 16px;">
+        <div style="width: 68px; height: 68px; border-radius: 50%; background: rgba(245, 158, 11, 0.15); border: 1px solid var(--gold-400); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 2rem; color: var(--gold-400); box-shadow: 0 0 30px var(--gold-glow);">
+          ✓
+        </div>
+        <h3 style="color: #FFF; font-size: 1.4rem; margin-bottom: 12px; font-family: var(--font-heading);">Request Received</h3>
+        <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; max-width: 440px; margin: 0 auto 24px;">
+          Thank you, <strong id="successLeadName" style="color: var(--gold-300);"></strong>. Your project brief has been delivered to <strong>srbstudiosofficial@gmail.com</strong>. We will review your architecture goals and contact you within 24 hours.
+        </p>
+        <button type="button" class="btn-primary-gold" id="closeModalSuccessBtn" style="padding: 12px 32px; font-size: 0.88rem;">
+          <span>Close Window</span>
+        </button>
+      </div>
     </div>
   </dialog>
 
