@@ -45,7 +45,7 @@
   --text-gold: #FCD34D;
 
   /* Typography */
-  --font-heading: 'Syne', 'Cinzel', 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Montserrat', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Elevation & Glows */
@@ -248,8 +248,14 @@ h1, h2, h3, h4, .brand-font {
 
 .brand-emblem {
   position: relative;
-  width: 52px;
-  height: 52px;
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  min-height: 46px;
+  max-width: 46px;
+  max-height: 46px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -259,8 +265,10 @@ h1, h2, h3, h4, .brand-font {
 .brand-emblem img, .brand-emblem svg {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
   display: block;
-  filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.45));
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.45));
 }
 
 .brand-info {
@@ -270,11 +278,11 @@ h1, h2, h3, h4, .brand-font {
 
 .brand-title {
   font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em;
   color: #FFFFFF;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .brand-title span {
@@ -282,9 +290,9 @@ h1, h2, h3, h4, .brand-font {
 }
 
 .brand-subtitle {
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.08em;
   color: var(--gold-500);
   text-transform: uppercase;
   margin-top: 3px;
@@ -360,23 +368,24 @@ h1, h2, h3, h4, .brand-font {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   background: var(--grad-gold-btn);
   color: #0A0A0B;
   font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 14px 28px;
-  border-radius: 50px;
+  padding: 10px 20px;
+  border-radius: 40px;
   border: 1px solid var(--gold-300);
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4);
   cursor: pointer;
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .btn-primary-gold:hover {
@@ -1653,20 +1662,22 @@ h1, h2, h3, h4, .brand-font {
 
 .stat-item-number {
   font-family: var(--font-heading);
-  font-size: 2.8rem;
-  font-weight: 900;
+  font-size: 2.3rem;
+  font-weight: 800;
   background: var(--grad-gold);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1.1;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   margin-bottom: 6px;
+  font-variant-numeric: tabular-nums;
 }
 
 .stat-item-label {
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-secondary);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
@@ -1676,27 +1687,33 @@ h1, h2, h3, h4, .brand-font {
 .poster-footer-contact-bar {
   background: radial-gradient(ellipse at 50% 50%, rgba(28, 22, 14, 0.95) 0%, rgba(10, 10, 14, 0.98) 100%);
   border: 1px solid var(--border-gold-medium);
-  border-radius: 28px;
-  padding: 40px 45px;
+  border-radius: 24px;
+  padding: 34px 40px;
   margin-bottom: 60px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(245, 158, 11, 0.15);
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 28px;
+  gap: 24px;
 }
 
 .contact-email-col {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 }
 
 .email-icon-box {
-  width: 58px;
-  height: 58px;
-  border-radius: 16px;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  max-width: 50px;
+  max-height: 50px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  border-radius: 14px;
   background: rgba(245, 158, 11, 0.12);
   border: 1px solid var(--border-gold-subtle);
   display: flex;
@@ -1707,16 +1724,16 @@ h1, h2, h3, h4, .brand-font {
 
 .email-details span {
   display: block;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--gold-300);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   margin-bottom: 2px;
 }
 
 .email-address-link {
-  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
   font-weight: 700;
   color: #FFFFFF;
   text-decoration: none;
@@ -1731,13 +1748,19 @@ h1, h2, h3, h4, .brand-font {
 .dm-today-col {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 }
 
 .dm-bubble-icon {
-  width: 58px;
-  height: 58px;
-  border-radius: 16px;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  max-width: 50px;
+  max-height: 50px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  border-radius: 14px;
   background: rgba(245, 158, 11, 0.12);
   border: 1px solid var(--border-gold-subtle);
   display: flex;
@@ -1748,9 +1771,9 @@ h1, h2, h3, h4, .brand-font {
 
 .dm-cta-text {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em;
   color: #FFFFFF;
   text-transform: uppercase;
 }
@@ -1762,12 +1785,14 @@ h1, h2, h3, h4, .brand-font {
   background: var(--gold-400);
   color: #060608;
   font-family: var(--font-heading);
-  font-size: 0.9rem;
-  font-weight: 800;
-  padding: 12px 24px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 10px 20px;
   border-radius: 30px;
   text-decoration: none;
   transition: var(--transition-smooth);
+  white-space: nowrap;
 }
 
 .btn-dm-action:hover {
@@ -1837,9 +1862,9 @@ h1, h2, h3, h4, .brand-font {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   margin-bottom: 30px;
   font-family: var(--font-heading);
-  font-size: clamp(0.9rem, 2vw, 1.25rem);
-  font-weight: 800;
-  letter-spacing: 0.35em;
+  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
   color: var(--gold-400);
   text-transform: uppercase;
 }
