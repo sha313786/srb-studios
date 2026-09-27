@@ -136,50 +136,62 @@ function initDeviceStage() {
 /* ==========================================================================
    3. ZERO-SCROLL MODAL HANDLING
    ========================================================================== */
+function openModalSafe(modal, serviceParam) {
+  if (!modal) return;
+  modal.style.display = '';
+
+  const currentScrollY = window.scrollY || window.pageYOffset;
+  if (serviceParam) {
+    const select = modal.querySelector('#projectTypeSelect');
+    if (select) select.value = serviceParam;
+  }
+
+  // Ensure form is visible and success state hidden when opening
+  const modalForm = modal.querySelector('#consultationForm');
+  const successState = modal.querySelector('#modalSuccessState');
+  if (modalForm) modalForm.style.display = '';
+  if (successState) successState.style.display = 'none';
+
+  document.body.classList.add('modal-open');
+
+  if (typeof modal.showModal === 'function') {
+    try {
+      modal.showModal();
+    } catch (_) {
+      modal.setAttribute('open', '');
+    }
+  } else {
+    modal.setAttribute('open', '');
+  }
+
+  window.scrollTo({ top: currentScrollY, left: 0, behavior: 'instant' });
+}
+
+function closeModalSafe(modal) {
+  if (!modal) {
+    modal = document.getElementById('consultationModal');
+  }
+  if (!modal) return;
+
+  try {
+    if (typeof modal.close === 'function') {
+      modal.close();
+    }
+  } catch (_) {}
+
+  modal.removeAttribute('open');
+  modal.style.display = 'none';
+  document.body.classList.remove('modal-open');
+
+  const modalForm = document.getElementById('consultationForm');
+  const successState = document.getElementById('modalSuccessState');
+  if (modalForm) modalForm.style.display = '';
+  if (successState) successState.style.display = 'none';
+}
+
 function initModals() {
   const consultationModal = document.getElementById('consultationModal');
   const posterModal = document.getElementById('posterModal');
-
-  function openModalSafe(modal, serviceParam) {
-    if (!modal) return;
-    
-    // Remember current scroll position
-    const currentScrollY = window.scrollY || window.pageYOffset;
-    
-    if (serviceParam) {
-      const select = modal.querySelector('#projectTypeSelect');
-      if (select) select.value = serviceParam;
-    }
-    
-    document.body.classList.add('modal-open');
-    
-    if (typeof modal.showModal === 'function') {
-      try {
-        modal.showModal();
-      } catch (err) {
-        modal.setAttribute('open', '');
-      }
-    } else {
-      modal.setAttribute('open', '');
-    }
-    
-    // Lock scroll position immediately to prevent browser autofocus jumping
-    window.scrollTo({ top: currentScrollY, left: 0, behavior: 'instant' });
-  }
-
-  function closeModalSafe(modal) {
-    if (!modal) return;
-    if (typeof modal.close === 'function') {
-      modal.close();
-    } else {
-      modal.removeAttribute('open');
-    }
-    document.body.classList.remove('modal-open');
-    const modalForm = document.getElementById('consultationForm');
-    const successState = document.getElementById('modalSuccessState');
-    if (modalForm) modalForm.style.display = '';
-    if (successState) successState.style.display = 'none';
-  }
 
   // Triggers for Consultation
   document.querySelectorAll('[data-open-consultation]').forEach(btn => {
@@ -200,8 +212,8 @@ function initModals() {
     });
   });
 
-  // Close buttons inside modals
-  document.querySelectorAll('.modal-close-btn').forEach(btn => {
+  // Close buttons inside modals (x button, Close Window button, or data-close-modal)
+  document.querySelectorAll('.modal-close-btn, [data-close-modal], #closeModalSuccessBtn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -227,7 +239,7 @@ function initModals() {
     });
 
     modal.addEventListener('cancel', () => {
-      document.body.classList.remove('modal-open');
+      closeModalSafe(modal);
     });
   });
 

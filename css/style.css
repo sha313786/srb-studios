@@ -1924,6 +1924,10 @@ body.modal-open {
   overflow: hidden !important;
 }
 
+dialog:not([open]) {
+  display: none !important;
+}
+
 dialog#consultationModal, dialog#posterModal {
   position: fixed !important;
   top: 50% !important;
