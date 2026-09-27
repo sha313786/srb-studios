@@ -138,22 +138,56 @@ function initDeviceStage() {
 }
 
 /* ==========================================================================
-   3. NATIVE <DIALOG> MODAL HANDLING (With Light Dismiss & Esc Key)
+   3. ZERO-SCROLL MODAL HANDLING
    ========================================================================== */
 function initModals() {
   const consultationModal = document.getElementById('consultationModal');
   const posterModal = document.getElementById('posterModal');
 
+  function openModalSafe(modal, serviceParam) {
+    if (!modal) return;
+    
+    // Remember current scroll position
+    const currentScrollY = window.scrollY || window.pageYOffset;
+    
+    if (serviceParam) {
+      const select = modal.querySelector('#projectTypeSelect');
+      if (select) select.value = serviceParam;
+    }
+    
+    document.body.classList.add('modal-open');
+    
+    if (typeof modal.showModal === 'function') {
+      try {
+        modal.showModal();
+      } catch (err) {
+        modal.setAttribute('open', '');
+      }
+    } else {
+      modal.setAttribute('open', '');
+    }
+    
+    // Lock scroll position immediately to prevent browser autofocus jumping
+    window.scrollTo({ top: currentScrollY, left: 0, behavior: 'instant' });
+  }
+
+  function closeModalSafe(modal) {
+    if (!modal) return;
+    if (typeof modal.close === 'function') {
+      modal.close();
+    } else {
+      modal.removeAttribute('open');
+    }
+    document.body.classList.remove('modal-open');
+  }
+
   // Triggers for Consultation
   document.querySelectorAll('[data-open-consultation]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const serviceParam = btn.getAttribute('data-service');
-      if (serviceParam) {
-        const select = document.getElementById('projectTypeSelect');
-        if (select) select.value = serviceParam;
-      }
-      consultationModal?.showModal();
+      openModalSafe(consultationModal, serviceParam);
     });
   });
 
@@ -161,15 +195,18 @@ function initModals() {
   document.querySelectorAll('[data-open-poster]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      posterModal?.showModal();
+      e.stopPropagation();
+      openModalSafe(posterModal, null);
     });
   });
 
   // Close buttons inside modals
   document.querySelectorAll('.modal-close-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      consultationModal?.close();
-      posterModal?.close();
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeModalSafe(consultationModal);
+      closeModalSafe(posterModal);
     });
   });
 
@@ -185,7 +222,23 @@ function initModals() {
         event.clientX <= rect.left + rect.width
       );
       if (!isInDialog) {
-        modal.close();
+        closeModalSafe(modal);
+      }
+    });
+
+    modal.addEventListener('cancel', () => {
+      document.body.classList.remove('modal-open');
+    });
+  });
+
+  // Custom data-scroll-to handler for smooth section scrolling without anchor hash jump
+  document.querySelectorAll('[data-scroll-to]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = el.getAttribute('data-scroll-to');
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
       }
     });
   });
@@ -199,7 +252,8 @@ function initPortfolioFilter() {
   const projectCards = document.querySelectorAll('.project-card');
 
   filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
@@ -219,50 +273,72 @@ function initPortfolioFilter() {
 }
 
 /* ==========================================================================
-   5. CONSULTATION FORM & SUBMISSION
+   5. CONSULTATION FORMS & SUBMISSION (Modal & In-Page)
    ========================================================================== */
 function initConsultationForm() {
-  const form = document.getElementById('consultationForm');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById('clientName')?.value.trim();
-    const email = document.getElementById('clientEmail')?.value.trim();
-    const service = document.getElementById('projectTypeSelect')?.value;
-    const budget = document.getElementById('budgetRangeSelect')?.value;
-    const notes = document.getElementById('projectNotes')?.value.trim();
-
+  function handleFormSubmit(name, email, service, budget, notes, resetCallback) {
     if (!name || !email) {
       showToast('⚠️ Please enter your Name and Email address.');
       return;
     }
 
-    const subject = encodeURIComponent(`New Consultation Request from ${name} - ${service}`);
+    const subject = encodeURIComponent(`Consultation Request: ${name} (${service})`);
     const body = encodeURIComponent(
       `Hello SRB Studio,\n\n` +
-      `I would like to request a consultation for our upcoming digital project.\n\n` +
-      `• Client Name: ${name}\n` +
-      `• Contact Email: ${email}\n` +
-      `• Desired Service: ${service}\n` +
-      `• Target Budget: ${budget}\n` +
+      `I would like to request a consultation for our digital project.\n\n` +
+      `• Name / Company: ${name}\n` +
+      `• Email: ${email}\n` +
+      `• Service Architecture: ${service}\n` +
+      `• Estimated Budget: ${budget}\n` +
       `• Project Overview:\n${notes}\n\n` +
-      `Looking forward to elevating our digital presence with SRB Studio!`
+      `Looking forward to elevating our presence with SRB Studio!`
     );
 
-    // Copy brief to clipboard
     const plainTextBrief = `SRB Studio Consultation Request:\nClient: ${name} (${email})\nService: ${service}\nBudget: ${budget}\nNotes: ${notes}`;
-    navigator.clipboard?.writeText(plainTextBrief);
+    try {
+      navigator.clipboard?.writeText(plainTextBrief);
+    } catch (_) {}
 
-    // Open mailto link
     window.location.href = `mailto:srbstudiosofficial@gmail.com?subject=${subject}&body=${body}`;
 
-    // Close modal & confirm
-    document.getElementById('consultationModal')?.close();
+    const modal = document.getElementById('consultationModal');
+    if (modal) {
+      if (typeof modal.close === 'function') modal.close();
+      else modal.removeAttribute('open');
+      document.body.classList.remove('modal-open');
+    }
+
     showToast('✨ Consultation request prepared! Opening your mail client...');
-    form.reset();
-  });
+    if (typeof resetCallback === 'function') resetCallback();
+  }
+
+  // Modal Form
+  const modalForm = document.getElementById('consultationForm');
+  if (modalForm) {
+    modalForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('clientName')?.value.trim();
+      const email = document.getElementById('clientEmail')?.value.trim();
+      const service = document.getElementById('projectTypeSelect')?.value;
+      const budget = document.getElementById('budgetRangeSelect')?.value;
+      const notes = document.getElementById('projectNotes')?.value.trim();
+      handleFormSubmit(name, email, service, budget, notes, () => modalForm.reset());
+    });
+  }
+
+  // In-Page Form
+  const inpageForm = document.getElementById('inpageConsultationForm');
+  if (inpageForm) {
+    inpageForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('inpageName')?.value.trim();
+      const email = document.getElementById('inpageEmail')?.value.trim();
+      const service = document.getElementById('inpageService')?.value;
+      const budget = document.getElementById('inpageBudget')?.value;
+      const notes = document.getElementById('inpageNotes')?.value.trim();
+      handleFormSubmit(name, email, service, budget, notes, () => inpageForm.reset());
+    });
+  }
 }
 
 /* ==========================================================================
