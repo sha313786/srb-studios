@@ -1,0 +1,12 @@
+{
+  "name": "srb-studio",
+  "version": "1.0.0",
+  "description": "SRB Studio — Elevate Your Online Presence | Premium Web Development Solutions",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "npx serve ."
+  },
+  "author": "SRB Studio",
+  "license": "MIT"
+}

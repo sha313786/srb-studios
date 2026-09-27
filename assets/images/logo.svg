@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3B0" />
+      <stop offset="25%" stop-color="#FCD34D" />
+      <stop offset="60%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#92400E" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE68A" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#B45309" stop-opacity="0.2" />
+    </linearGradient>
+    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur1" />
+      <feGaussianBlur stdDeviation="15" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <radialGradient id="centerAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D97706" stop-opacity="0.25" />
+      <stop offset="70%" stop-color="#050507" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#050507" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Dark Background Disk with Subtle Glow -->
+  <circle cx="250" cy="250" r="235" fill="#09090D" stroke="#221C11" stroke-width="2" />
+  <circle cx="250" cy="250" r="230" fill="url(#centerAura)" />
+
+  <!-- Outer Neon Gold Rings -->
+  <circle cx="250" cy="250" r="215" fill="none" stroke="url(#goldGrad)" stroke-width="3.5" filter="url(#neonGlow)" />
+  <circle cx="250" cy="250" r="206" fill="none" stroke="#D97706" stroke-width="1" stroke-opacity="0.5" stroke-dasharray="8 6" />
+
+  <!-- Monogram Group (SRB / SR3 Style) -->
+  <g id="logo-monogram" transform="translate(250, 205)">
+    <!-- Letter S -->
+    <path d="M -135,-35 C -135,-65 -90,-80 -55,-80 C -20,-80 5,-60 5,-35 C 5,-8 -25,2 -55,10 C -95,20 -125,32 -125,62 C -125,95 -85,110 -40,110 C 2,110 30,90 35,65 L 12,58 C 8,75 -15,88 -42,88 C -70,88 -98,78 -98,60 C -98,42 -72,34 -40,24 C 2,13 32,-3 32,-35 C 32,-75 -8,-102 -55,-102 C -105,-102 -160,-75 -160,-35 Z" 
+          fill="url(#goldGrad)" filter="url(#neonGlow)" />
+
+    <!-- Letter R & B Combined Monogram Structure -->
+    <!-- R Body -->
+    <path d="M -10,-100 L 45,-100 C 85,-100 115,-80 115,-50 C 115,-25 95,-8 65,0 C 105,12 128,38 132,100 L 102,100 C 97,48 80,22 45,22 L 18,22 L 18,100 L -10,100 Z M 18,-20 L 45,-20 C 68,-20 86,-30 86,-50 C 86,-70 68,-78 45,-78 L 18,-78 Z"
+          fill="url(#goldGrad)" filter="url(#neonGlow)" />
+
+    <!-- Stylized 3 / B outer loop cutout accents -->
+    <path d="M 68,-100 C 110,-100 148,-78 148,-42 C 148,-15 130,5 105,12 C 138,20 158,45 158,78 C 158,112 118,135 68,135 L 50,135 L 50,113 L 68,113 C 102,113 130,98 130,75 C 130,52 105,35 65,35 L 45,35 L 45,13 L 68,13 C 100,13 120,-2 120,-22 C 120,-42 98,-58 68,-58 L 50,-58 L 50,-80 L 68,-80 Z" 
+          fill="url(#goldGrad)" opacity="0.95" />
+  </g>
+
+  <!-- Center Separator Bar -->
+  <line x1="85" y1="335" x2="160" y2="335" stroke="url(#goldGrad)" stroke-width="2.5" />
+  <circle cx="165" cy="335" r="3.5" fill="#FCD34D" />
+  
+  <text x="250" y="343" 
+        font-family="'Montserrat', 'Cinzel', 'Trajan Pro', 'Segoe UI', sans-serif" 
+        font-size="32" 
+        font-weight="800" 
+        letter-spacing="14" 
+        text-anchor="middle" 
+        fill="url(#goldGrad)" 
+        filter="url(#neonGlow)">STUDIO</text>
+        
+  <circle cx="335" cy="335" r="3.5" fill="#FCD34D" />
+  <line x1="340" y1="335" x2="415" y2="335" stroke="url(#goldGrad)" stroke-width="2.5" />
+
+  <!-- Tagline: BUILD • INNOVATE • ELEVATE -->
+  <text x="250" y="390" 
+        font-family="'Montserrat', 'Inter', 'Segoe UI', sans-serif" 
+        font-size="14" 
+        font-weight="700" 
+        letter-spacing="5" 
+        text-anchor="middle" 
+        fill="#E5A93C" 
+        opacity="0.9">BUILD • INNOVATE • ELEVATE</text>
+</svg>
