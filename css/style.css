@@ -334,6 +334,27 @@ h1, h2, h3, h4, .brand-font {
   gap: 16px;
 }
 
+.nav-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid var(--border-gold-subtle);
+  color: var(--gold-400);
+  transition: var(--transition-smooth);
+  text-decoration: none;
+}
+
+.nav-social-icon:hover {
+  background: var(--gold-400);
+  color: #060608;
+  box-shadow: 0 0 20px var(--gold-glow);
+  transform: translateY(-2px);
+}
+
 /* Gold Glowing Buttons */
 .btn-primary-gold {
   display: inline-flex;

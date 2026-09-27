@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRB STUDIO — Official Links & Social Hub</title>
+  <meta name="description" content="Official links for SRB Studio. Elevate your online presence with bespoke web development, dynamic portals, and ultra-fast digital architectures.">
+  <meta name="theme-color" content="#060608">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SRB Studio — Links & Digital Hub">
+  <meta property="og:description" content="BUILD • INNOVATE • ELEVATE. Premium web solutions.">
+  <meta property="og:image" content="assets/images/srb-studio-poster.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 40px 16px 60px;
+      background: radial-gradient(circle at 50% 15%, #16120b 0%, #060608 70%);
+    }
+
+    .bio-container {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .bio-avatar-glow {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, transparent 70%);
+      padding: 4px;
+      box-shadow: 0 0 35px var(--gold-glow);
+    }
+
+    .bio-avatar-glow img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: block;
+      filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.5));
+    }
+
+    .bio-badge-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .bio-title {
+      font-family: var(--font-heading);
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: #FFF;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+
+    .bio-title span {
+      color: var(--gold-400);
+    }
+
+    .verified-icon {
+      color: var(--gold-400);
+      font-size: 1.1rem;
+    }
+
+    .bio-tagline {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--gold-500);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .bio-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 28px;
+    }
+
+    /* Links Stack */
+    .bio-links-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .bio-link-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(18, 18, 26, 0.85);
+      border: 1px solid var(--border-gold-subtle);
+      border-radius: 18px;
+      padding: 16px 22px;
+      color: #FFF;
+      text-decoration: none;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bio-link-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--gold-400);
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .bio-link-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-gold-bright);
+      background: rgba(26, 26, 38, 0.95);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(245, 158, 11, 0.2);
+    }
+
+    .bio-link-card:hover::before {
+      opacity: 1;
+    }
+
+    .bio-link-card.featured-gold {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(18, 18, 26, 0.95) 100%);
+      border-color: var(--gold-400);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.25);
+    }
+
+    .bio-link-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .bio-link-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid var(--border-gold-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-400);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .bio-link-card:hover .bio-link-icon {
+      background: var(--gold-400);
+      color: #060608;
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+
+    .bio-link-text h4 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 2px;
+    }
+
+    .bio-link-text p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .bio-link-arrow {
+      color: var(--gold-400);
+      font-size: 1.1rem;
+      font-weight: 800;
+      transition: var(--transition-smooth);
+    }
+
+    .bio-link-card:hover .bio-link-arrow {
+      transform: translateX(4px);
+      color: #FFF;
+    }
+
+    /* Social Icons Row */
+    .bio-socials {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .bio-social-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(20, 20, 28, 0.85);
+      border: 1px solid var(--border-gold-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-400);
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    .bio-social-icon:hover {
+      background: var(--gold-400);
+      color: #060608;
+      box-shadow: 0 0 20px var(--gold-glow);
+      transform: translateY(-3px);
+    }
+
+    .bio-footer {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    .bio-footer span {
+      color: var(--gold-400);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glow -->
+  <div class="ambient-glow" aria-hidden="true">
+    <div class="ambient-light-top"></div>
+  </div>
+
+  <main class="bio-container">
+    
+    <!-- Profile Avatar & Badge -->
+    <div class="bio-avatar-glow">
+      <img src="assets/images/logo.svg" alt="SRB Studio Logo">
+    </div>
+
+    <div class="bio-badge-row">
+      <h1 class="bio-title">SRB <span>STUDIO</span></h1>
+      <span class="verified-icon" title="Verified Agency">✓</span>
+    </div>
+
+    <div class="bio-tagline">BUILD • INNOVATE • ELEVATE</div>
+
+    <p class="bio-desc">
+      Premium Web Development Solutions. Tailored architecture, dynamic portals, and lightning-fast digital experiences.
+    </p>
+
+    <!-- Links Stack -->
+    <div class="bio-links-stack">
+      
+      <!-- 1. Featured Consultation Request -->
+      <a href="index.html#consultationModal" class="bio-link-card featured-gold" id="consultationLink">
+        <div class="bio-link-left">
+          <div class="bio-link-icon">⚡</div>
+          <div class="bio-link-text">
+            <h4>Get A Free Consultation</h4>
+            <p>Direct project quote & architecture roadmap</p>
+          </div>
+        </div>
+        <div class="bio-link-arrow">→</div>
+      </a>
+
+      <!-- 2. Main Agency Website -->
+      <a href="index.html" class="bio-link-card">
+        <div class="bio-link-left">
+          <div class="bio-link-icon">🌐</div>
+          <div class="bio-link-text">
+            <h4>Explore Official Website</h4>
+            <p>Full services, client case studies & specs</p>
+          </div>
+        </div>
+        <div class="bio-link-arrow">→</div>
+      </a>
+
+      <!-- 3. Interactive Device Stage -->
+      <a href="index.html#device-stage" class="bio-link-card">
+        <div class="bio-link-left">
+          <div class="bio-link-icon">🖥️</div>
+          <div class="bio-link-text">
+            <h4>Live Device Showcase</h4>
+            <p>Interactive 4K Desktop, Tablet & Mobile previews</p>
+          </div>
+        </div>
+        <div class="bio-link-arrow">→</div>
+      </a>
+
+      <!-- 4. Send Direct Message / DM -->
+      <a href="https://instagram.com" target="_blank" rel="noopener" class="bio-link-card" id="instagramDmLink">
+        <div class="bio-link-left">
+          <div class="bio-link-icon">💬</div>
+          <div class="bio-link-text">
+            <h4>DM Us on Instagram</h4>
+            <p>Fast responses for inquiries & collaborations</p>
+          </div>
+        </div>
+        <div class="bio-link-arrow">→</div>
+      </a>
+
+      <!-- 5. Direct Email Inquiries -->
+      <a href="mailto:srbstudiosofficial@gmail.com" class="bio-link-card">
+        <div class="bio-link-left">
+          <div class="bio-link-icon">✉️</div>
+          <div class="bio-link-text">
+            <h4>srbstudiosofficial@gmail.com</h4>
+            <p>Send project RFP or business inquiries</p>
+          </div>
+        </div>
+        <div class="bio-link-arrow">→</div>
+      </a>
+
+    </div>
+
+    <!-- Socials Row -->
+    <div class="bio-socials">
+      <!-- Instagram -->
+      <a href="https://instagram.com" target="_blank" rel="noopener" class="bio-social-icon" aria-label="Instagram" id="socialInsta">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:srbstudiosofficial@gmail.com" class="bio-social-icon" aria-label="Email">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="16" x="2" y="4" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+      </a>
+
+      <!-- Web -->
+      <a href="index.html" class="bio-social-icon" aria-label="Official Website">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <div class="bio-footer">
+      &copy; 2026 <span>SRB STUDIO</span> • BUILD • INNOVATE • ELEVATE
+    </div>
+
+  </main>
+
+</body>
+</html>
