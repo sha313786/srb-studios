@@ -71,6 +71,10 @@ html {
   color-scheme: dark;
 }
 
+section, [id] {
+  scroll-margin-top: 100px;
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--bg-black);
@@ -1863,30 +1867,36 @@ h1, h2, h3, h4, .brand-font {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.faq-question[aria-expanded="true"] .faq-icon-pill {
+.faq-question[aria-expanded="true"] .faq-icon-pill,
+.faq-item.is-open .faq-icon-pill {
   background: var(--gold-400);
   color: #060608;
 }
 
-.faq-question[aria-expanded="true"] .faq-chevron {
+.faq-question[aria-expanded="true"] .faq-chevron,
+.faq-item.is-open .faq-chevron {
   transform: rotate(180deg);
 }
 
 .faq-answer {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+  max-height: 0;
   overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.4s;
+  pointer-events: none;
 }
 
-.faq-answer.is-open {
-  grid-template-rows: 1fr;
+.faq-item.is-open .faq-answer {
+  max-height: 800px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .faq-answer-inner {
-  min-height: 0;
-  overflow: hidden;
-  padding: 0 24px 22px;
+  padding: 4px 24px 24px;
   color: var(--text-secondary);
   font-size: 0.92rem;
   line-height: 1.7;

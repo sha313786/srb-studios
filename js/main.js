@@ -594,15 +594,16 @@ function initStatsCounter() {
         statNumbers.forEach(el => {
           const target = parseInt(el.getAttribute('data-target') || '0', 10);
           const suffix = el.getAttribute('data-suffix') || '';
+          const prefix = el.getAttribute('data-prefix') || '';
           let count = 0;
           const step = Math.max(1, Math.floor(target / 40));
           const timer = setInterval(() => {
             count += step;
             if (count >= target) {
-              el.textContent = `${target}${suffix}`;
+              el.textContent = `${prefix}${target}${suffix}`;
               clearInterval(timer);
             } else {
-              el.textContent = `${count}${suffix}`;
+              el.textContent = `${prefix}${count}${suffix}`;
             }
           }, 30);
         });
@@ -637,62 +638,33 @@ function showToast(msg) {
    9. FAQ ACCORDION INTERACTION
    ========================================================================== */
 function initFaqAccordion() {
-  const faqButtons = document.querySelectorAll('.faq-question');
-  if (!faqButtons.length) return;
+  const faqItems = document.querySelectorAll('.faq-item');
+  if (!faqItems.length) return;
 
-  faqButtons.forEach((btn) => {
+  faqItems.forEach(item => {
+    const btn = item.querySelector('.faq-question');
+    if (!btn) return;
+
     btn.addEventListener('click', () => {
-      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-      const targetId = btn.getAttribute('aria-controls');
-      const targetAnswer = document.getElementById(targetId);
-      const parentItem = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('is-open');
 
-      // Close other accordion items smoothly
-      faqButtons.forEach(otherBtn => {
-        if (otherBtn !== btn) {
-          otherBtn.setAttribute('aria-expanded', 'false');
-          const otherItem = otherBtn.closest('.faq-item');
-          if (otherItem) otherItem.classList.remove('is-open');
-          const otherAns = document.getElementById(otherBtn.getAttribute('aria-controls'));
-          if (otherAns) {
-            otherAns.classList.remove('is-open');
-            setTimeout(() => {
-              if (otherBtn.getAttribute('aria-expanded') === 'false') {
-                otherAns.hidden = true;
-              }
-            }, 350);
-          }
+      // Close all other accordion items
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('is-open');
+          const otherBtn = otherItem.querySelector('.faq-question');
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
         }
       });
 
-      // Toggle clicked item
-      if (isExpanded) {
+      // Toggle current item
+      if (isOpen) {
+        item.classList.remove('is-open');
         btn.setAttribute('aria-expanded', 'false');
-        if (parentItem) parentItem.classList.remove('is-open');
-        if (targetAnswer) {
-          targetAnswer.classList.remove('is-open');
-          setTimeout(() => {
-            if (btn.getAttribute('aria-expanded') === 'false') {
-              targetAnswer.hidden = true;
-            }
-          }, 350);
-        }
       } else {
+        item.classList.add('is-open');
         btn.setAttribute('aria-expanded', 'true');
-        if (parentItem) parentItem.classList.add('is-open');
-        if (targetAnswer) {
-          targetAnswer.hidden = false;
-          requestAnimationFrame(() => {
-            targetAnswer.classList.add('is-open');
-          });
-        }
       }
     });
   });
-
-  // Expand the first FAQ item by default on load
-  const firstBtn = faqButtons[0];
-  if (firstBtn) {
-    firstBtn.click();
-  }
 }
