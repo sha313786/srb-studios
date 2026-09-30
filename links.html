@@ -155,6 +155,23 @@
       box-shadow: 0 0 20px rgba(245, 158, 11, 0.25);
     }
 
+    .bio-link-card.featured-whatsapp {
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.12) 0%, rgba(18, 18, 26, 0.95) 100%);
+      border-color: rgba(37, 211, 102, 0.4);
+    }
+
+    .bio-link-card.featured-whatsapp:hover {
+      border-color: #25D366;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(37, 211, 102, 0.35);
+    }
+
+    .bio-social-icon.whatsapp:hover {
+      background: #25D366;
+      color: #060608;
+      box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+      border-color: #25D366;
+    }
+
     .bio-link-left {
       display: flex;
       align-items: center;
@@ -312,19 +329,35 @@
         <div class="bio-link-arrow">→</div>
       </a>
 
-      <!-- 4. Send Direct Message / DM -->
-      <a href="https://instagram.com" target="_blank" rel="noopener" class="bio-link-card" id="instagramDmLink">
+      <!-- 4. Direct WhatsApp Inquiries -->
+      <a href="https://wa.me/917559084152?text=Hello%20SRB%20Studio%2C%20I%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" rel="noopener" class="bio-link-card featured-whatsapp" id="whatsappDirectLink">
         <div class="bio-link-left">
-          <div class="bio-link-icon">💬</div>
+          <div class="bio-link-icon" style="color: #25D366; background: rgba(37, 211, 102, 0.12); border-color: rgba(37, 211, 102, 0.3);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.11 7.08C8.95 7.08 8.68 7.14 8.47 7.38C8.25 7.62 7.65 8.18 7.65 9.32C7.65 10.46 8.48 11.56 8.6 11.72C8.72 11.88 10.22 14.28 12.57 15.24C14.52 16.03 14.92 15.88 15.34 15.84C15.76 15.8 16.7 15.28 16.9 14.72C17.1 14.16 17.1 13.68 17.04 13.58C16.98 13.48 16.82 13.42 16.58 13.3C16.34 13.18 15.17 12.6 14.95 12.52C14.73 12.44 14.57 12.4 14.41 12.64C14.25 12.88 13.78 13.42 13.64 13.58C13.5 13.74 13.36 13.76 13.12 13.64C12.88 13.52 11.87 13.19 10.67 12.12C9.74 11.29 9.11 10.27 8.99 10.03C8.87 9.79 8.98 9.66 9.1 9.54C9.21 9.43 9.35 9.25 9.47 9.11C9.59 8.97 9.63 8.87 9.71 8.71C9.79 8.55 9.75 8.41 9.69 8.29C9.63 8.17 9.17 7.04 8.98 6.58C8.79 6.13 8.6 6.19 8.47 6.18C8.34 6.17 8.18 6.17 8.02 6.17"/>
+            </svg>
+          </div>
           <div class="bio-link-text">
-            <h4>DM Us on Instagram</h4>
-            <p>Fast responses for inquiries & collaborations</p>
+            <h4>Chat on WhatsApp</h4>
+            <p>+91 7559084152 • Instant response for project inquiries</p>
           </div>
         </div>
         <div class="bio-link-arrow">→</div>
       </a>
 
-      <!-- 5. Direct Email Inquiries -->
+      <!-- 5. Send Direct Message / DM -->
+      <a href="https://www.instagram.com/srbstudiosofficial/" target="_blank" rel="noopener" class="bio-link-card" id="instagramDmLink">
+        <div class="bio-link-left">
+          <div class="bio-link-icon">📸</div>
+          <div class="bio-link-text">
+            <h4>Follow & DM on Instagram</h4>
+            <p>@srbstudiosofficial • Design drops & agency updates</p>
+          </div>
+        </div>
+        <div class="bio-link-arrow">→</div>
+      </a>
+
+      <!-- 6. Direct Email Inquiries -->
       <a href="mailto:srbstudiosofficial@gmail.com" class="bio-link-card">
         <div class="bio-link-left">
           <div class="bio-link-icon">✉️</div>
@@ -340,8 +373,15 @@
 
     <!-- Socials Row -->
     <div class="bio-socials">
+      <!-- WhatsApp -->
+      <a href="https://wa.me/917559084152?text=Hello%20SRB%20Studio%2C%20I%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" rel="noopener" class="bio-social-icon whatsapp" aria-label="WhatsApp" id="socialWhatsApp" title="WhatsApp: +91 7559084152">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.11 7.08C8.95 7.08 8.68 7.14 8.47 7.38C8.25 7.62 7.65 8.18 7.65 9.32C7.65 10.46 8.48 11.56 8.6 11.72C8.72 11.88 10.22 14.28 12.57 15.24C14.52 16.03 14.92 15.88 15.34 15.84C15.76 15.8 16.7 15.28 16.9 14.72C17.1 14.16 17.1 13.68 17.04 13.58C16.98 13.48 16.82 13.42 16.58 13.3C16.34 13.18 15.17 12.6 14.95 12.52C14.73 12.44 14.57 12.4 14.41 12.64C14.25 12.88 13.78 13.42 13.64 13.58C13.5 13.74 13.36 13.76 13.12 13.64C12.88 13.52 11.87 13.19 10.67 12.12C9.74 11.29 9.11 10.27 8.99 10.03C8.87 9.79 8.98 9.66 9.1 9.54C9.21 9.43 9.35 9.25 9.47 9.11C9.59 8.97 9.63 8.87 9.71 8.71C9.79 8.55 9.75 8.41 9.69 8.29C9.63 8.17 9.17 7.04 8.98 6.58C8.79 6.13 8.6 6.19 8.47 6.18C8.34 6.17 8.18 6.17 8.02 6.17"/>
+        </svg>
+      </a>
+
       <!-- Instagram -->
-      <a href="https://instagram.com" target="_blank" rel="noopener" class="bio-social-icon" aria-label="Instagram" id="socialInsta">
+      <a href="https://www.instagram.com/srbstudiosofficial/" target="_blank" rel="noopener" class="bio-social-icon" aria-label="Instagram" id="socialInsta" title="Instagram: @srbstudiosofficial">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
           <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
@@ -350,7 +390,7 @@
       </a>
 
       <!-- Email -->
-      <a href="mailto:srbstudiosofficial@gmail.com" class="bio-social-icon" aria-label="Email">
+      <a href="mailto:srbstudiosofficial@gmail.com" class="bio-social-icon" aria-label="Email" title="Email: srbstudiosofficial@gmail.com">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect width="20" height="16" x="2" y="4" rx="2"/>
           <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
@@ -358,7 +398,7 @@
       </a>
 
       <!-- Web -->
-      <a href="index.html" class="bio-social-icon" aria-label="Official Website">
+      <a href="index.html" class="bio-social-icon" aria-label="Official Website" title="Official Website: SRB Studio">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/>
           <line x1="2" y1="12" x2="22" y2="12"/>

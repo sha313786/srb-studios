@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPerformanceGauge();
   initEmailCopy();
   initStatsCounter();
+  initFaqAccordion();
 });
 
 /* ==========================================================================
@@ -630,4 +631,68 @@ function showToast(msg) {
   setTimeout(() => {
     toast.classList.remove('show');
   }, 4000);
+}
+
+/* ==========================================================================
+   9. FAQ ACCORDION INTERACTION
+   ========================================================================== */
+function initFaqAccordion() {
+  const faqButtons = document.querySelectorAll('.faq-question');
+  if (!faqButtons.length) return;
+
+  faqButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      const targetId = btn.getAttribute('aria-controls');
+      const targetAnswer = document.getElementById(targetId);
+      const parentItem = btn.closest('.faq-item');
+
+      // Close other accordion items smoothly
+      faqButtons.forEach(otherBtn => {
+        if (otherBtn !== btn) {
+          otherBtn.setAttribute('aria-expanded', 'false');
+          const otherItem = otherBtn.closest('.faq-item');
+          if (otherItem) otherItem.classList.remove('is-open');
+          const otherAns = document.getElementById(otherBtn.getAttribute('aria-controls'));
+          if (otherAns) {
+            otherAns.classList.remove('is-open');
+            setTimeout(() => {
+              if (otherBtn.getAttribute('aria-expanded') === 'false') {
+                otherAns.hidden = true;
+              }
+            }, 350);
+          }
+        }
+      });
+
+      // Toggle clicked item
+      if (isExpanded) {
+        btn.setAttribute('aria-expanded', 'false');
+        if (parentItem) parentItem.classList.remove('is-open');
+        if (targetAnswer) {
+          targetAnswer.classList.remove('is-open');
+          setTimeout(() => {
+            if (btn.getAttribute('aria-expanded') === 'false') {
+              targetAnswer.hidden = true;
+            }
+          }, 350);
+        }
+      } else {
+        btn.setAttribute('aria-expanded', 'true');
+        if (parentItem) parentItem.classList.add('is-open');
+        if (targetAnswer) {
+          targetAnswer.hidden = false;
+          requestAnimationFrame(() => {
+            targetAnswer.classList.add('is-open');
+          });
+        }
+      }
+    });
+  });
+
+  // Expand the first FAQ item by default on load
+  const firstBtn = faqButtons[0];
+  if (firstBtn) {
+    firstBtn.click();
+  }
 }
