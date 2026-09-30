@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initConsultationForm();
   initPerformanceGauge();
   initEmailCopy();
-  initStatsCounter();
   initFaqAccordion();
 });
 
@@ -578,41 +577,6 @@ function initEmailCopy() {
       });
     });
   });
-}
-
-/* ==========================================================================
-   8. STATS COUNTER ANIMATION
-   ========================================================================== */
-function initStatsCounter() {
-  const statNumbers = document.querySelectorAll('.stat-item-number');
-  let animated = false;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !animated) {
-        animated = true;
-        statNumbers.forEach(el => {
-          const target = parseInt(el.getAttribute('data-target') || '0', 10);
-          const suffix = el.getAttribute('data-suffix') || '';
-          const prefix = el.getAttribute('data-prefix') || '';
-          let count = 0;
-          const step = Math.max(1, Math.floor(target / 40));
-          const timer = setInterval(() => {
-            count += step;
-            if (count >= target) {
-              el.textContent = `${prefix}${target}${suffix}`;
-              clearInterval(timer);
-            } else {
-              el.textContent = `${prefix}${count}${suffix}`;
-            }
-          }, 30);
-        });
-      }
-    });
-  }, { threshold: 0.2 });
-
-  const statsSection = document.querySelector('.stats-banner');
-  if (statsSection) observer.observe(statsSection);
 }
 
 /* ==========================================================================
