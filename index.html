@@ -3,49 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SRB STUDIO — Elevate Your Online Presence | Premium Web Development</title>
-  <meta name="description" content="SRB Studio delivers premium web development solutions: bespoke architecture, dynamic portals & tools, ultra-fast load times, and optimized UI/UX. Build. Innovate. Elevate.">
+  <title>SRB STUDIO — High-Impact Web Architecture &amp; Motion Design</title>
+  <meta name="description" content="SRB Studio designs and engineers motion-rich, high-converting digital architectures, bespoke web platforms, and dynamic portals. Turning ideas into high-impact digital experiences.">
   <meta name="theme-color" content="#060608">
 
   <!-- Open Graph / Meta -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="SRB Studio — Premium Web Development Solutions">
-  <meta property="og:description" content="Modern websites. Powerful tools. Real business growth. Tailored solutions for your unique goals.">
+  <meta property="og:title" content="SRB STUDIO — High-Impact Web Architecture &amp; Motion">
+  <meta property="og:description" content="Turning ideas into high-impact web architectures. Fast, bespoke, motion-rich websites that elevate your online presence.">
   <meta property="og:image" content="assets/images/srb-studio-poster.jpg">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/logo.png">
 
-  <!-- Google Fonts: Inter, Syne & Plus Jakarta Sans (Framer Editorial Hierarchy) -->
+  <!-- Google Fonts: Inter & Syne (High-fashion Framer Editorial Hierarchy) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="framer-styled-body">
 
-  <!-- Ambient Golden Glow Highlights -->
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Custom Framer Magnetic Cursor -->
+  <div class="custom-cursor" id="customCursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring">
+      <span class="cursor-label">EXPLORE</span>
+    </div>
+  </div>
+
+  <!-- Ambient Golden Obsidian Glow Highlights -->
   <div class="ambient-glow" aria-hidden="true">
     <div class="ambient-light-top"></div>
     <div class="ambient-light-right"></div>
     <div class="ambient-light-left"></div>
   </div>
 
-  <!-- Top Announcement Bar (From Poster Header + Kota Live Studio Pill) -->
-  <aside class="top-banner" aria-label="Brand Motto">
-    <div class="container">
+  <!-- Top Announcement Bar (Kota Status Header) -->
+  <aside class="top-banner" aria-label="Studio Availability & Motto">
+    <div class="container top-banner-container">
       <div class="top-banner-left">
         <div class="studio-status-pill">
           <span class="status-dot-pulse" aria-hidden="true"></span>
           <span>AVAILABLE FOR NEW PROJECTS</span>
-          <span style="opacity:0.3;">•</span>
-          <span class="studio-clock" id="studioLiveClock">12:00:00 PM IST</span>
+          <span class="pill-divider">•</span>
+          <span class="studio-clock" id="studioLiveClock">12:00 PM IST</span>
         </div>
       </div>
       <div class="top-banner-center">
-        <span>PREMIUM WEB DEVELOPMENT & BESPOKE ARCHITECTURE</span>
+        <span>OFFICIAL WEB ARCHITECTURE &amp; MOTION DESIGN</span>
       </div>
       <div class="top-banner-right">
         <span>BUILD • INNOVATE • ELEVATE</span>
@@ -53,875 +64,697 @@
     </div>
   </aside>
 
-  <!-- Main Header & Navigation -->
-  <header class="navbar" id="mainHeader">
-    <div class="container nav-container">
-      <a href="#hero" class="brand-logo-link" aria-label="SRB Studio Home">
-        <div class="brand-emblem">
-          <img src="assets/images/logo.png" alt="SRB Studio Emblem" width="46" height="46">
-        </div>
-        <div class="brand-info">
-          <span class="brand-title">SRB <span>STUDIO</span></span>
-          <span class="brand-subtitle">BUILD • INNOVATE • ELEVATE</span>
-        </div>
-      </a>
+  <!-- Floating Island Pill Navbar (MadeByKota Dock) -->
+  <header class="navbar-wrapper">
+    <div class="container navbar-container">
+      <nav class="navbar" id="mainHeader" aria-label="Primary Navigation">
+        
+        <!-- Brand Logo -->
+        <a href="#hero" class="brand-logo-link" aria-label="SRB Studio Home">
+          <div class="brand-emblem">
+            <img src="assets/images/logo.png" alt="SRB Studio Emblem" width="38" height="38">
+          </div>
+          <div class="brand-info">
+            <span class="brand-title">SRB <span>STUDIO</span></span>
+          </div>
+        </a>
 
-      <!-- Desktop Navigation Links -->
-      <nav aria-label="Primary Navigation">
+        <!-- Desktop Navigation Links -->
         <ul class="nav-menu">
-          <li><a href="#hero" class="nav-link active">Home</a></li>
-          <li><a href="#features" class="nav-link">Pillars</a></li>
-          <li><a href="#device-stage" class="nav-link">Showcase</a></li>
+          <li><a href="#work" class="nav-link">Selected Work</a></li>
           <li><a href="#services" class="nav-link">Services</a></li>
-          <li><a href="#portfolio" class="nav-link">Projects</a></li>
-          <li><a href="#liveArchitectureEstimator" class="nav-link">Estimator ⚡</a></li>
+          <li><a href="#estimator" class="nav-link">Estimator ⚡</a></li>
           <li><a href="#speed" class="nav-link">Performance</a></li>
-          <li><a href="#process" class="nav-link">Blueprint</a></li>
+          <li><a href="#blueprint" class="nav-link">Blueprint</a></li>
           <li><a href="#faq" class="nav-link">FAQ</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
-      </nav>
 
-      <div class="nav-actions">
-        <a href="https://wa.me/917559084152?text=Hello%20SRB%20Studio%2C%20I%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" rel="noopener" class="nav-social-icon nav-whatsapp-icon" aria-label="Chat with SRB Studio on WhatsApp" title="WhatsApp: +91 7559084152" id="navWhatsAppLink">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.11 7.08C8.95 7.08 8.68 7.14 8.47 7.38C8.25 7.62 7.65 8.18 7.65 9.32C7.65 10.46 8.48 11.56 8.6 11.72C8.72 11.88 10.22 14.28 12.57 15.24C14.52 16.03 14.92 15.88 15.34 15.84C15.76 15.8 16.7 15.28 16.9 14.72C17.1 14.16 17.1 13.68 17.04 13.58C16.98 13.48 16.82 13.42 16.58 13.3C16.34 13.18 15.17 12.6 14.95 12.52C14.73 12.44 14.57 12.4 14.41 12.64C14.25 12.88 13.78 13.42 13.64 13.58C13.5 13.74 13.36 13.76 13.12 13.64C12.88 13.52 11.87 13.19 10.67 12.12C9.74 11.29 9.11 10.27 8.99 10.03C8.87 9.79 8.98 9.66 9.1 9.54C9.21 9.43 9.35 9.25 9.47 9.11C9.59 8.97 9.63 8.87 9.71 8.71C9.79 8.55 9.75 8.41 9.69 8.29C9.63 8.17 9.17 7.04 8.98 6.58C8.79 6.13 8.6 6.19 8.47 6.18C8.34 6.17 8.18 6.17 8.02 6.17"/>
-          </svg>
-        </a>
-        <a href="https://www.instagram.com/srbstudiosofficial/" target="_blank" rel="noopener" class="nav-social-icon" aria-label="SRB Studio on Instagram" title="Follow @srbstudiosofficial on Instagram" id="navInstaLink">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-          </svg>
-        </a>
-        <button type="button" class="btn-primary-gold" data-open-consultation aria-label="Start Your Project">
-          <span>Start Project</span>
-          <span class="btn-arrow-icon" aria-hidden="true">→</span>
-        </button>
-        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-      </div>
+        <!-- Action Buttons -->
+        <div class="nav-actions">
+          <a href="https://wa.me/917559084152?text=Hello%20SRB%20Studio%2C%20I%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" rel="noopener" class="nav-social-icon nav-whatsapp-icon" aria-label="WhatsApp: +91 7559084152" title="WhatsApp: +91 7559084152">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.11 7.08C8.95 7.08 8.68 7.14 8.47 7.38C8.25 7.62 7.65 8.18 7.65 9.32C7.65 10.46 8.48 11.56 8.6 11.72C8.72 11.88 10.22 14.28 12.57 15.24C14.52 16.03 14.92 15.88 15.34 15.84C15.76 15.8 16.7 15.28 16.9 14.72C17.1 14.16 17.1 13.68 17.04 13.58C16.98 13.48 16.82 13.42 16.58 13.3C16.34 13.18 15.17 12.6 14.95 12.52C14.73 12.44 14.57 12.4 14.41 12.64C14.25 12.88 13.78 13.42 13.64 13.58C13.5 13.74 13.36 13.76 13.12 13.64C12.88 13.52 11.87 13.19 10.67 12.12C9.74 11.29 9.11 10.27 8.99 10.03C8.87 9.79 8.98 9.66 9.1 9.54C9.21 9.43 9.35 9.25 9.47 9.11C9.59 8.97 9.63 8.87 9.71 8.71C9.79 8.55 9.75 8.41 9.69 8.29C9.63 8.17 9.17 7.04 8.98 6.58C8.79 6.13 8.6 6.19 8.47 6.18C8.34 6.17 8.18 6.17 8.02 6.17"/>
+            </svg>
+          </a>
+          <button type="button" class="btn-nav-cta magnetic-target" data-open-consultation aria-label="Start Your Project">
+            <span>Start Project</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </button>
+          <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+
+      </nav>
     </div>
   </header>
 
   <main>
     <!-- =======================================================================
-         HERO SECTION (From Poster Top Typography & Four Pillar Badges)
+         1. HERO SECTION (MadeByKota Full-Viewport High-Impact Statement)
          ======================================================================= -->
-    <section class="hero-section" id="hero">
-      <div class="container">
+    <section class="kota-hero-section" id="hero">
+      <div class="container hero-container">
         
-        <div class="hero-pill-badge">
-          <span class="pulse-dot" aria-hidden="true"></span>
-          <span>Web Solutions That Turn Ideas Into Opportunities</span>
+        <!-- Tag Pill -->
+        <div class="hero-status-tag" data-reveal>
+          <span class="tag-bullet"></span>
+          <span>OFFICIAL WEB ARCHITECTURE STUDIO</span>
         </div>
 
-        <h1 class="hero-title">
-          Elevate Your <br>
-          <span class="gold-gradient-text">Online Presence</span>
+        <!-- Giant Editorial Headline -->
+        <h1 class="kota-hero-headline" data-reveal>
+          Turning ideas <br>
+          into <span class="gold-shimmer-text">high — impact</span> <br>
+          digital experiences.
         </h1>
 
-        <p class="hero-subhead">Premium Web Development Solutions</p>
-
-        <p class="hero-description">
-          Modern websites. Powerful tools. Real business growth. We craft bespoke digital architectures, high-performance web portals, and immersive experiences that convert visitors into loyal clients.
+        <!-- High-Contrast Subhead -->
+        <p class="kota-hero-subhead" data-reveal>
+          SRB Studio designs &amp; engineers motion-rich, high-converting web architectures that engage users, command attention, and boost revenue.
         </p>
 
-        <div class="hero-cta-group">
-          <button type="button" class="btn-poster-cta" data-open-consultation>
-            <span>START YOUR PROJECT</span>
-            <span class="arrow-circle" aria-hidden="true">›</span>
+        <!-- Action Cluster & Showreel Trigger -->
+        <div class="hero-actions-cluster" data-reveal>
+          <button type="button" class="btn-kota-primary magnetic-target" data-open-consultation>
+            <span>START A PROJECT</span>
+            <span class="btn-circle-arrow">›</span>
           </button>
           
-          <button type="button" class="btn-secondary-dark" data-open-poster>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-              <circle cx="9" cy="9" r="2"/>
-              <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+          <button type="button" class="btn-reel-capsule magnetic-target" data-open-poster title="Play Studio Showreel">
+            <span class="reel-pulse"></span>
+            <span class="reel-code">[ 00:44 ]</span>
+            <span class="reel-text">PLAY REEL</span>
+            <svg class="reel-play-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"/>
             </svg>
-            <span>View Agency Poster Art</span>
           </button>
         </div>
 
-        <!-- Four Badges from the Poster -->
-        <div class="hero-features-bar" id="features">
-          
-          <!-- Pillar 1: Bespoke Architecture -->
-          <article class="feature-pill-card">
-            <div class="feature-icon-wrapper" aria-hidden="true">
-              <!-- Gear / Architecture SVG Icon -->
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-            </div>
-            <h3>BESPOKE ARCHITECTURE</h3>
-            <p>Tailored solutions for your unique goals. Engineered for enterprise scalability and reliability.</p>
-          </article>
-
-          <!-- Pillar 2: Dynamic Portals & Tools -->
-          <article class="feature-pill-card">
-            <div class="feature-icon-wrapper" aria-hidden="true">
-              <!-- Bar Chart / Tools SVG Icon -->
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="20" x2="18" y2="10"/>
-                <line x1="12" y1="20" x2="12" y2="4"/>
-                <line x1="6" y1="20" x2="6" y2="14"/>
-              </svg>
-            </div>
-            <h3>DYNAMIC PORTALS & TOOLS</h3>
-            <p>Feature-rich platforms, client dashboards, and custom tools to streamline your business.</p>
-          </article>
-
-          <!-- Pillar 3: Ultra-Fast Load Times -->
-          <article class="feature-pill-card">
-            <div class="feature-icon-wrapper" aria-hidden="true">
-              <!-- Speedometer / Gauge SVG Icon -->
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m12 14 4-4"/>
-                <path d="M3.34 19a10 10 0 1 1 17.32 0"/>
-              </svg>
-            </div>
-            <h3>ULTRA-FAST LOAD TIMES</h3>
-            <p>Optimized for peak performance, sub-second responses, and flawless Core Web Vitals.</p>
-          </article>
-
-          <!-- Pillar 4: Optimized UI/UX -->
-          <article class="feature-pill-card">
-            <div class="feature-icon-wrapper" aria-hidden="true">
-              <!-- Responsive Screens SVG Icon -->
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
-                <path d="M12 18h.01"/>
-              </svg>
-            </div>
-            <h3>OPTIMIZED UI/UX</h3>
-            <p>Modern, responsive designs tailored for perfection across desktop, tablet, and mobile screens.</p>
-          </article>
-
+        <!-- Kota Hero Bottom Anchor Info Bar -->
+        <div class="hero-bottom-bar" data-reveal>
+          <div class="hero-bottom-left">
+            <a href="#work" class="scroll-cue-link">
+              <span class="cue-arrow">↓</span>
+              <span>Scroll to explore</span>
+            </a>
+          </div>
+          <div class="hero-bottom-center">
+            <span>©2026 SRB STUDIO • ALL RIGHTS RESERVED</span>
+          </div>
+          <div class="hero-bottom-right">
+            <span>NEW DELHI, IN • UTC+5:30</span>
+          </div>
         </div>
-      </div>
 
-      <!-- Kinetic Infinite Marquee Ticker (Kota Style) -->
-      <div class="kota-marquee-wrap" aria-label="Studio Capabilities Ticker">
-        <div class="kota-marquee-track">
-          <div class="marquee-item"><span class="highlight">BESPOKE ARCHITECTURE</span></div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <div class="marquee-item">SUB-SECOND LCP SPEED</div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <div class="marquee-item"><span class="highlight">DYNAMIC SAAS PORTALS</span></div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <div class="marquee-item">LUXURY UI/UX DESIGN</div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <div class="marquee-item"><span class="highlight">ZERO TEMPLATE BLOAT</span></div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <div class="marquee-item">EDGE-DEPLOYED NEXT.JS 15</div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <div class="marquee-item"><span class="highlight">100% CODE OWNERSHIP</span></div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <!-- Repeat for Seamless Loop -->
-          <div class="marquee-item"><span class="highlight">BESPOKE ARCHITECTURE</span></div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <div class="marquee-item">SUB-SECOND LCP SPEED</div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <div class="marquee-item"><span class="highlight">DYNAMIC SAAS PORTALS</span></div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <div class="marquee-item">LUXURY UI/UX DESIGN</div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <div class="marquee-item"><span class="highlight">ZERO TEMPLATE BLOAT</span></div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <div class="marquee-item">EDGE-DEPLOYED NEXT.JS 15</div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-          <div class="marquee-item"><span class="highlight">100% CODE OWNERSHIP</span></div>
-          <div class="marquee-dot" aria-hidden="true"></div>
-        </div>
       </div>
     </section>
 
     <!-- =======================================================================
-         INTERACTIVE DEVICE STAGE SHOWCASE (The Poster Centerpiece)
+         2. KINETIC MARQUEE TICKER (Kota Infinite Motion Band)
          ======================================================================= -->
-    <section class="device-stage-section" id="device-stage">
+    <div class="kota-marquee-wrap" aria-label="Studio Capabilities Ticker">
+      <div class="kota-marquee-track">
+        <div class="marquee-item"><span class="highlight">BESPOKE ARCHITECTURE</span></div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <div class="marquee-item">SUB-SECOND LCP SPEED</div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <div class="marquee-item"><span class="highlight">HIGH-CONVERTING LANDING PAGES</span></div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <div class="marquee-item">MOTION DESIGN &amp; NEXT-GEN UI</div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <div class="marquee-item"><span class="highlight">DYNAMIC SAAS PORTALS</span></div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <div class="marquee-item">ZERO TEMPLATE BLOAT</div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <div class="marquee-item"><span class="highlight">100% CODE OWNERSHIP</span></div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <!-- Seamless Repeat -->
+        <div class="marquee-item"><span class="highlight">BESPOKE ARCHITECTURE</span></div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <div class="marquee-item">SUB-SECOND LCP SPEED</div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <div class="marquee-item"><span class="highlight">HIGH-CONVERTING LANDING PAGES</span></div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <div class="marquee-item">MOTION DESIGN &amp; NEXT-GEN UI</div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <div class="marquee-item"><span class="highlight">DYNAMIC SAAS PORTALS</span></div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <div class="marquee-item">ZERO TEMPLATE BLOAT</div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+        <div class="marquee-item"><span class="highlight">100% CODE OWNERSHIP</span></div>
+        <div class="marquee-dot" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         3. MANIFESTO & BIG EDITORIAL STATEMENT (Kota Philosophy Block)
+         ======================================================================= -->
+    <section class="manifesto-section" id="about">
       <div class="container">
         
-        <div class="section-header">
-          <span class="section-tag">Interactive Device Stage</span>
-          <h2 class="section-title">Designed for Every Screen Size</h2>
-          <p class="section-desc">
-            Explore how SRB Studio experiences adapt with pixel-perfect precision across desktop displays, tablets, mobile smartphones, and laptops.
-          </p>
-        </div>
-
-        <div class="device-stage-container">
-          <div class="stage-gold-halo" aria-hidden="true"></div>
-
-          <!-- Stage Device Filter Controls -->
-          <div class="stage-controls">
-            <button class="stage-tab-btn active" data-device="all">✨ Complete Ecosystem</button>
-            <button class="stage-tab-btn" data-device="desktop">🖥️ 4K Desktop</button>
-            <button class="stage-tab-btn" data-device="tablet">📱 Tablet</button>
-            <button class="stage-tab-btn" data-device="phone">📲 Mobile</button>
-            <button class="stage-tab-btn" data-device="laptop">💻 Laptop</button>
-            <button class="btn-view-poster" data-open-poster>🔍 View Poster Image</button>
+        <div class="manifesto-grid">
+          <div class="manifesto-tag-col" data-reveal>
+            <span class="editorial-index">01 / PHILOSOPHY</span>
+            <div class="manifesto-pill">THE SRB STANDARD</div>
           </div>
 
-          <!-- Multi-Device Composition replicating the Poster -->
-          <div class="devices-composition">
+          <div class="manifesto-content-col" data-reveal>
+            <h2 class="manifesto-headline">
+              You’ve already built something great. Whether it’s just taking shape or already scaling — it deserves a digital architecture that matches the work you’ve put in. SRB Studio brings the craft, motion, and performance to make that happen.
+            </h2>
 
-            <!-- 1. LEFT TABLET (From Poster Left) -->
-            <div class="device-tablet">
-              <div class="device-screen">
-                <div class="screen-tablet-body">
-                  <div class="tablet-hero">
-                    <h5>Creative Design Modern Solutions</h5>
-                    <p>Web experiences built to inspire growth and engagement.</p>
-                    <button class="screen-mini-btn-gold" data-open-consultation>Get Started →</button>
-                  </div>
-
-                  <div class="tablet-cards-row">
-                    <div class="tablet-mini-card">
-                      <span>Web Dev</span>
-                    </div>
-                    <div class="tablet-mini-card">
-                      <span>Portals</span>
-                    </div>
-                    <div class="tablet-mini-card">
-                      <span>UI/UX</span>
-                    </div>
-                  </div>
-                </div>
+            <div class="manifesto-metrics-row">
+              <div class="metric-card">
+                <span class="metric-value">100%</span>
+                <span class="metric-label">Google Lighthouse Score</span>
+                <span class="metric-sub">Zero bloat, pure optimization</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-value">0.38s</span>
+                <span class="metric-label">Sub-Second LCP Speed</span>
+                <span class="metric-sub">Edge-accelerated worldwide</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-value">1–2 Wks</span>
+                <span class="metric-label">Rapid Sprint Delivery</span>
+                <span class="metric-sub">From concept to global launch</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-value">100%</span>
+                <span class="metric-label">Code &amp; Asset Ownership</span>
+                <span class="metric-sub">Zero vendor lock-in fees</span>
               </div>
             </div>
+          </div>
+        </div>
 
-            <!-- 2. CENTER DESKTOP MONITOR (From Poster Center) -->
-            <div class="device-desktop-monitor">
-              <div class="device-screen">
-                <!-- Browser Header Bar -->
-                <div class="screen-header-bar">
-                  <div class="screen-dots">
-                    <span class="screen-dot red"></span>
-                    <span class="screen-dot yellow"></span>
-                    <span class="screen-dot green"></span>
-                  </div>
-                  <span class="screen-nav-brand">SRB Studio</span>
-                  <div class="screen-nav-links">
-                    <span>Home</span>
-                    <span>Services</span>
-                    <span>Projects</span>
-                    <span>About</span>
-                  </div>
-                  <button type="button" class="screen-nav-btn" data-open-consultation style="border:none; cursor:pointer;">Get Started</button>
-                </div>
+      </div>
+    </section>
 
-                <!-- Desktop Hero Screen Body -->
-                <div class="screen-desktop-body">
-                  <div class="screen-hero-text">
-                    <p class="sub">Modern. Scalable. Results-Driven.</p>
-                    <h4>Custom Business Landing Page.</h4>
-                    <p class="desc">We design and develop high-performing websites that help your business grow.</p>
-                    <div class="screen-btn-row">
-                      <button type="button" class="screen-mini-btn-gold" data-open-consultation>Get Started →</button>
-                      <button type="button" class="screen-mini-btn-outline" data-scroll-to="services">Explore Services</button>
-                    </div>
-                  </div>
+    <!-- =======================================================================
+         4. SELECTED WORKS (Sticky Stacked Framer Showcase Cards)
+         ======================================================================= -->
+    <section class="works-section" id="work">
+      <div class="container">
+        
+        <div class="section-title-bar" data-reveal>
+          <div class="title-left">
+            <span class="editorial-index">02 / PORTFOLIO</span>
+            <h2 class="works-main-title">Selected Works</h2>
+          </div>
+          <div class="title-right">
+            <p class="works-subtext">
+              Real production platforms built from first principles. Explored, benchmarked, and live in production.
+            </p>
+          </div>
+        </div>
 
-                  <!-- Live Analytics Graph Mockup inside Screen -->
-                  <div class="screen-graphic-container">
-                    <div class="screen-chart-header">
-                      <span>Quarterly Growth</span>
-                      <span>+382%</span>
-                    </div>
-                    <div class="screen-chart-bars">
-                      <div class="chart-bar-item" style="height: 35%;"></div>
-                      <div class="chart-bar-item" style="height: 55%;"></div>
-                      <div class="chart-bar-item" style="height: 45%;"></div>
-                      <div class="chart-bar-item" style="height: 75%;"></div>
-                      <div class="chart-bar-item highlight" style="height: 95%;"></div>
-                    </div>
-                  </div>
+        <!-- Sticky Stacked Projects Container -->
+        <div class="stacked-works-container">
+          
+          <!-- PROJECT 01: DenBooks 360 -->
+          <article class="sticky-project-card project-denbooks" data-cursor-project="DENBOOKS 360" data-reveal>
+            <div class="project-card-inner">
+              
+              <!-- Card Top Header -->
+              <div class="project-card-header">
+                <div class="project-num-badge">PROJECT 01 / SAAS &amp; FINTECH</div>
+                <div class="project-live-indicator">
+                  <span class="green-pulse"></span>
+                  <span>LIVE PRODUCTION</span>
                 </div>
               </div>
 
-              <!-- Monitor Stand & Base -->
-              <div class="monitor-stand"></div>
-              <div class="monitor-base"></div>
-            </div>
-
-            <!-- 3. MOBILE SMARTPHONE (From Poster Center-Right) -->
-            <div class="device-phone">
-              <div class="device-screen">
-                <div class="screen-phone-body">
-                  <div class="phone-speaker"></div>
-                  <div>
-                    <div class="phone-title">Build Innovate Elevate</div>
-                    <div class="phone-sub">Digital solutions for a brighter tomorrow.</div>
-                  </div>
-
-                  <div class="phone-avatar-glow">
-                    <img src="assets/images/logo.png" alt="SRB Studio" width="40" height="40" style="border-radius:50%;">
-                  </div>
-
-                  <div>
-                    <span class="phone-btn" data-open-consultation>Get Started →</span>
-                  </div>
+              <!-- Card Media Viewport (Edge-to-Edge) -->
+              <div class="project-media-viewport">
+                <img src="assets/images/denbooks-poster.png" alt="DenBooks 360 Operating Suite" class="project-image" loading="lazy">
+                <div class="project-media-overlay"></div>
+                <div class="media-hover-trigger">
+                  <span class="hover-view-pill">EXPLORE PLATFORM ↗</span>
                 </div>
               </div>
-            </div>
 
-            <!-- 4. RIGHT LAPTOP (From Poster Right) -->
-            <div class="device-laptop">
-              <div class="device-screen">
-                <div class="screen-laptop-body">
-                  <div class="laptop-hero">
-                    <h5>Scalable Solutions for Modern Businesses.</h5>
-                    <p>From ideation to deployment, we build digital experiences that perform.</p>
-                  </div>
+              <!-- Card Meta & Content -->
+              <div class="project-card-bottom">
+                <div class="project-info-col">
+                  <div class="project-category-tag">DENBOOKS.IN • OPERATING SUITE</div>
+                  <h3 class="project-name">DenBooks 360 — Financial &amp; POS Suite for Citizen Service Centers</h3>
+                  <p class="project-summary">
+                    Full-stack cloud operating suite engineered for CSCs, Cyber Cafés, and Citizen Service Points. Solves government pass-through fee isolation, multi-wallet advance ledger tracking, thermal ESC/POS receipt generation, cash drawer reconciliation, and automated WhatsApp khata reminders.
+                  </p>
                   
-                  <div class="laptop-three-pillars">
-                    <div class="laptop-pillar-box">Strategy</div>
-                    <div class="laptop-pillar-box">Development</div>
-                    <div class="laptop-pillar-box">Support</div>
+                  <div class="project-tags-cloud">
+                    <span class="tech-tag">Next.js 15</span>
+                    <span class="tech-tag">Node.js Ledger</span>
+                    <span class="tech-tag">Thermal ESC/POS</span>
+                    <span class="tech-tag">WhatsApp API</span>
+                    <span class="tech-tag">0.38s LCP</span>
+                  </div>
+                </div>
+
+                <div class="project-cta-col">
+                  <div class="project-action-buttons">
+                    <button type="button" class="btn-action-primary" data-preview-url="https://denbooks.in/" data-preview-title="DenBooks 360 — Operating Suite">
+                      <span>⚡ Quick In-Page Preview</span>
+                    </button>
+                    <a href="https://denbooks.in/" target="_blank" rel="noopener" class="btn-action-secondary">
+                      <span>Visit Live Site</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
                   </div>
                 </div>
               </div>
-              <div class="laptop-base"></div>
-            </div>
 
+            </div>
+          </article>
+
+          <!-- PROJECT 02: Digital Den 360 -->
+          <article class="sticky-project-card project-digitalden" data-cursor-project="DIGITAL DEN 360" data-reveal>
+            <div class="project-card-inner">
+              
+              <!-- Card Top Header -->
+              <div class="project-card-header">
+                <div class="project-num-badge">PROJECT 02 / WEB APPLICATION</div>
+                <div class="project-live-indicator">
+                  <span class="green-pulse"></span>
+                  <span>LIVE PRODUCTION</span>
+                </div>
+              </div>
+
+              <!-- Card Media Viewport (Edge-to-Edge) -->
+              <div class="project-media-viewport">
+                <img src="assets/images/digital-den-logo.jpg" alt="DIGITAL DEN 360 Solutions Hub" class="project-image" loading="lazy">
+                <div class="project-media-overlay"></div>
+                <div class="media-hover-trigger">
+                  <span class="hover-view-pill">EXPLORE PLATFORM ↗</span>
+                </div>
+              </div>
+
+              <!-- Card Meta & Content -->
+              <div class="project-card-bottom">
+                <div class="project-info-col">
+                  <div class="project-category-tag">DIGITAL DEN 360 • CLIENT PORTAL</div>
+                  <h3 class="project-name">DIGITAL DEN 360 — Digital Solutions Hub &amp; Live Booking Engine</h3>
+                  <p class="project-summary">
+                    Modern cyber-dark digital solutions portal bringing essential document services, online registrations, and citizen support together. Features an interactive service booking flow, real-time request tracking (/request-status), fluid micro-animations, and integrated 24/7 AI guidance ("Rizu AI").
+                  </p>
+                  
+                  <div class="project-tags-cloud">
+                    <span class="tech-tag">Next.js 15</span>
+                    <span class="tech-tag">Vercel Edge</span>
+                    <span class="tech-tag">Status Tracker API</span>
+                    <span class="tech-tag">Rizu AI Assistant</span>
+                    <span class="tech-tag">Sub-0.4s LCP</span>
+                  </div>
+                </div>
+
+                <div class="project-cta-col">
+                  <div class="project-action-buttons">
+                    <button type="button" class="btn-action-primary" data-preview-url="https://digital-den-gamma.vercel.app/" data-preview-title="DIGITAL DEN 360 — Solutions Hub">
+                      <span>⚡ Quick In-Page Preview</span>
+                    </button>
+                    <a href="https://digital-den-gamma.vercel.app/" target="_blank" rel="noopener" class="btn-action-secondary">
+                      <span>Visit Live Site</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         5. OUR SERVICES (MadeByKota Specification Cards Grid)
+         ======================================================================= -->
+    <section class="services-spec-section" id="services">
+      <div class="container">
+        
+        <div class="section-title-bar" data-reveal>
+          <div class="title-left">
+            <span class="editorial-index">03 / CAPABILITIES</span>
+            <h2 class="works-main-title">Our Services</h2>
           </div>
-
-          <!-- Glowing Countertop Base Line -->
-          <div class="stage-countertop-line"></div>
-          <div class="stage-countertop-base"></div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- =======================================================================
-         SERVICES & BESPOKE SOLUTIONS
-         ======================================================================= -->
-    <section class="section-padding" id="services">
-      <div class="container">
-        
-        <div class="section-header">
-          <span class="section-tag">Our Capabilities</span>
-          <h2 class="section-title">Engineered For Exponential Growth</h2>
-          <p class="section-desc">
-            We don't do basic templates. Every project is crafted from first principles to reflect your company's prestige, speed requirements, and conversion goals.
-          </p>
+          <div class="title-right">
+            <p class="works-subtext">
+              High-converting digital craftsmanship with transparent scopes, fixed timelines, and zero hourly surprises.
+            </p>
+          </div>
         </div>
 
-        <div class="services-grid">
+        <div class="services-spec-grid">
           
-          <!-- Service 1 -->
-          <article class="service-card">
-            <div>
-              <div class="service-icon-box" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect width="20" height="14" x="2" y="3" rx="2"/>
-                  <line x1="8" y1="21" x2="16" y2="21"/>
-                  <line x1="12" y1="17" x2="12" y2="21"/>
-                </svg>
-              </div>
-              <h3>Custom Landing Pages</h3>
-              <p>High-converting, visually striking landing pages tailored to turn cold ad traffic and organic visitors into paying customers.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> A/B Testing & Heatmap Ready</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Interactive 3D & Micro-interactions</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Sub-second Mobile Rendering</li>
-              </ul>
+          <!-- Service 01: Landing Page -->
+          <article class="service-spec-card" data-reveal>
+            <div class="spec-card-header">
+              <span class="spec-num">01</span>
+              <h3 class="spec-title">Landing Page</h3>
             </div>
-            <button type="button" class="service-link" data-open-consultation data-service="Landing Page">
-              <span>Request Landing Page</span>
-              <span>→</span>
-            </button>
-          </article>
 
-          <!-- Service 2 -->
-          <article class="service-card">
-            <div>
-              <div class="service-icon-box" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                  <polyline points="3.29 7 12 12 20.71 7"/>
-                  <line x1="12" y1="22" x2="12" y2="12"/>
-                </svg>
+            <div class="spec-table">
+              <div class="spec-row">
+                <span class="spec-label">Timeline</span>
+                <span class="spec-value">1–2 weeks</span>
               </div>
-              <h3>Dynamic Portals & Tools</h3>
-              <p>Complex web applications, internal operational tools, secure client portals, and bespoke SaaS platforms with real-time data flow.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Role-Based Access & Auth</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Real-time Websockets & Analytics</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Automated Workflow Hooks</li>
-              </ul>
-            </div>
-            <button type="button" class="service-link" data-open-consultation data-service="Dynamic Portal">
-              <span>Build A Web Portal</span>
-              <span>→</span>
-            </button>
-          </article>
-
-          <!-- Service 3 -->
-          <article class="service-card">
-            <div>
-              <div class="service-icon-box" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="m4.93 4.93 4.24 4.24"/>
-                  <path d="m14.83 9.17 4.24-4.24"/>
-                  <path d="m14.83 14.83 4.24 4.24"/>
-                  <path d="m9.17 14.83-4.24 4.24"/>
-                </svg>
-              </div>
-              <h3>Bespoke Full-Stack Systems</h3>
-              <p>Custom-built web architectures with clean APIs, headless content management, and robust infrastructure designed to never go down.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Modern Tech (React/Next/Node)</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> High-grade Database Engineering</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Global Edge CDN Deployment</li>
-              </ul>
-            </div>
-            <button type="button" class="service-link" data-open-consultation data-service="Full-Stack Application">
-              <span>Start Full-Stack Build</span>
-              <span>→</span>
-            </button>
-          </article>
-
-          <!-- Service 4 -->
-          <article class="service-card">
-            <div>
-              <div class="service-icon-box" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                </svg>
-              </div>
-              <h3>Luxury UI/UX & Design Systems</h3>
-              <p>Dark, gold, and obsidian aesthetic tailored for premium brands. Fluid motion design, typography hierarchies, and intuitive usability.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Responsive Design across all devices</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Custom Iconography & Asset Suites</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Micro-interactions & Haptics</li>
-              </ul>
-            </div>
-            <button type="button" class="service-link" data-open-consultation data-service="UI/UX Design">
-              <span>Request UI/UX Redesign</span>
-              <span>→</span>
-            </button>
-          </article>
-
-          <!-- Service 5 -->
-          <article class="service-card">
-            <div>
-              <div class="service-icon-box" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                </svg>
-              </div>
-              <h3>Ultra-Speed Performance Tuning</h3>
-              <p>Eliminate slow load times, bloated scripts, and lost conversions. We rebuild slow websites into lightning-fast revenue machines.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 99+ Google Lighthouse Guarantee</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Asset Compression & Critical CSS</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Core Web Vitals (LCP, INP, CLS) Fix</li>
-              </ul>
-            </div>
-            <button type="button" class="service-link" data-scroll-to="speed">
-              <span>Test Your Speed</span>
-              <span>→</span>
-            </button>
-          </article>
-
-          <!-- Service 6 -->
-          <article class="service-card">
-            <div>
-              <div class="service-icon-box" aria-hidden="true">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                </svg>
-              </div>
-              <h3>Ongoing Evolution & Support</h3>
-              <p>Continuous maintenance, 24/7 uptime monitoring, security audits, and incremental feature updates to keep your business ahead of competitors.</p>
-              <ul class="service-perks-list">
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 99.9% Uptime Guarantee</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Priority Slack & Email Access</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Monthly Performance Reports</li>
-              </ul>
-            </div>
-            <button type="button" class="service-link" data-open-consultation data-service="Maintenance & Support">
-              <span>Inquire Support Plans</span>
-              <span>→</span>
-            </button>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- =======================================================================
-         FEATURED CLIENT PROJECTS & LIVE PLATFORMS
-         ======================================================================= -->
-    <section class="section-padding" id="portfolio">
-      <div class="container">
-        
-        <div class="section-header">
-          <span class="section-tag">Proven Work &amp; Live Deployments</span>
-          <h2 class="section-title">Built by SRB Studio</h2>
-          <p class="section-desc">
-            Explore our real-world production platforms. From multi-tenant SaaS operating suites to cyber-fast booking portals, examine how our bespoke architectures power active businesses.
-          </p>
-        </div>
-
-        <!-- Filter Tabs -->
-        <div class="portfolio-filter-bar">
-          <button class="filter-btn active" data-filter="all">All Projects</button>
-          <button class="filter-btn" data-filter="saas">SaaS &amp; FinTech</button>
-          <button class="filter-btn" data-filter="portal">Client Portals</button>
-        </div>
-
-        <div class="portfolio-grid">
-          
-          <!-- Project 1: DenBooks -->
-          <article class="project-card" data-category="saas portal">
-            <div class="project-thumbnail-wrapper" style="background: radial-gradient(circle at 50% 50%, #0d1e38 0%, #040812 100%);">
-              <span class="project-badge-tag">SaaS &amp; FinTech Suite</span>
-              <span class="project-metric-tag">Live Platform ⚡</span>
-              <img src="assets/images/denbooks-poster.png" alt="DenBooks 360 Daybook &amp; POS Suite" loading="lazy">
-            </div>
-            <div class="project-details">
-              <div class="project-client-row">
-                <span class="project-client-name">DENBOOKS.IN</span>
-                <span class="project-client-badge">Live Production</span>
-              </div>
-              <h3 class="project-card-title">DenBooks — Operating Suite for Citizen Service Centers</h3>
-              <p class="project-card-desc">
-                Full-stack cloud operating suite engineered for CSCs, Cyber Cafés, and Akshaya Centers. Solves the four biggest industry bottlenecks: automated pass-through government fee isolation, real-time 4-portal advance wallet tracking (CSC, e-District, BBPS), 58mm/80mm thermal receipt POS printing with QR tracking, shift drawer cash reconciliation, and automated WhatsApp Khata reminders.
-              </p>
-              
-              <ul class="project-feature-list">
-                <li><span>✓</span> Pass-Through Govt Fee Isolation vs. Real Shop Profit</li>
-                <li><span>✓</span> 4 Government Advance Wallets Real-Time Monitoring</li>
-                <li><span>✓</span> 58mm &amp; 80mm Thermal Receipt Printing with QR Slips</li>
-                <li><span>✓</span> Shift Drawer Cash Reconciliation &amp; WhatsApp Khata Alerts</li>
-              </ul>
-
-              <div class="project-tech-pills">
-                <span class="tech-pill">Next.js 15</span>
-                <span class="tech-pill">Node.js</span>
-                <span class="tech-pill">Real-Time Ledger</span>
-                <span class="tech-pill">Thermal ESC/POS</span>
-                <span class="tech-pill">WhatsApp API</span>
-                <span class="tech-pill">Multi-Staff POS</span>
-              </div>
-
-              <div class="project-action-row">
-                <div class="project-meta-stats">
-                  <span class="stat-highlight">0.38s LCP</span> • <span>100% Offline Resilience</span>
-                </div>
-                <div class="project-actions-group">
-                  <button type="button" class="btn-live-preview" data-preview-url="https://denbooks.in/" data-preview-title="DenBooks — Operating Suite for Citizen Service Centers" title="Interactive In-Page Preview of denbooks.in">
-                    <span>⚡ Quick Preview</span>
-                  </button>
-                  <a href="https://denbooks.in/" target="_blank" rel="noopener" class="btn-live-preview" style="background:transparent; border-color:var(--border-gold-subtle);" title="Open live production platform in new tab">
-                    <span>Visit Live Site</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  </a>
-                  <button type="button" class="btn-project-inquire" data-open-consultation data-service="Full-Stack Application">
-                    <span>Start Similar Project →</span>
-                  </button>
-                </div>
+              <div class="spec-row">
+                <span class="spec-label">Deliverables</span>
+                <span class="spec-value">1 Custom Page • Motion UI</span>
               </div>
             </div>
-          </article>
 
-          <!-- Project 2: DIGITAL DEN 360 -->
-          <article class="project-card" data-category="portal webapp">
-            <div class="project-thumbnail-wrapper" style="background: radial-gradient(circle at 50% 50%, #061928 0%, #03060c 100%);">
-              <span class="project-badge-tag">Web Application &amp; Portal</span>
-              <span class="project-metric-tag">Live Platform ⚡</span>
-              <img src="assets/images/digital-den-logo.jpg" alt="DIGITAL DEN 360 Solutions Hub" loading="lazy">
-            </div>
-            <div class="project-details">
-              <div class="project-client-row">
-                <span class="project-client-name">DIGITAL DEN 360</span>
-                <span class="project-client-badge">Live Production</span>
-              </div>
-              <h3 class="project-card-title">DIGITAL DEN 360 — Digital Solutions Hub &amp; Booking Engine</h3>
-              <p class="project-card-desc">
-                Modern cyber-dark digital solutions portal bringing essential document services, online portal registrations, bill payments, and application support together. Integrates an interactive service booking workflow, live status tracking engine (/request-status), fluid micro-animations, and integrated AI assistant ("Rizu AI") for 24/7 client guidance.
-              </p>
-              
-              <ul class="project-feature-list">
-                <li><span>✓</span> End-to-End Online Service Catalog &amp; Booking Workflow</li>
-                <li><span>✓</span> Live Customer Request Status Tracker Engine</li>
-                <li><span>✓</span> Integrated 24/7 Intelligent AI Assistant ("Rizu AI")</li>
-                <li><span>✓</span> Cyber Dark Glassmorphic Responsive Architecture</li>
-              </ul>
-
-              <div class="project-tech-pills">
-                <span class="tech-pill">Next.js 15</span>
-                <span class="tech-pill">Tailwind CSS</span>
-                <span class="tech-pill">Vercel Edge</span>
-                <span class="tech-pill">Status Tracker API</span>
-                <span class="tech-pill">Rizu AI Chatbot</span>
-                <span class="tech-pill">Sub-0.4s LCP</span>
-              </div>
-
-              <div class="project-action-row">
-                <div class="project-meta-stats">
-                  <span class="stat-highlight">0.32s Edge TTFB</span> • <span>Next.js 15 SSR</span>
-                </div>
-                <div class="project-actions-group">
-                  <button type="button" class="btn-live-preview" data-preview-url="https://digital-den-gamma.vercel.app/" data-preview-title="DIGITAL DEN 360 — Digital Solutions Hub & Booking Engine" title="Interactive In-Page Preview of digital-den-gamma.vercel.app">
-                    <span>⚡ Quick Preview</span>
-                  </button>
-                  <a href="https://digital-den-gamma.vercel.app/" target="_blank" rel="noopener" class="btn-live-preview" style="background:transparent; border-color:var(--border-gold-subtle);" title="Open live production platform in new tab">
-                    <span>Visit Live Site</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  </a>
-                  <button type="button" class="btn-project-inquire" data-open-consultation data-service="Dynamic Portal">
-                    <span>Start Similar Project →</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- =======================================================================
-         PERFORMANCE SPEED BENCHMARK (From "Ultra-Fast Load Times" Pillar)
-         ======================================================================= -->
-    <section class="section-padding" id="speed">
-      <div class="container">
-        <div class="benchmark-card">
-          
-          <div class="benchmark-left">
-            <span class="section-tag">Performance Architecture</span>
-            <h3>Speed Is Not A Feature. It Is Your Revenue.</h3>
-            <p>
-              Every 100ms of latency decreases conversions by up to 7%. While standard agencies deliver bloated WordPress themes that take 4+ seconds to load, SRB Studio builds custom architectures that load under 0.5s worldwide.
+            <p class="spec-desc">
+              A single page built to earn its traffic. For product launches, campaigns, client acquisition, and paid ads. One page, conversion-led, shipped fast. Built to scale into a full ecosystem later.
             </p>
 
-            <div class="speed-metric-box srb-winner">
-              <div class="speed-metric-num" id="metricLcp">0.38s</div>
-              <div class="speed-metric-info">
-                <h5>SRB Studio Bespoke Architecture</h5>
-                <span>Instant Largest Contentful Paint (LCP) • Zero Bloat</span>
+            <div class="spec-footer">
+              <div class="spec-pricing">
+                <span class="price-prefix">Starting from</span>
+                <span class="price-val" data-price-inr="₹12,499" data-price-usd="$149">₹12,499</span>
+              </div>
+              <button type="button" class="btn-spec-cta magnetic-target" data-open-consultation data-service="Landing Page">
+                <span>Start a project →</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Service 02: Marketing Site & Portal -->
+          <article class="service-spec-card featured-spec" data-reveal>
+            <div class="spec-featured-badge">MOST POPULAR</div>
+            <div class="spec-card-header">
+              <span class="spec-num">02</span>
+              <h3 class="spec-title">Marketing Site &amp; Portal</h3>
+            </div>
+
+            <div class="spec-table">
+              <div class="spec-row">
+                <span class="spec-label">Timeline</span>
+                <span class="spec-value">2–3 weeks</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Deliverables</span>
+                <span class="spec-value">Multi-Page • CMS • SEO Suite</span>
               </div>
             </div>
 
-            <div class="speed-metric-box legacy">
-              <div class="speed-metric-num">3.95s</div>
-              <div class="speed-metric-info">
-                <h5>Standard Agency / Template Website</h5>
-                <span>Heavy plugins, layout shifts, high bounce rate</span>
+            <p class="spec-desc">
+              End-to-end digital infrastructure for scaling brands. Custom design system, dynamic headless content management, micro-interactions, and search engine domination built right into the core.
+            </p>
+
+            <div class="spec-footer">
+              <div class="spec-pricing">
+                <span class="price-prefix">Starting from</span>
+                <span class="price-val" data-price-inr="₹24,999" data-price-usd="$299">₹24,999</span>
+              </div>
+              <button type="button" class="btn-spec-cta magnetic-target" data-open-consultation data-service="Marketing Site">
+                <span>Start a project →</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Service 03: Bespoke Full-Stack & Motion -->
+          <article class="service-spec-card" data-reveal>
+            <div class="spec-card-header">
+              <span class="spec-num">03</span>
+              <h3 class="spec-title">Full-Stack SaaS &amp; Tools</h3>
+            </div>
+
+            <div class="spec-table">
+              <div class="spec-row">
+                <span class="spec-label">Timeline</span>
+                <span class="spec-value">3–4 weeks</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Deliverables</span>
+                <span class="spec-value">Next.js 15 • DB • APIs &amp; Auth</span>
               </div>
             </div>
 
-            <div style="margin-top: 24px;">
-              <button class="btn-primary-gold" id="runAuditBtn">
+            <p class="spec-desc">
+              Feature-rich web applications, internal operational tools, secure client portals, automated WhatsApp APIs, and bespoke financial ledgers tailored to your exact business logic.
+            </p>
+
+            <div class="spec-footer">
+              <div class="spec-pricing">
+                <span class="price-prefix">Starting from</span>
+                <span class="price-val" data-price-inr="₹48,000" data-price-usd="$575">₹48,000</span>
+              </div>
+              <button type="button" class="btn-spec-cta magnetic-target" data-open-consultation data-service="Full-Stack Application">
+                <span>Start a project →</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         6. INTERACTIVE ARCHITECTURE ESTIMATOR (Kota Dynamic Tool Feature)
+         ======================================================================= -->
+    <section class="estimator-section" id="estimator">
+      <div class="container">
+        
+        <div class="section-title-bar" data-reveal>
+          <div class="title-left">
+            <span class="editorial-index">04 / INTERACTIVE TOOL</span>
+            <h2 class="works-main-title">Architecture Estimator</h2>
+          </div>
+          <div class="title-right">
+            <div class="currency-toggle-cluster" role="group" aria-label="Currency Selector">
+              <button type="button" class="currency-btn active" data-currency="INR">₹ INR</button>
+              <button type="button" class="currency-btn" data-currency="USD">$ USD</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="estimator-framer-card" data-reveal>
+          
+          <!-- Step 1: Tier Selection -->
+          <div class="estimator-tier-row">
+            <div class="estimator-step-label">STEP 01: SELECT ARCHITECTURE TIER</div>
+            <div class="tier-cards-grid">
+              
+              <div class="tier-card active" data-name="Custom Business Landing Page" data-base-inr="12499" data-base-days="5">
+                <div class="tier-header">
+                  <span class="tier-icon">🚀</span>
+                  <span class="tier-badge">1–2 Weeks</span>
+                </div>
+                <h4 class="tier-title">Landing Page</h4>
+                <p class="tier-desc">High-converting single page, motion UI, mobile-first, and sub-0.5s loading speed.</p>
+              </div>
+
+              <div class="tier-card" data-name="Marketing Site &amp; Portal" data-base-inr="24999" data-base-days="12">
+                <div class="tier-header">
+                  <span class="tier-icon">⚡</span>
+                  <span class="tier-badge">2–3 Weeks</span>
+                </div>
+                <h4 class="tier-title">Marketing Site</h4>
+                <p class="tier-desc">Multi-page platform with custom CMS, dynamic sections, and SEO schema architecture.</p>
+              </div>
+
+              <div class="tier-card" data-name="Bespoke Full-Stack SaaS" data-base-inr="48000" data-base-days="21">
+                <div class="tier-header">
+                  <span class="tier-icon">🏛️</span>
+                  <span class="tier-badge">3–4 Weeks</span>
+                </div>
+                <h4 class="tier-title">Full-Stack SaaS</h4>
+                <p class="tier-desc">Cloud database, role authentication, thermal POS, WhatsApp API, and custom portals.</p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Step 2: Modules & Add-Ons -->
+          <div class="estimator-addons-row">
+            <div class="estimator-step-label">STEP 02: INCLUDED PERFORMANCE MODULES &amp; ADD-ONS</div>
+            <div class="addons-grid">
+              
+              <label class="addon-checkbox-card">
+                <input type="checkbox" class="estimator-addon-input" data-price-inr="4999" data-days="2" checked>
+                <div class="addon-content">
+                  <span class="addon-title">Sub-Second Core Web Vitals (100% Score)</span>
+                  <span class="addon-pill">+₹4,999 / 2d</span>
+                </div>
+              </label>
+
+              <label class="addon-checkbox-card">
+                <input type="checkbox" class="estimator-addon-input" data-price-inr="6999" data-days="3">
+                <div class="addon-content">
+                  <span class="addon-title">Intelligent AI Chat Assistant ("Rizu AI")</span>
+                  <span class="addon-pill">+₹6,999 / 3d</span>
+                </div>
+              </label>
+
+              <label class="addon-checkbox-card">
+                <input type="checkbox" class="estimator-addon-input" data-price-inr="7999" data-days="3">
+                <div class="addon-content">
+                  <span class="addon-title">Automated WhatsApp Business Notification API</span>
+                  <span class="addon-pill">+₹7,999 / 3d</span>
+                </div>
+              </label>
+
+              <label class="addon-checkbox-card">
+                <input type="checkbox" class="estimator-addon-input" data-price-inr="5999" data-days="2">
+                <div class="addon-content">
+                  <span class="addon-title">ESC/POS Thermal Slip &amp; Receipt Printing</span>
+                  <span class="addon-pill">+₹5,999 / 2d</span>
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- Step 3: Sprint Velocity -->
+          <div class="estimator-velocity-row">
+            <div class="estimator-step-label">STEP 03: DELIVERY SPRINT VELOCITY</div>
+            <div class="velocity-radio-cluster">
+              <label class="velocity-label">
+                <input type="radio" name="velocitySprint" class="estimator-speed-input" data-price-mult="1.0" data-day-reduction="0" checked>
+                <span>Standard Agile Sprint (1.0x)</span>
+              </label>
+              <label class="velocity-label">
+                <input type="radio" name="velocitySprint" class="estimator-speed-input" data-price-mult="1.25" data-day-reduction="2">
+                <span>⚡ Priority Fast-Track (+25% speed)</span>
+              </label>
+              <label class="velocity-label">
+                <input type="radio" name="velocitySprint" class="estimator-speed-input" data-price-mult="1.45" data-day-reduction="4">
+                <span>🔥 Rush Dedicated Sprint (+45% speed)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Live Output Bar -->
+          <div class="estimator-output-bar">
+            <div class="output-item">
+              <span class="output-label">ESTIMATED INVESTMENT</span>
+              <span class="estimator-total-price" id="calcPriceDisplay">₹17,498</span>
+            </div>
+            <div class="output-item">
+              <span class="output-label">ESTIMATED DELIVERY TIMELINE</span>
+              <span class="estimator-total-timeline" id="calcTimelineDisplay">7–9 Business Days</span>
+            </div>
+            <div class="output-action">
+              <button type="button" class="btn-lock-estimate magnetic-target" id="bookEstimateBtn">
+                <span>Book This Build on WhatsApp →</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         7. PERFORMANCE BENCHMARK (Engineering Proof)
+         ======================================================================= -->
+    <section class="speed-benchmark-section" id="speed">
+      <div class="container">
+        
+        <div class="benchmark-card" data-reveal>
+          <div class="benchmark-content">
+            <span class="editorial-index">05 / ENGINEERING</span>
+            <h2 class="benchmark-title">Speed Is Not A Feature. It Is Your Revenue.</h2>
+            <p class="benchmark-text">
+              Every 100ms of latency decreases conversions by up to 7%. While standard agencies deliver bloated WordPress themes that take 4+ seconds to load, SRB Studio builds custom architectures that render under 0.5s worldwide.
+            </p>
+
+            <div class="speed-comparison-box">
+              <div class="speed-row srb-lead">
+                <div class="speed-indicator-dot"></div>
+                <div class="speed-row-text">
+                  <strong>SRB Studio Bespoke Architecture:</strong> Instant Largest Contentful Paint (0.38s)
+                </div>
+                <div class="speed-score-badge">0.38s</div>
+              </div>
+              <div class="speed-row legacy-lag">
+                <div class="speed-indicator-dot red"></div>
+                <div class="speed-row-text">
+                  <strong>Standard Bloated Agency Template:</strong> Heavy plugins, slow TTFB, lost leads
+                </div>
+                <div class="speed-score-badge red">3.95s</div>
+              </div>
+            </div>
+
+            <div class="benchmark-btn-wrap">
+              <button type="button" class="btn-audit-trigger magnetic-target" id="runAuditBtn">
                 <span>⚡ Run Live Speed Benchmark</span>
               </button>
             </div>
           </div>
 
-          <!-- Speedometer Score Gauge -->
-          <div class="speed-gauge-display">
-            <div class="gauge-circle">
-              <div class="gauge-content">
-                <div class="gauge-score">100</div>
-                <div class="gauge-label">Lighthouse Score</div>
+          <!-- Lighthouse Gauge Display -->
+          <div class="benchmark-gauge-col">
+            <div class="gauge-ring-outer">
+              <div class="gauge-ring-inner">
+                <span class="gauge-num" id="gaugeScoreVal">100</span>
+                <span class="gauge-desc">LIGHTHOUSE SCORE</span>
               </div>
             </div>
-            <p style="margin-top: 20px; font-size: 0.85rem; color: var(--text-muted);">
-              Verified 100% Performance, 100% Accessibility, 100% Best Practices, 100% SEO
-            </p>
+            <p class="gauge-note">Verified 100% Performance • 100% Accessibility • 100% SEO</p>
           </div>
-
         </div>
+
       </div>
     </section>
 
     <!-- =======================================================================
-         THE 5-STEP BLUEPRINT (Our Process)
+         8. THE BLUEPRINT (5-Step Engineering Sprint)
          ======================================================================= -->
-    <section class="section-padding" id="process">
+    <section class="blueprint-section" id="blueprint">
       <div class="container">
         
-        <div class="section-header">
-          <span class="section-tag">The Blueprint</span>
-          <h2 class="section-title">How We Elevate Your Brand</h2>
-          <p class="section-desc">
-            A systematic, zero-friction engineering workflow from discovery to global launch.
-          </p>
+        <div class="section-title-bar" data-reveal>
+          <div class="title-left">
+            <span class="editorial-index">06 / PROCESS</span>
+            <h2 class="works-main-title">The Blueprint</h2>
+          </div>
+          <div class="title-right">
+            <p class="works-subtext">
+              A systematic, zero-friction engineering workflow from discovery to global launch.
+            </p>
+          </div>
         </div>
 
-        <div class="blueprint-steps">
+        <div class="blueprint-steps-grid">
           
-          <div class="blueprint-step-card">
-            <div class="step-num-badge">01</div>
-            <h4>Strategy & Architecture</h4>
-            <p>Deep audit of your business goals, target clients, conversion funnels, and technical architecture needs.</p>
+          <div class="blueprint-card" data-reveal>
+            <span class="step-num">01</span>
+            <h4 class="step-title">Kickoff &amp; Strategy</h4>
+            <p class="step-desc">Deep audit of your business goals, target clients, conversion funnels, and technical architecture needs.</p>
           </div>
 
-          <div class="blueprint-step-card">
-            <div class="step-num-badge">02</div>
-            <h4>Bespoke UI/UX Design</h4>
-            <p>Creating high-impact wireframes, luxury aesthetic mockups, and interactive prototypes tailored for your audience.</p>
+          <div class="blueprint-card" data-reveal>
+            <span class="step-num">02</span>
+            <h4 class="step-title">Bespoke UI/UX System</h4>
+            <p class="step-desc">Creating high-impact wireframes, luxury aesthetic mockups, and interactive prototypes tailored for your audience.</p>
           </div>
 
-          <div class="blueprint-step-card">
-            <div class="step-num-badge">03</div>
-            <h4>Clean Engineering</h4>
-            <p>Developing with modular, high-speed, modern codebases. Zero sloppy templates. 100% bespoke engineering.</p>
+          <div class="blueprint-card" data-reveal>
+            <span class="step-num">03</span>
+            <h4 class="step-title">Clean Engineering</h4>
+            <p class="step-desc">Developing with modular, high-speed, modern codebases. Zero sloppy templates. 100% bespoke engineering.</p>
           </div>
 
-          <div class="blueprint-step-card">
-            <div class="step-num-badge">04</div>
-            <h4>Speed & Security Audit</h4>
-            <p>Rigorous stress-testing across all device viewports, Core Web Vitals optimization, and security hardening.</p>
+          <div class="blueprint-card" data-reveal>
+            <span class="step-num">04</span>
+            <h4 class="step-title">Speed &amp; Security Audit</h4>
+            <p class="step-desc">Rigorous stress-testing across all device viewports, Core Web Vitals optimization, and security hardening.</p>
           </div>
 
-          <div class="blueprint-step-card">
-            <div class="step-num-badge">05</div>
-            <h4>Global Launch & Elevation</h4>
-            <p>Edge CDN deployment, DNS configuration, Google Search Console indexing, and ongoing continuous scaling.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- =======================================================================
-         INTERACTIVE ARCHITECTURE ESTIMATOR (Kota Dynamic Tool Feature)
-         ======================================================================= -->
-    <section class="live-estimator-section" id="liveArchitectureEstimator">
-      <div class="container">
-        
-        <div class="section-header">
-          <span class="section-tag">Interactive Architecture Engine</span>
-          <h2 class="section-title">Calculate Your Build &amp; Timeline</h2>
-          <p class="section-desc">
-            Tailor your architecture requirements below. Watch real-time pricing and delivery sprint estimates calculate dynamically.
-          </p>
-        </div>
-
-        <div class="estimator-card">
-          <!-- Step 1: Select Architecture Tier -->
-          <div class="estimator-types-grid">
-            
-            <div class="estimator-type-card active" data-name="Custom Business Landing Page" data-base-inr="25000" data-base-days="5">
-              <div class="estimator-type-icon">🚀</div>
-              <div class="estimator-type-title">Landing Page</div>
-              <div class="estimator-type-desc">High-converting landing page with 3D interactions and sub-0.5s loading.</div>
-            </div>
-
-            <div class="estimator-type-card" data-name="Dynamic Portal &amp; Tools" data-base-inr="48000" data-base-days="12">
-              <div class="estimator-type-icon">⚡</div>
-              <div class="estimator-type-title">Dynamic Portal</div>
-              <div class="estimator-type-desc">Client authentication, internal workflows, automated dashboards &amp; tools.</div>
-            </div>
-
-            <div class="estimator-type-card" data-name="Bespoke Full-Stack SaaS" data-base-inr="95000" data-base-days="21">
-              <div class="estimator-type-icon">🏛️</div>
-              <div class="estimator-type-title">Full-Stack SaaS</div>
-              <div class="estimator-type-desc">Enterprise database, payment gateways, thermal POS, and real-time APIs.</div>
-            </div>
-
-          </div>
-
-          <!-- Step 2: Add-Ons & Delivery Sprints -->
-          <div class="estimator-options-row">
-            
-            <div class="estimator-addons-col">
-              <h4>Included Modules &amp; Add-ons</h4>
-              <div class="estimator-checkbox-group">
-                <label class="estimator-checkbox-label">
-                  <div>
-                    <input type="checkbox" class="estimator-addon-input" data-price-inr="12000" data-days="2" checked>
-                    <span>Sub-Second Google Core Web Vitals Optimization</span>
-                  </div>
-                  <span class="addon-meta-pill">+₹12k / 2d</span>
-                </label>
-
-                <label class="estimator-checkbox-label">
-                  <div>
-                    <input type="checkbox" class="estimator-addon-input" data-price-inr="15000" data-days="3">
-                    <span>Intelligent AI Assistant ("Rizu AI" Chatbot)</span>
-                  </div>
-                  <span class="addon-meta-pill">+₹15k / 3d</span>
-                </label>
-
-                <label class="estimator-checkbox-label">
-                  <div>
-                    <input type="checkbox" class="estimator-addon-input" data-price-inr="18000" data-days="4">
-                    <span>Automated WhatsApp &amp; SMS Business API</span>
-                  </div>
-                  <span class="addon-meta-pill">+₹18k / 4d</span>
-                </label>
-
-                <label class="estimator-checkbox-label">
-                  <div>
-                    <input type="checkbox" class="estimator-addon-input" data-price-inr="14000" data-days="3">
-                    <span>Custom Thermal POS / ESC Receipt Printing</span>
-                  </div>
-                  <span class="addon-meta-pill">+₹14k / 3d</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="estimator-speed-col">
-              <h4>Sprint Delivery Velocity</h4>
-              <div class="estimator-checkbox-group">
-                <label class="estimator-radio-label">
-                  <div>
-                    <input type="radio" name="velocityTier" class="estimator-speed-input" data-price-mult="1.0" data-day-reduction="0" checked>
-                    <span>Standard Agile Sprint</span>
-                  </div>
-                  <span class="addon-meta-pill">Standard</span>
-                </label>
-
-                <label class="estimator-radio-label">
-                  <div>
-                    <input type="radio" name="velocityTier" class="estimator-speed-input" data-price-mult="1.25" data-day-reduction="2">
-                    <span>⚡ Priority Fast-Track Sprint</span>
-                  </div>
-                  <span class="addon-meta-pill">+25% speed</span>
-                </label>
-
-                <label class="estimator-radio-label">
-                  <div>
-                    <input type="radio" name="velocityTier" class="estimator-speed-input" data-price-mult="1.45" data-day-reduction="4">
-                    <span>🔥 Rapid Launch Rush (Dedicated)</span>
-                  </div>
-                  <span class="addon-meta-pill">+45% speed</span>
-                </label>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Dynamic Output Bar -->
-          <div class="estimator-summary-bar">
-            <div class="summary-col-item">
-              <span class="summary-label">Estimated Architecture Investment</span>
-              <span class="estimator-total-price">₹37,000</span>
-            </div>
-
-            <div class="summary-col-item">
-              <span class="summary-label">Target Delivery Sprint</span>
-              <span class="estimator-total-timeline">7–9 Business Days</span>
-            </div>
-
-            <button type="button" class="btn-book-estimate">
-              <span>Lock This Architecture →</span>
-            </button>
+          <div class="blueprint-card" data-reveal>
+            <span class="step-num">05</span>
+            <h4 class="step-title">Global Deployment</h4>
+            <p class="step-desc">Edge CDN deployment, DNS configuration, Google Search Console indexing, and ongoing continuous scaling.</p>
           </div>
 
         </div>
@@ -930,218 +763,113 @@
     </section>
 
     <!-- =======================================================================
-         CLIENT GUARANTEES & FAQ SECTION
+         9. CURATED FAQ (Kota Direct Q&A Framework)
          ======================================================================= -->
-    <section class="section-padding faq-section" id="faq">
+    <section class="faq-section" id="faq">
       <div class="container">
         
-        <div class="section-header">
-          <span class="section-tag">Client Guarantees & FAQ</span>
-          <h2 class="section-title">Transparent Answers. Zero Ambiguity.</h2>
-          <p class="section-desc">
-            Everything you need to know about our engineering standards, project delivery timelines, full code ownership, and post-launch guarantees.
-          </p>
-        </div>
-
-        <!-- 4 Core Guarantees Cards -->
-        <div class="guarantees-grid">
-          <div class="guarantee-card">
-            <div class="guarantee-icon" aria-hidden="true">🛡️</div>
-            <h3 class="guarantee-title">100% Code Ownership</h3>
-            <p class="guarantee-desc">Full GitHub repository handover upon project launch. Zero lock-in, zero ongoing platform license fees.</p>
+        <div class="section-title-bar" data-reveal>
+          <div class="title-left">
+            <span class="editorial-index">07 / TRANSPARENCY</span>
+            <h2 class="works-main-title">Questions Before You Decide</h2>
           </div>
-
-          <div class="guarantee-card">
-            <div class="guarantee-icon" aria-hidden="true">⚡</div>
-            <h3 class="guarantee-title">Sub-Second Speed</h3>
-            <p class="guarantee-desc">Every architecture is benchmarked against Google Core Web Vitals to deliver ultra-fast edge loading.</p>
-          </div>
-
-          <div class="guarantee-card">
-            <div class="guarantee-icon" aria-hidden="true">🔒</div>
-            <h3 class="guarantee-title">Fixed Transparent Scope</h3>
-            <p class="guarantee-desc">Clear milestone deliverables and upfront architecture estimates. No surprise costs or hidden retainers.</p>
-          </div>
-
-          <div class="guarantee-card">
-            <div class="guarantee-icon" aria-hidden="true">🛠️</div>
-            <h3 class="guarantee-title">30-Day Launch Warranty</h3>
-            <p class="guarantee-desc">Complimentary post-launch security monitoring, bug resolution, and uptime assistance on every deployment.</p>
+          <div class="title-right">
+            <p class="works-subtext">
+              Direct, transparent answers. No corporate jargon or hidden agency clauses.
+            </p>
           </div>
         </div>
 
-        <!-- Interactive FAQ Accordion -->
-        <div class="faq-accordion-wrapper">
-          <div class="faq-accordion" role="region" aria-label="Frequently Asked Questions">
-
-            <!-- Question 1 (Open by Default) -->
-            <div class="faq-item is-open">
-              <button type="button" class="faq-question" aria-expanded="true" aria-controls="faq-ans-1" id="faq-btn-1">
-                <span>How fast can SRB Studio design, build, and deploy my project?</span>
-                <span class="faq-icon-pill" aria-hidden="true">
-                  <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-answer" id="faq-ans-1" role="region" aria-labelledby="faq-btn-1">
-                <div class="faq-answer-inner">
-                  <p>
-                    For custom high-converting business landing pages and portfolios, our typical delivery timeline is <strong>5 to 7 business days</strong>. For complex full-stack web applications, dynamic client portals, and custom tools, timelines generally range between <strong>2 to 3 weeks</strong>.
-                  </p>
-                  <p>
-                    We operate on tight, focused agile development sprints with transparent milestone reviews, so you always see working progress without traditional agency lag.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Question 2 -->
-            <div class="faq-item">
-              <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-2" id="faq-btn-2">
-                <span>Do I receive 100% full ownership of the source code and assets?</span>
-                <span class="faq-icon-pill" aria-hidden="true">
-                  <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-answer" id="faq-ans-2" role="region" aria-labelledby="faq-btn-2">
-                <div class="faq-answer-inner">
-                  <p>
-                    <strong>Yes, absolutely.</strong> Once your project is finalized and deployed, we transfer full intellectual property rights, repository access, and deployment credentials directly to you.
-                  </p>
-                  <p>
-                    Unlike agencies that lock your business into proprietary closed systems, SRB Studio provides complete freedom—host on your own infrastructure or cloud of choice with zero recurring vendor ties.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Question 3 -->
-            <div class="faq-item">
-              <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-3" id="faq-btn-3">
-                <span>What is included with an SRB Studio project quote?</span>
-                <span class="faq-icon-pill" aria-hidden="true">
-                  <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-answer" id="faq-ans-3" role="region" aria-labelledby="faq-btn-3">
-                <div class="faq-answer-inner">
-                  <p>
-                    Every custom engagement covers the full product lifecycle:
-                  </p>
-                  <ul class="faq-bullet-list">
-                    <li><strong>Bespoke UX/UI Design:</strong> High-impact typography, dark luxury aesthetics, and tailored interaction states.</li>
-                    <li><strong>Responsive Multi-Device Engineering:</strong> Pixel-perfect rendering across 4K desktops, laptops, tablets, and smartphones.</li>
-                    <li><strong>Speed & SEO Architecture:</strong> 100/100 Core Web Vitals optimization, semantic schema markup, and rapid initial paint.</li>
-                    <li><strong>Edge SSL & CI/CD Deployment:</strong> Instant global distribution via edge networks (GitHub Pages, Cloudflare, Vercel, or custom server).</li>
-                    <li><strong>Instant Lead Pipelines:</strong> Background form notification routing directly to your email without external redirects.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- Question 4 -->
-            <div class="faq-item">
-              <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-4" id="faq-btn-4">
-                <span>Do you offer post-launch support and ongoing maintenance?</span>
-                <span class="faq-icon-pill" aria-hidden="true">
-                  <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-answer" id="faq-ans-4" role="region" aria-labelledby="faq-btn-4">
-                <div class="faq-answer-inner">
-                  <p>
-                    Yes. Every build includes <strong>30 days of complimentary post-launch monitoring and bug-fix warranty</strong>. If anything requires adjustment, we resolve it promptly.
-                  </p>
-                  <p>
-                    For clients seeking ongoing feature additions, periodic security patches, and performance checks, we offer lightweight monthly maintenance retainers tailored to your active traffic requirements.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Question 5 -->
-            <div class="faq-item">
-              <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-5" id="faq-btn-5">
-                <span>How do we get started on a project with SRB Studio?</span>
-                <span class="faq-icon-pill" aria-hidden="true">
-                  <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </span>
-              </button>
-              <div class="faq-answer" id="faq-ans-5" role="region" aria-labelledby="faq-btn-5">
-                <div class="faq-answer-inner">
-                  <p>
-                    Initiating a project is simple:
-                  </p>
-                  <ol class="faq-ordered-list">
-                    <li>Submit your goals using our <a href="#consultation" class="faq-inline-link">Architecture Estimator Form below</a>.</li>
-                    <li>Or chat directly on <a href="https://wa.me/917559084152?text=Hello%20SRB%20Studio%2C%20I%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" rel="noopener" class="faq-inline-link" style="color: #25D366;">WhatsApp (+91 7559084152)</a> or <a href="https://www.instagram.com/srbstudiosofficial/" target="_blank" rel="noopener" class="faq-inline-link" style="color: var(--gold-400);">Instagram (@srbstudiosofficial)</a>.</li>
-                    <li>We review your specifications and deliver a custom architecture roadmap, milestone timeline, and fixed proposal within 24 hours.</li>
-                  </ol>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- =======================================================================
-         POSTER FOOTER CONTACT BAR (From Poster Bottom Footer)
-         ======================================================================= -->
-    <section class="section-padding" id="contact" style="padding-bottom: 40px;">
-      <div class="container">
-        
-        <div class="poster-footer-contact-bar">
+        <div class="faq-accordion-list" role="region" aria-label="Frequently Asked Questions">
           
-          <!-- Contact Email Column -->
-          <div class="contact-email-col">
-            <div class="email-icon-box" aria-hidden="true">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect width="20" height="16" x="2" y="4" rx="2"/>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-              </svg>
-            </div>
-            <div class="email-details">
-              <span>Official Inquiries:</span>
-              <a href="mailto:srbstudiosofficial@gmail.com" class="email-address-link copy-email-action" title="Click to copy or email">
-                srbstudiosofficial@gmail.com
-              </a>
+          <!-- Q1 -->
+          <div class="faq-item is-open" data-reveal>
+            <button type="button" class="faq-header-btn" aria-expanded="true" aria-controls="faq-a1" id="faq-q1">
+              <span class="faq-title-text">Who is this for?</span>
+              <span class="faq-icon-cross"></span>
+            </button>
+            <div class="faq-body" id="faq-a1" role="region" aria-labelledby="faq-q1">
+              <div class="faq-body-inner">
+                <p>Founders, business owners, and agency leads who need a digital architecture that looks and performs like a high-end enterprise build without the traditional months-long agency lag. If you need something live in weeks rather than months, you’re in the right place.</p>
+              </div>
             </div>
           </div>
 
-          <!-- DM Us Today Column -->
-          <div class="dm-today-col">
-            <div class="dm-bubble-icon" aria-hidden="true">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-              </svg>
+          <!-- Q2 -->
+          <div class="faq-item" data-reveal>
+            <button type="button" class="faq-header-btn" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
+              <span class="faq-title-text">What do you actually help with?</span>
+              <span class="faq-icon-cross"></span>
+            </button>
+            <div class="faq-body" id="faq-a2" role="region" aria-labelledby="faq-q2">
+              <div class="faq-body-inner">
+                <p>Four core things: High-converting landing pages that earn traffic, full-scale marketing platforms with dynamic CMS, bespoke full-stack web applications &amp; portals, and performance tuning that guarantees a 100/100 Google Lighthouse score.</p>
+              </div>
             </div>
-            <div>
-              <div class="dm-cta-text">DM US TODAY!</div>
-              <span style="font-size: 0.8rem; color: var(--gold-300);">WhatsApp & Instagram Instant Chat</span>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-item" data-reveal>
+            <button type="button" class="faq-header-btn" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+              <span class="faq-title-text">Are you a designer, or do you also build the site?</span>
+              <span class="faq-icon-cross"></span>
+            </button>
+            <div class="faq-body" id="faq-a3" role="region" aria-labelledby="faq-q3">
+              <div class="faq-body-inner">
+                <p>Both. We handle the end-to-end design, motion architecture, and engineering ourselves. There is zero translation loss between Figma and the live code. What you approve is exactly what gets deployed to production.</p>
+              </div>
             </div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <a href="https://wa.me/917559084152?text=Hello%20SRB%20Studio%2C%20I%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" rel="noopener" class="btn-dm-action btn-whatsapp-action" id="dmWhatsAppBtn" title="Chat +91 7559084152 on WhatsApp">
-                <span>WhatsApp</span>
-                <span aria-hidden="true">💬</span>
-              </a>
-              <a href="https://www.instagram.com/srbstudiosofficial/" target="_blank" rel="noopener" class="btn-dm-action" id="dmInstaBtn" style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);" title="Follow @srbstudiosofficial on Instagram">
-                <span>Instagram DM</span>
-                <span aria-hidden="true">📸</span>
-              </a>
+          </div>
+
+          <!-- Q4 -->
+          <div class="faq-item" data-reveal>
+            <button type="button" class="faq-header-btn" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
+              <span class="faq-title-text">How much does it cost?</span>
+              <span class="faq-icon-cross"></span>
+            </button>
+            <div class="faq-body" id="faq-a4" role="region" aria-labelledby="faq-q4">
+              <div class="faq-body-inner">
+                <p>Landing pages start at ₹12,499 ($149), full marketing platforms start at ₹24,999 ($299), and bespoke full-stack SaaS portals start at ₹48,000 ($575). There are zero hourly billing surprises—you receive a fixed quote before kickoff.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="faq-item" data-reveal>
+            <button type="button" class="faq-header-btn" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
+              <span class="faq-title-text">How fast can you start?</span>
+              <span class="faq-icon-cross"></span>
+            </button>
+            <div class="faq-body" id="faq-a5" role="region" aria-labelledby="faq-q5">
+              <div class="faq-body-inner">
+                <p>Usually right away. We maintain a focused, intentional client queue to ensure fast turnarounds. If you need something deployed this month, reach out via WhatsApp or submit a proposal and we will confirm realistic milestones.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="faq-item" data-reveal>
+            <button type="button" class="faq-header-btn" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">
+              <span class="faq-title-text">Do I own the complete code and assets?</span>
+              <span class="faq-icon-cross"></span>
+            </button>
+            <div class="faq-body" id="faq-a6" role="region" aria-labelledby="faq-q6">
+              <div class="faq-body-inner">
+                <p>Yes, 100%. Upon deployment, we transfer all source code, repository rights, design assets, and credentials directly to you. You are free to host anywhere with zero recurring license ties.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q7 -->
+          <div class="faq-item" data-reveal>
+            <button type="button" class="faq-header-btn" aria-expanded="false" aria-controls="faq-a7" id="faq-q7">
+              <span class="faq-title-text">What happens after the site launches?</span>
+              <span class="faq-icon-cross"></span>
+            </button>
+            <div class="faq-body" id="faq-a7" role="region" aria-labelledby="faq-q7">
+              <div class="faq-body-inner">
+                <p>Every deployment includes 30 days of complimentary post-launch support, monitoring, and bug fixes. Need ongoing feature scaling or continuous optimization? We offer lightweight monthly retainers tailored to your needs.</p>
+              </div>
             </div>
           </div>
 
@@ -1151,253 +879,173 @@
     </section>
 
     <!-- =======================================================================
-         IN-PAGE CONSULTATION & ARCHITECTURE ESTIMATOR
+         10. CINEMATIC CLOSING HERO CTA (Kota: "Let's get started!")
          ======================================================================= -->
-    <section class="section-padding inpage-consultation-section" id="consultation">
+    <section class="closing-hero-cta" id="contact">
       <div class="container">
-        <div class="inpage-consultation-box">
-          <div class="section-header" style="margin-bottom: 30px;">
-            <span class="section-tag">Direct Inquiries</span>
-            <h2 class="section-title">Request A Project Proposal</h2>
-            <p class="section-desc">
-              Tell us about your digital goals. Receive a tailored architecture roadmap and project quote within 24 hours.
-            </p>
+        
+        <div class="closing-cta-card" data-reveal>
+          <div class="closing-tag-pill">AVAILABLE FOR WORK</div>
+          
+          <h2 class="closing-massive-headline">
+            Let’s build <br>
+            something <br>
+            <span class="gold-shimmer-text">unforgettable.</span>
+          </h2>
+
+          <p class="closing-subhead">
+            Have a project in mind? We’d love to discuss how we can elevate your online presence. Tell us your goals and let’s start building.
+          </p>
+
+          <div class="closing-actions-cluster">
+            <button type="button" class="btn-kota-primary magnetic-target" data-open-consultation>
+              <span>START YOUR PROJECT</span>
+              <span class="btn-circle-arrow">›</span>
+            </button>
+
+            <a href="https://wa.me/917559084152?text=Hello%20SRB%20Studio%2C%20I%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" rel="noopener" class="btn-direct-chat whatsapp-chat magnetic-target" title="Chat on WhatsApp">
+              <span>WhatsApp Chat</span>
+              <span class="chat-icon">💬</span>
+            </a>
+
+            <a href="https://www.instagram.com/srbstudiosofficial/" target="_blank" rel="noopener" class="btn-direct-chat insta-chat magnetic-target" title="Instagram DM">
+              <span>Instagram DM</span>
+              <span class="chat-icon">📸</span>
+            </a>
           </div>
 
-          <form id="inpageConsultationForm" class="inpage-form-grid">
-            <div class="form-group">
-              <label for="inpageName">Your Name / Company *</label>
-              <input type="text" id="inpageName" class="form-control" placeholder="e.g. Alex Morgan, Apex Media" required>
-            </div>
-            <div class="form-group">
-              <label for="inpageEmail">Email Address *</label>
-              <input type="email" id="inpageEmail" class="form-control" placeholder="you@domain.com" required>
-            </div>
-            <div class="form-group">
-              <label for="inpageService">Project Architecture</label>
-              <select id="inpageService" class="form-control">
-                <option value="Landing Page">Custom Business Landing Page</option>
-                <option value="Dynamic Portal">Dynamic Portal & Tools</option>
-                <option value="Full-Stack Application">Bespoke Full-Stack Web App</option>
-                <option value="UI/UX Design">Luxury UI/UX Redesign</option>
-                <option value="Speed Tuning">Performance & Speed Tuning</option>
-                <option value="Maintenance">Ongoing Evolution & Support</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <div class="budget-label-row">
-                <label for="inpageBudget">Estimated Budget</label>
-                <div class="currency-toggle-wrapper" role="group" aria-label="Currency Selector">
-                  <button type="button" class="currency-pill-btn active" data-currency="INR" title="Switch to Indian Rupees">₹ INR</button>
-                  <button type="button" class="currency-pill-btn" data-currency="USD" title="Switch to US Dollars">$ USD</button>
-                </div>
-              </div>
-              <select id="inpageBudget" class="form-control">
-                <option value="Standard Project (₹15,000 – ₹35,000)">Standard Project (₹15,000 – ₹35,000)</option>
-                <option value="Growth / Dynamic Portal (₹35,000 – ₹85,000)">Growth / Dynamic Portal (₹35,000 – ₹85,000)</option>
-                <option value="Enterprise / Custom Ecosystem (₹85,000 – ₹2,50,000+)">Enterprise / Custom Ecosystem (₹85,000 – ₹2,50,000+)</option>
-                <option value="Custom Quote (Let's Discuss)">Custom Quote (Let's Discuss)</option>
-              </select>
-            </div>
-            <div class="form-group full-width">
-              <label for="inpageNotes">Project Vision & Overview</label>
-              <textarea id="inpageNotes" class="form-control" placeholder="Share your vision, reference sites, timeline, or key features..."></textarea>
-            </div>
-            <div class="form-group full-width" style="text-align: center; margin-top: 10px;">
-              <button type="submit" class="btn-poster-cta" style="width: auto;">
-                <span>SUBMIT PROJECT PROPOSAL</span>
-                <span class="arrow-circle" aria-hidden="true">›</span>
-              </button>
-            </div>
-          </form>
-
-          <!-- In-Page Instant Submission Success State -->
-          <div id="inpageSuccessState" style="display: none; text-align: center; padding: 30px 16px;">
-            <div style="width: 64px; height: 64px; border-radius: 50%; background: rgba(245, 158, 11, 0.15); border: 1px solid var(--gold-400); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2rem; color: var(--gold-400); box-shadow: 0 0 25px var(--gold-glow);">
-              ✓
-            </div>
-            <h3 style="color: #FFF; font-size: 1.4rem; margin-bottom: 10px; font-family: var(--font-heading);">Project Brief Received</h3>
-            <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 480px; margin: 0 auto 20px;">
-              Thank you, <strong id="inpageSuccessLeadName" style="color: var(--gold-300);"></strong>. Your project proposal has been delivered to <strong>srbstudiosofficial@gmail.com</strong>. We will review your architecture requirements and email you back within 24 hours.
-            </p>
-            <button type="button" class="btn-primary-gold" id="inpageResetBtn" style="padding: 10px 24px; font-size: 0.85rem;">
-              <span>Submit Another Request</span>
-            </button>
+          <div class="closing-direct-contact">
+            <span>Direct Email:</span>
+            <a href="mailto:srbstudiosofficial@gmail.com" class="closing-email-link copy-email-action">srbstudiosofficial@gmail.com</a>
           </div>
         </div>
+
       </div>
     </section>
 
   </main>
 
   <!-- =======================================================================
-       SITE FOOTER
+       11. MINIMALIST STUDIO FOOTER
        ======================================================================= -->
-  <footer class="footer">
-    <div class="container">
+  <footer class="studio-footer">
+    <div class="container footer-container">
       
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="#hero" class="brand-logo-link" style="margin-bottom: 14px;">
-            <div class="brand-emblem">
-              <img src="assets/images/logo.png" alt="SRB Studio" width="46" height="46">
-            </div>
-            <div class="brand-info">
-              <span class="brand-title" style="font-size: 1.15rem;">SRB <span>STUDIO</span></span>
-              <span class="brand-subtitle" style="font-size: 0.58rem;">BUILD • INNOVATE • ELEVATE</span>
-            </div>
-          </a>
-          <p>
-            Premium web development solutions. Bespoke architecture, dynamic portals, and high-performance digital platforms built for scale.
-          </p>
-        </div>
-
-        <div class="footer-col">
-          <h5>Core Solutions</h5>
-          <ul>
-            <li><a href="#services">Custom Landing Pages</a></li>
-            <li><a href="#services">Dynamic Portals & Tools</a></li>
-            <li><a href="#services">Bespoke Full-Stack Web</a></li>
-            <li><a href="#services">Luxury UI/UX Systems</a></li>
-            <li><a href="#speed">Speed Optimization</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h5>Explore</h5>
-          <ul>
-            <li><a href="#features">The 4 Pillars</a></li>
-            <li><a href="#device-stage">Device Showcase</a></li>
-            <li><a href="#portfolio">Featured Projects</a></li>
-            <li><a href="#speed">Speed & Performance</a></li>
-            <li><a href="#process">5-Step Blueprint</a></li>
-            <li><a href="#faq">Client Guarantees & FAQ</a></li>
-            <li><button type="button" class="footer-link-btn" data-open-poster>Original Agency Poster</button></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h5>Direct Contact</h5>
-          <ul>
-            <li><a href="mailto:srbstudiosofficial@gmail.com" class="copy-email-action">✉️ srbstudiosofficial@gmail.com</a></li>
-            <li><a href="https://wa.me/917559084152?text=Hello%20SRB%20Studio%2C%20I%20would%20like%20to%20inquire%20about%20a%20project." target="_blank" rel="noopener" style="color: #25D366; font-weight: 600;" id="footerWhatsAppLink">💬 WhatsApp: +91 7559084152</a></li>
-            <li><a href="https://www.instagram.com/srbstudiosofficial/" target="_blank" rel="noopener" style="color: var(--gold-400); font-weight: 600;" id="footerInstaLink">📸 Instagram: @srbstudiosofficial</a></li>
-            <li><a href="links.html" style="color: var(--text-secondary);">🔗 Social Hub & Bio Links</a></li>
-            <li><button type="button" class="footer-link-btn" data-open-consultation style="color: var(--gold-300); font-weight: 700;">Start Your Project →</button></li>
-          </ul>
-        </div>
+      <div class="footer-brand-col">
+        <a href="#hero" class="footer-logo-link">
+          <div class="footer-emblem">
+            <img src="assets/images/logo.png" alt="SRB Studio" width="32" height="32">
+          </div>
+          <span class="footer-brand-name">SRB STUDIO</span>
+        </a>
+        <p class="footer-tagline">BUILD • INNOVATE • ELEVATE</p>
       </div>
 
-      <!-- Marquee Motto Bar -->
-      <div class="footer-motto-marquee">
-        BUILD &nbsp;•&nbsp; INNOVATE &nbsp;•&nbsp; ELEVATE
+      <div class="footer-links-col">
+        <ul class="footer-nav-list">
+          <li><a href="#work">Selected Work</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#estimator">Estimator</a></li>
+          <li><a href="#speed">Performance</a></li>
+          <li><a href="#blueprint">Blueprint</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="links.html">Bio Links</a></li>
+        </ul>
       </div>
 
-      <div class="footer-bottom">
-        <p>&copy; 2026 SRB Studio. All rights reserved. Web solutions that turn ideas into opportunities.</p>
-        <p>Built with Bespoke Architecture & Ultra-Fast Engineering.</p>
+      <div class="footer-meta-col">
+        <span class="footer-copy">&copy; 2026 SRB Studio. All rights reserved.</span>
+        <button type="button" class="footer-back-to-top" id="backToTopBtn" aria-label="Back to top">
+          <span>Back to top</span>
+          <span class="top-arrow">↑</span>
+        </button>
       </div>
 
     </div>
   </footer>
 
   <!-- =======================================================================
-       CONSULTATION BOOKING MODAL (Accessible Native <dialog>)
+       12. ACCESSIBLE CONSULTATION MODAL (<dialog>)
        ======================================================================= -->
   <dialog id="consultationModal" aria-labelledby="modalHeading">
-    <div class="modal-header">
-      <h3 id="modalHeading">Start Your Project</h3>
-      <button type="button" class="modal-close-btn" aria-label="Close consultation modal">&times;</button>
-    </div>
-    <div class="modal-body">
-      <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 22px;">
-        Tell us about your project goals. We will review your requirements and provide a tailored architecture plan within 24 hours.
-      </p>
-
-      <form id="consultationForm">
-        <div class="form-group">
-          <label for="clientName">Your Name / Company *</label>
-          <input type="text" id="clientName" class="form-control" placeholder="e.g. Alex Morgan, Apex Media" required>
+    <div class="modal-dialog-inner">
+      <div class="modal-header">
+        <div>
+          <span class="modal-pretitle">LET’S BUILD</span>
+          <h3 id="modalHeading">Start Your Project</h3>
         </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
 
-        <div class="form-group">
-          <label for="clientEmail">Email Address *</label>
-          <input type="email" id="clientEmail" class="form-control" placeholder="you@domain.com" required>
-        </div>
-
-        <div class="form-group">
-          <label for="projectTypeSelect">Project Type</label>
-          <select id="projectTypeSelect" class="form-control">
-            <option value="Landing Page">Custom Business Landing Page</option>
-            <option value="Dynamic Portal">Dynamic Portal & Tools</option>
-            <option value="Full-Stack Application">Bespoke Full-Stack Web App</option>
-            <option value="UI/UX Design">Luxury UI/UX Redesign</option>
-            <option value="Performance Tuning">Speed & Performance Tuning</option>
-            <option value="Maintenance & Support">Ongoing Evolution & Support</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <div class="budget-label-row">
-            <label for="budgetRangeSelect">Estimated Budget</label>
-            <div class="currency-toggle-wrapper" role="group" aria-label="Currency Selector">
-              <button type="button" class="currency-pill-btn active" data-currency="INR" title="Switch to Indian Rupees">₹ INR</button>
-              <button type="button" class="currency-pill-btn" data-currency="USD" title="Switch to US Dollars">$ USD</button>
-            </div>
+      <div class="modal-body">
+        <form id="consultationForm">
+          <div class="form-group">
+            <label for="clientName">Your Name / Company *</label>
+            <input type="text" id="clientName" class="form-control" placeholder="e.g. Alex Morgan, Apex Media" required>
           </div>
-          <select id="budgetRangeSelect" class="form-control">
-            <option value="Standard Project (₹15,000 – ₹35,000)">Standard Project (₹15,000 – ₹35,000)</option>
-            <option value="Growth / Dynamic Portal (₹35,000 – ₹85,000)">Growth / Dynamic Portal (₹35,000 – ₹85,000)</option>
-            <option value="Enterprise / Custom Ecosystem (₹85,000 – ₹2,50,000+)">Enterprise / Custom Ecosystem (₹85,000 – ₹2,50,000+)</option>
-            <option value="Custom Quote (Let's Discuss)">Custom Quote (Let's Discuss)</option>
-          </select>
-        </div>
 
-        <div class="form-group">
-          <label for="projectNotes">Brief Project Description</label>
-          <textarea id="projectNotes" class="form-control" placeholder="Share your vision, reference sites, timeline, or key features..."></textarea>
-        </div>
+          <div class="form-group">
+            <label for="clientEmail">Email Address *</label>
+            <input type="email" id="clientEmail" class="form-control" placeholder="you@domain.com" required>
+          </div>
 
-        <button type="submit" class="btn-poster-cta" style="width: 100%; font-size: 1.05rem; padding: 14px 20px;">
-          <span>Submit Request to SRB Studio</span>
-          <span class="arrow-circle" aria-hidden="true">›</span>
-        </button>
-      </form>
+          <div class="form-group">
+            <label for="projectTypeSelect">Service Category</label>
+            <select id="projectTypeSelect" class="form-control">
+              <option value="Landing Page">High-Converting Landing Page</option>
+              <option value="Marketing Site">Marketing Platform &amp; CMS</option>
+              <option value="Full-Stack Application">Full-Stack SaaS &amp; Custom Tools</option>
+              <option value="Speed Tuning">Performance &amp; Speed Optimization</option>
+            </select>
+          </div>
 
-      <!-- Modal Instant Submission Success State -->
-      <div id="modalSuccessState" style="display: none; text-align: center; padding: 28px 16px;">
-        <div style="width: 68px; height: 68px; border-radius: 50%; background: rgba(245, 158, 11, 0.15); border: 1px solid var(--gold-400); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 2rem; color: var(--gold-400); box-shadow: 0 0 30px var(--gold-glow);">
-          ✓
+          <div class="form-group">
+            <label for="projectNotes">Project Vision &amp; Requirements</label>
+            <textarea id="projectNotes" class="form-control" placeholder="Tell us about your brand, key features, reference designs, or timeline..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-kota-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+            <span>Submit Project Proposal</span>
+            <span class="btn-circle-arrow">›</span>
+          </button>
+        </form>
+
+        <!-- Success Message -->
+        <div id="modalSuccessState" style="display: none; text-align: center; padding: 24px 10px;">
+          <div class="success-check-badge">✓</div>
+          <h4 style="color:#FFF; font-size:1.3rem; margin-bottom:8px;">Project Brief Received</h4>
+          <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:20px;">
+            Thank you, <strong id="successLeadName" style="color:var(--gold-300);"></strong>. Your project proposal has been routed to <strong>srbstudiosofficial@gmail.com</strong>. We will review your requirements and reply within 24 hours.
+          </p>
+          <button type="button" class="btn-action-primary modal-close-btn" data-close-modal>
+            <span>Close Window</span>
+          </button>
         </div>
-        <h3 style="color: #FFF; font-size: 1.4rem; margin-bottom: 12px; font-family: var(--font-heading);">Request Received</h3>
-        <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; max-width: 440px; margin: 0 auto 24px;">
-          Thank you, <strong id="successLeadName" style="color: var(--gold-300);"></strong>. Your project brief has been delivered to <strong>srbstudiosofficial@gmail.com</strong>. We will review your architecture goals and contact you within 24 hours.
-        </p>
-        <button type="button" class="btn-primary-gold modal-close-btn" id="closeModalSuccessBtn" data-close-modal style="padding: 12px 32px; font-size: 0.88rem;">
-          <span>Close Window</span>
-        </button>
       </div>
     </div>
   </dialog>
 
   <!-- =======================================================================
-       ORIGINAL POSTER ART LIGHTBOX MODAL
+       13. ORIGINAL POSTER / SHOWREEL LIGHTBOX
        ======================================================================= -->
-  <dialog id="posterModal" aria-label="Original SRB Studio Marketing Poster">
-    <div class="modal-header">
-      <h3>Official SRB Studio Poster Design</h3>
-      <button type="button" class="modal-close-btn" aria-label="Close poster modal">&times;</button>
-    </div>
-    <div style="padding: 16px; text-align: center; background: #07070A;">
-      <img src="assets/images/srb-studio-poster.jpg" alt="SRB Studio Official Poster" class="modal-poster-img">
-      <div style="margin-top: 14px;">
-        <span style="font-size: 0.85rem; color: var(--gold-300); font-weight: 600;">BUILD • INNOVATE • ELEVATE</span>
+  <dialog id="posterModal" aria-label="SRB Studio Showreel Poster Art">
+    <div class="modal-dialog-inner" style="max-width: 680px;">
+      <div class="modal-header">
+        <div>
+          <span class="modal-pretitle">ORIGINAL POSTER ART</span>
+          <h3>SRB Studio Showcase</h3>
+        </div>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
+      <div style="padding: 16px; text-align: center; background: #070709;">
+        <img src="assets/images/srb-studio-poster.jpg" alt="SRB Studio Official Poster" class="modal-poster-img" style="max-width: 100%; border-radius: 12px; border: 1px solid rgba(245, 158, 11, 0.2);">
+        <p style="margin-top: 14px; font-size: 0.85rem; color: var(--gold-300); font-weight: 600;">BUILD • INNOVATE • ELEVATE</p>
       </div>
     </div>
   </dialog>
 
   <!-- =======================================================================
-       LIVE PROJECT PREVIEW DRAWER / MODAL (Kota Framer Preview Feature)
+       14. LIVE PROJECT PREVIEW DRAWER (Interactive In-Page Framer Preview)
        ======================================================================= -->
   <dialog id="projectPreviewModal" aria-label="Live Project Preview">
     <div class="preview-modal-bar">
@@ -1412,12 +1060,12 @@
           <span class="preview-modal-url">denbooks.in</span>
         </div>
       </div>
-      <div style="display:flex; align-items:center; gap:12px;">
+      <div style="display:flex; align-items:center; gap:14px;">
         <span class="preview-modal-title" style="font-size:0.82rem; font-weight:700; color:var(--gold-300);"></span>
         <a href="#" target="_blank" rel="noopener" class="preview-open-ext" style="color:var(--text-secondary); text-decoration:none; font-size:0.8rem; font-weight:600;" title="Open in new window">
           Open Full Tab ↗
         </a>
-        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close live preview" style="background:none; border:none; color:#AAA; font-size:1.6rem; cursor:pointer;">&times;</button>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close preview" style="background:none; border:none; color:#AAA; font-size:1.6rem; cursor:pointer;">&times;</button>
       </div>
     </div>
     <div class="preview-body-frame">
@@ -1429,9 +1077,7 @@
     </div>
   </dialog>
 
-  <!-- =======================================================================
-       FLOATING WHATSAPP QUICK-CHAT ACTION
-       ======================================================================= -->
+  <!-- Floating WhatsApp Quick-Chat Action -->
   <aside class="floating-whatsapp-wrap" aria-label="Quick WhatsApp Contact">
     <a href="https://wa.me/917559084152?text=Hello%20SRB%20Studio%2C%20I%20would%20like%20to%20inquire%20about%20a%20project." 
        target="_blank" 
@@ -1448,7 +1094,7 @@
     </a>
   </aside>
 
-  <!-- Interactive Scripts -->
+  <!-- Main JavaScript File -->
   <script src="js/main.js"></script>
 </body>
 </html>
