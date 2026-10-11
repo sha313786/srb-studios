@@ -45,8 +45,8 @@
   --text-gold: #FCD34D;
 
   /* Typography */
-  --font-heading: 'Montserrat', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Inter', 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Elevation & Glows */
   --shadow-gold-sm: 0 4px 15px rgba(217, 119, 6, 0.2);
@@ -55,7 +55,7 @@
   --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
 
   /* Layout */
-  --container-max: 1240px;
+  --container-max: 1320px;
   --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -159,9 +159,9 @@ body {
 /* Typography Helpers */
 h1, h2, h3, h4, .brand-font {
   font-family: var(--font-heading);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.1;
 }
 
 .gold-gradient-text {
@@ -178,7 +178,7 @@ h1, h2, h3, h4, .brand-font {
   -webkit-text-fill-color: transparent;
 }
 
-/* Top Banner Bar (From Poster Header) */
+/* Top Banner Bar (From Poster Header + Kota Live Studio Pill) */
 .top-banner {
   background: rgba(10, 10, 15, 0.95);
   border-bottom: 1px solid var(--border-gold-subtle);
@@ -217,36 +217,42 @@ h1, h2, h3, h4, .brand-font {
   gap: 8px;
 }
 
-/* Navbar */
+/* Floating Island Navbar (Kota Aesthetic) */
 .navbar {
   position: sticky;
-  top: 0;
+  top: 14px;
   z-index: 100;
-  background: var(--bg-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-gold-subtle);
+  background: rgba(12, 12, 18, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  border-radius: 100px;
+  max-width: 1280px;
+  margin: 12px auto 0;
+  padding: 4px 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(245, 158, 11, 0.12);
   transition: var(--transition-smooth);
 }
 
 .navbar .container {
-  max-width: 1400px;
-  padding-left: 28px;
-  padding-right: 28px;
+  max-width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .navbar.scrolled {
-  background: rgba(8, 8, 12, 0.92);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  border-bottom-color: var(--border-gold-medium);
+  background: rgba(8, 8, 12, 0.96);
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(245, 158, 11, 0.25);
+  transform: translateY(-2px);
 }
 
 .nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
-  gap: 20px;
+  height: 64px;
+  gap: 16px;
 }
 
 /* Logo */
@@ -515,13 +521,17 @@ h1, h2, h3, h4, .brand-font {
 }
 
 /* ==========================================================================
-   HERO SECTION
+   HERO SECTION (Kota-Inspired Bold Editorial Hierarchy)
    ========================================================================== */
 .hero-section {
   position: relative;
-  padding: 70px 0 90px;
+  padding: 100px 0 110px;
   text-align: center;
   overflow: hidden;
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-pill-badge {
@@ -531,13 +541,15 @@ h1, h2, h3, h4, .brand-font {
   background: rgba(245, 158, 11, 0.08);
   border: 1px solid var(--border-gold-subtle);
   border-radius: 100px;
-  padding: 6px 18px;
-  margin-bottom: 28px;
+  padding: 8px 22px;
+  margin-bottom: 34px;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--gold-300);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .hero-pill-badge .pulse-dot {
@@ -556,39 +568,44 @@ h1, h2, h3, h4, .brand-font {
 }
 
 .hero-title {
-  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 7.8vw, 6.2rem);
   font-weight: 800;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-  margin-bottom: 18px;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  margin-bottom: 24px;
   text-transform: uppercase;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-subhead {
   font-family: var(--font-heading);
-  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--text-secondary);
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--gold-400);
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .hero-description {
-  font-size: clamp(1rem, 1.3vw, 1.2rem);
-  color: var(--text-secondary);
-  max-width: 680px;
-  margin: 0 auto 36px;
-  line-height: 1.7;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  color: #B2B4C5;
+  max-width: 760px;
+  margin: 0 auto 44px;
+  line-height: 1.65;
+  font-weight: 400;
 }
 
 .hero-cta-group {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
+  gap: 20px;
   flex-wrap: wrap;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 /* Four Badges in Poster (Top Feature Bar) */
@@ -1413,35 +1430,52 @@ h1, h2, h3, h4, .brand-font {
 }
 
 .portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
 }
 
 .project-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-gold-subtle);
-  border-radius: 24px;
+  background: rgba(14, 14, 20, 0.75);
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  border-radius: 32px;
   overflow: hidden;
-  transition: var(--transition-smooth);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
   position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.project-card:nth-child(even) {
+  grid-template-columns: 0.85fr 1.15fr;
+}
+
+.project-card:nth-child(even) .project-thumbnail-wrapper {
+  order: 2;
+}
+
+.project-card:nth-child(even) .project-details {
+  order: 1;
 }
 
 .project-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--border-gold-bright);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 158, 11, 0.15);
+  transform: translateY(-8px);
+  border-color: rgba(252, 211, 77, 0.8);
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.95), 0 0 50px rgba(245, 158, 11, 0.25);
 }
 
 .project-thumbnail-wrapper {
   position: relative;
-  height: clamp(260px, 30vw, 340px);
+  height: clamp(340px, 36vw, 480px);
   background: radial-gradient(circle at 50% 50%, #101422 0%, #06070B 100%);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 36px;
 }
 
 .project-thumbnail-wrapper img {
@@ -1490,7 +1524,7 @@ h1, h2, h3, h4, .brand-font {
 }
 
 .project-details {
-  padding: 28px;
+  padding: 44px 40px;
 }
 
 .project-client-row {
@@ -2720,7 +2754,21 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
   .portfolio-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .project-card, .project-card:nth-child(even) {
     grid-template-columns: 1fr;
+  }
+  .project-card:nth-child(even) .project-thumbnail-wrapper {
+    order: 1;
+  }
+  .project-card:nth-child(even) .project-details {
+    order: 2;
+  }
+  .project-details {
+    padding: 28px 20px;
   }
   .blueprint-steps {
     grid-template-columns: 1fr;
