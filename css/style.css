@@ -422,10 +422,22 @@ body.cursor-active .custom-cursor {
   transition: all 0.2s ease;
 }
 
-.nav-social-icon:hover {
+.nav-social-icon.nav-whatsapp-icon:hover {
   color: #25D366;
   border-color: rgba(37, 211, 102, 0.4);
   background: rgba(37, 211, 102, 0.1);
+}
+
+.nav-social-icon.nav-discord-icon:hover {
+  color: #5865F2;
+  border-color: rgba(88, 101, 242, 0.4);
+  background: rgba(88, 101, 242, 0.1);
+}
+
+.nav-social-icon.nav-insta-icon:hover {
+  color: var(--gold-400);
+  border-color: rgba(245, 158, 11, 0.4);
+  background: rgba(245, 158, 11, 0.1);
 }
 
 .btn-nav-cta {
@@ -1988,6 +2000,12 @@ body.cursor-active .custom-cursor {
 .btn-chat-pill.insta-chat:hover {
   border-color: var(--gold-400);
   color: var(--gold-300);
+}
+
+.btn-chat-pill.discord-chat:hover {
+  border-color: #5865F2;
+  color: #7289DA;
+  box-shadow: 0 0 16px rgba(88, 101, 242, 0.35);
 }
 
 .closing-direct-email {
