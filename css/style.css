@@ -2798,3 +2798,489 @@ textarea.form-control {
     gap: 10px;
   }
 }
+
+/* ==========================================================================
+   KOTA STUDIO DYNAMIC UPGRADES (Framer Aesthetic, Custom Cursor & Interactions)
+   ========================================================================== */
+
+/* 1. Top Scroll Progress Bar */
+.scroll-progress-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #F59E0B, #FFF0B3, #F59E0B);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.8);
+  z-index: 10000;
+  pointer-events: none;
+  transition: width 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 2. Kota Fluid Custom Cursor */
+.cursor-dot {
+  position: fixed;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  background-color: #FCD34D;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.9);
+  transition: opacity 0.2s ease, transform 0.05s ease;
+  will-change: transform;
+}
+
+.cursor-outline {
+  position: fixed;
+  top: -24px;
+  left: -24px;
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid rgba(245, 158, 11, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              top 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              left 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              background-color 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.cursor-outline.is-hovering {
+  width: 64px;
+  height: 64px;
+  top: -32px;
+  left: -32px;
+  border-color: rgba(252, 211, 77, 0.85);
+  background-color: rgba(245, 158, 11, 0.08);
+}
+
+.cursor-outline.is-project-hover {
+  width: 90px;
+  height: 90px;
+  top: -45px;
+  left: -45px;
+  background-color: rgba(245, 158, 11, 0.95);
+  border-color: #FFF0B3;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.6);
+}
+
+.cursor-outline.is-project-hover::after {
+  content: attr(data-cursor-label);
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #060608;
+  white-space: nowrap;
+}
+
+/* 3. Intersection Scroll Reveals */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 4. Live Studio Status & Clock Badge */
+.studio-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(18, 18, 26, 0.8);
+  border: 1px solid var(--border-gold-subtle);
+  border-radius: 40px;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.status-dot-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  position: relative;
+}
+
+.status-dot-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid #10B981;
+  animation: pulseGreen 2s infinite ease-out;
+}
+
+@keyframes pulseGreen {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.studio-clock {
+  font-family: 'JetBrains Mono', monospace, sans-serif;
+  color: var(--gold-300);
+  font-weight: 600;
+}
+
+/* 5. Infinite Kinetic Marquee Ticker (Kota Style) */
+.kota-marquee-wrap {
+  width: 100%;
+  overflow: hidden;
+  padding: 24px 0;
+  background: rgba(8, 8, 12, 0.6);
+  border-top: 1px solid rgba(245, 158, 11, 0.12);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.12);
+  display: flex;
+  user-select: none;
+  margin: 30px 0 50px;
+}
+
+.kota-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  white-space: nowrap;
+  animation: marqueeSlide 28s linear infinite;
+  will-change: transform;
+}
+
+.kota-marquee-wrap:hover .kota-marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.marquee-item span.highlight {
+  color: var(--gold-400);
+}
+
+.marquee-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-500);
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+@keyframes marqueeSlide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 6. Interactive Architecture & Live Cost Estimator */
+.live-estimator-section {
+  padding: 90px 0;
+  position: relative;
+}
+
+.estimator-card {
+  background: radial-gradient(ellipse at 50% 20%, rgba(28, 22, 14, 0.95) 0%, rgba(10, 10, 15, 0.98) 80%);
+  border: 1px solid var(--border-gold-medium);
+  border-radius: 28px;
+  padding: 48px 36px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 40px rgba(245, 158, 11, 0.15);
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.estimator-types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.estimator-type-card {
+  background: rgba(18, 18, 26, 0.8);
+  border: 1.5px solid var(--border-gold-subtle);
+  border-radius: 16px;
+  padding: 22px 18px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.estimator-type-card:hover {
+  border-color: var(--gold-400);
+  transform: translateY(-3px);
+  background: rgba(26, 26, 38, 0.9);
+}
+
+.estimator-type-card.active {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: var(--gold-400);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.3), inset 0 0 15px rgba(245, 158, 11, 0.1);
+}
+
+.estimator-type-icon {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.estimator-type-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #FFF;
+  margin-bottom: 6px;
+}
+
+.estimator-type-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.estimator-options-row {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 28px;
+  margin-bottom: 32px;
+}
+
+.estimator-addons-col h4, .estimator-speed-col h4 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--gold-300);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.estimator-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.estimator-checkbox-label, .estimator-radio-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(14, 14, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.estimator-checkbox-label:hover, .estimator-radio-label:hover {
+  border-color: var(--border-gold-subtle);
+  color: #FFF;
+  background: rgba(20, 20, 30, 0.8);
+}
+
+.estimator-checkbox-label input, .estimator-radio-label input {
+  accent-color: var(--gold-400);
+  margin-right: 12px;
+  width: 16px;
+  height: 16px;
+}
+
+.addon-meta-pill {
+  font-size: 0.72rem;
+  color: var(--gold-400);
+  background: rgba(245, 158, 11, 0.12);
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* Estimator Live Output Bar */
+.estimator-summary-bar {
+  background: linear-gradient(135deg, rgba(20, 20, 30, 0.95) 0%, rgba(10, 10, 15, 0.98) 100%);
+  border: 1.5px solid var(--border-gold-bright);
+  border-radius: 20px;
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 158, 11, 0.2);
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.summary-col-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.estimator-total-price {
+  font-family: var(--font-heading);
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--gold-300);
+  line-height: 1;
+}
+
+.estimator-total-timeline {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.btn-book-estimate {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--grad-gold-btn);
+  color: #060608;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 14px 28px;
+  border-radius: 40px;
+  border: 1px solid var(--gold-300);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
+}
+
+.btn-book-estimate:hover {
+  background: var(--grad-gold-btn-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 0 45px rgba(245, 158, 11, 0.75);
+}
+
+/* 7. Live Project Preview Modal */
+#projectPreviewModal {
+  max-width: 95vw;
+  width: 1200px;
+  height: 85vh;
+  border-radius: 20px;
+  background: #0B0B10;
+  border: 1px solid var(--border-gold-medium);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.95), 0 0 50px rgba(245, 158, 11, 0.3);
+  overflow: hidden;
+  padding: 0;
+}
+
+#projectPreviewModal::backdrop {
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(14px);
+}
+
+.preview-modal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: #111118;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.preview-address-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #07070A;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.preview-address-pill .green-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+}
+
+.preview-body-frame {
+  width: 100%;
+  height: calc(85vh - 58px);
+  position: relative;
+  background: #050508;
+}
+
+.preview-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.preview-loading-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #050508;
+  gap: 16px;
+  color: var(--gold-300);
+  font-size: 0.9rem;
+}
+
+.spinner-ring {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(245, 158, 11, 0.2);
+  border-top-color: var(--gold-400);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .estimator-types-grid {
+    grid-template-columns: 1fr;
+  }
+  .estimator-options-row {
+    grid-template-columns: 1fr;
+  }
+  .estimator-summary-bar {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+}
+

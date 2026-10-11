@@ -5,14 +5,21 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
+  initDynamicCursor();
+  initScrollProgressBar();
+  initMagneticElements();
+  initKotaScrollReveal();
+  initInteractiveLiveEstimator();
   initDeviceStage();
   initModals();
   initCurrencyBudget();
   initPortfolioFilter();
+  initProjectPreviewModal();
   initConsultationForm();
   initPerformanceGauge();
   initEmailCopy();
   initFaqAccordion();
+  initStudioClock();
 });
 
 /* ==========================================================================
@@ -632,3 +639,291 @@ function initFaqAccordion() {
     });
   });
 }
+
+/* ==========================================================================
+   10. KOTA-STYLE DYNAMIC CUSTOM CURSOR & MAGNETIC FOLLOWER
+   ========================================================================== */
+function initDynamicCursor() {
+  if (window.matchMedia('(pointer: coarse)').matches) return; // Skip on touch screens
+
+  let cursorDot = document.querySelector('.cursor-dot');
+  let cursorOutline = document.querySelector('.cursor-outline');
+
+  if (!cursorDot) {
+    cursorDot = document.createElement('div');
+    cursorDot.className = 'cursor-dot';
+    document.body.appendChild(cursorDot);
+  }
+
+  if (!cursorOutline) {
+    cursorOutline = document.createElement('div');
+    cursorOutline.className = 'cursor-outline';
+    document.body.appendChild(cursorOutline);
+  }
+
+  let mouseX = -100;
+  let mouseY = -100;
+  let outlineX = -100;
+  let outlineY = -100;
+  let isHoveringInteractive = false;
+  let isHoveringProject = false;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+  }, { passive: true });
+
+  // Smooth lerp loop for outer ring
+  function renderCursor() {
+    outlineX += (mouseX - outlineX) * 0.16;
+    outlineY += (mouseY - outlineY) * 0.16;
+
+    cursorOutline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0)`;
+    requestAnimationFrame(renderCursor);
+  }
+  requestAnimationFrame(renderCursor);
+
+  // Hover states for links, buttons and cards
+  function attachCursorHoverHandlers() {
+    document.querySelectorAll('a, button, input, select, textarea, .project-card, .feature-pill-card, .service-card, [role="button"]').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        isHoveringInteractive = true;
+        cursorOutline.classList.add('is-hovering');
+        if (el.closest('.project-card') || el.classList.contains('project-card')) {
+          cursorOutline.classList.add('is-project-hover');
+          cursorOutline.setAttribute('data-cursor-label', 'EXPLORE ↗');
+        }
+      });
+      el.addEventListener('mouseleave', () => {
+        isHoveringInteractive = false;
+        cursorOutline.classList.remove('is-hovering');
+        cursorOutline.classList.remove('is-project-hover');
+        cursorOutline.removeAttribute('data-cursor-label');
+      });
+    });
+  }
+  attachCursorHoverHandlers();
+}
+
+/* ==========================================================================
+   11. TOP SCROLL PROGRESS BAR (Kota signature detail)
+   ========================================================================== */
+function initScrollProgressBar() {
+  let bar = document.querySelector('.scroll-progress-line');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.className = 'scroll-progress-line';
+    document.body.appendChild(bar);
+  }
+
+  window.addEventListener('scroll', () => {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (totalHeight > 0) {
+      const progress = (window.scrollY / totalHeight) * 100;
+      bar.style.width = `${progress}%`;
+    }
+  }, { passive: true });
+}
+
+/* ==========================================================================
+   12. MAGNETIC BUTTON INTERACTION (Smooth Spring Physics)
+   ========================================================================== */
+function initMagneticElements() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  const magneticBtns = document.querySelectorAll('.btn-primary-gold, .btn-poster-cta, .nav-social-icon, .btn-live-preview');
+  
+  magneticBtns.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      btn.style.transform = `translate3d(${x * 0.28}px, ${y * 0.28}px, 0)`;
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate3d(0, 0, 0)';
+    });
+  });
+}
+
+/* ==========================================================================
+   13. KOTA INTERSECTION OBSERVER SCROLL REVEALS
+   ========================================================================== */
+function initKotaScrollReveal() {
+  const targets = document.querySelectorAll('.feature-pill-card, .service-card, .project-card, .blueprint-step-card, .guarantee-card, .benchmark-card, .section-header');
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  targets.forEach((el, idx) => {
+    el.classList.add('reveal-fade-up');
+    el.style.transitionDelay = `${(idx % 4) * 0.08}s`;
+    observer.observe(el);
+  });
+}
+
+/* ==========================================================================
+   14. LIVE INTERACTIVE COST & TIMELINE ARCHITECTURE ESTIMATOR
+   ========================================================================== */
+function initInteractiveLiveEstimator() {
+  const estimatorContainer = document.getElementById('liveArchitectureEstimator');
+  if (!estimatorContainer) return;
+
+  const typeCards = estimatorContainer.querySelectorAll('.estimator-type-card');
+  const addOnCheckboxes = estimatorContainer.querySelectorAll('.estimator-addon-input');
+  const speedTierRadios = estimatorContainer.querySelectorAll('.estimator-speed-input');
+  const priceDisplay = estimatorContainer.querySelector('.estimator-total-price');
+  const timelineDisplay = estimatorContainer.querySelector('.estimator-total-timeline');
+  const bookEstimateBtn = estimatorContainer.querySelector('.btn-book-estimate');
+
+  let basePrice = 25000;
+  let baseDays = 5;
+  let activeTypeName = 'Custom Business Landing Page';
+
+  function recalculate() {
+    const isUSD = (localStorage.getItem('srb_currency') || 'INR') === 'USD';
+    let totalMultiplier = isUSD ? 0.025 : 1; // standard INR to USD conversion for quotes
+
+    let currentPriceINR = basePrice;
+    let currentDays = baseDays;
+
+    addOnCheckboxes.forEach(cb => {
+      if (cb.checked) {
+        currentPriceINR += parseInt(cb.dataset.priceInr || 0, 10);
+        currentDays += parseInt(cb.dataset.days || 0, 10);
+      }
+    });
+
+    speedTierRadios.forEach(radio => {
+      if (radio.checked) {
+        const speedMult = parseFloat(radio.dataset.priceMult || 1);
+        currentPriceINR = Math.round(currentPriceINR * speedMult);
+        const dayReduction = parseInt(radio.dataset.dayReduction || 0, 10);
+        currentDays = Math.max(3, currentDays - dayReduction);
+      }
+    });
+
+    if (isUSD) {
+      const usdVal = Math.round(currentPriceINR * 0.024 / 50) * 50; // rounded clean tier
+      if (priceDisplay) priceDisplay.textContent = `$${usdVal.toLocaleString()}`;
+    } else {
+      if (priceDisplay) priceDisplay.textContent = `₹${currentPriceINR.toLocaleString('en-IN')}`;
+    }
+
+    if (timelineDisplay) {
+      timelineDisplay.textContent = `${currentDays}–${currentDays + 2} Business Days`;
+    }
+  }
+
+  typeCards.forEach(card => {
+    card.addEventListener('click', () => {
+      typeCards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      basePrice = parseInt(card.dataset.baseInr || 25000, 10);
+      baseDays = parseInt(card.dataset.baseDays || 5, 10);
+      activeTypeName = card.dataset.name || 'Custom Solution';
+      recalculate();
+    });
+  });
+
+  addOnCheckboxes.forEach(cb => cb.addEventListener('change', recalculate));
+  speedTierRadios.forEach(r => r.addEventListener('change', recalculate));
+
+  // Sync with global currency toggle
+  window.addEventListener('storage', recalculate);
+  document.querySelectorAll('.currency-pill-btn').forEach(btn => {
+    btn.addEventListener('click', () => setTimeout(recalculate, 50));
+  });
+
+  if (bookEstimateBtn) {
+    bookEstimateBtn.addEventListener('click', () => {
+      const modal = document.getElementById('consultationModal');
+      const select = modal ? modal.querySelector('#projectTypeSelect') : null;
+      if (select) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.includes(activeTypeName) || activeTypeName.includes(select.options[i].text)) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+      openModalSafe(modal, activeTypeName);
+    });
+  }
+
+  recalculate();
+}
+
+/* ==========================================================================
+   15. INTERACTIVE LIVE PROJECT PREVIEW MODAL / DRAWER
+   ========================================================================== */
+function initProjectPreviewModal() {
+  const previewModal = document.getElementById('projectPreviewModal');
+  if (!previewModal) return;
+
+  const previewFrame = previewModal.querySelector('.preview-iframe');
+  const previewTitle = previewModal.querySelector('.preview-modal-title');
+  const previewUrl = previewModal.querySelector('.preview-modal-url');
+  const previewOpenExt = previewModal.querySelector('.preview-open-ext');
+  const previewLoader = previewModal.querySelector('.preview-loading-spinner');
+
+  document.querySelectorAll('[data-preview-url]').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const url = trigger.getAttribute('data-preview-url');
+      const title = trigger.getAttribute('data-preview-title') || 'Live Project Preview';
+
+      if (previewTitle) previewTitle.textContent = title;
+      if (previewUrl) previewUrl.textContent = url.replace('https://', '');
+      if (previewOpenExt) previewOpenExt.href = url;
+      if (previewLoader) previewLoader.style.display = 'flex';
+
+      if (previewFrame) {
+        previewFrame.onload = () => {
+          if (previewLoader) previewLoader.style.display = 'none';
+        };
+        previewFrame.src = url;
+      }
+
+      openModalSafe(previewModal);
+    });
+  });
+}
+
+/* ==========================================================================
+   16. LIVE STUDIO CLOCK & AVAILABILITY STATUS (Kota studio detail)
+   ========================================================================== */
+function initStudioClock() {
+  const clockEl = document.getElementById('studioLiveClock');
+  if (!clockEl) return;
+
+  function updateClock() {
+    const now = new Date();
+    // Indian Standard Time (IST UTC+5:30)
+    const options = {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    };
+    clockEl.textContent = now.toLocaleTimeString('en-US', options) + ' IST';
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+}
+

@@ -33,21 +33,22 @@
     <div class="ambient-light-left"></div>
   </div>
 
-  <!-- Top Announcement Bar (From Poster Header) -->
+  <!-- Top Announcement Bar (From Poster Header + Kota Live Studio Pill) -->
   <aside class="top-banner" aria-label="Brand Motto">
     <div class="container">
       <div class="top-banner-left">
-        <span>BUILD</span>
-        <span>•</span>
-        <span>INNOVATE</span>
-        <span>•</span>
-        <span>ELEVATE</span>
+        <div class="studio-status-pill">
+          <span class="status-dot-pulse" aria-hidden="true"></span>
+          <span>AVAILABLE FOR NEW PROJECTS</span>
+          <span style="opacity:0.3;">•</span>
+          <span class="studio-clock" id="studioLiveClock">12:00:00 PM IST</span>
+        </div>
       </div>
       <div class="top-banner-center">
-        <span>PREMIUM WEB DEVELOPMENT SOLUTIONS</span>
+        <span>PREMIUM WEB DEVELOPMENT & BESPOKE ARCHITECTURE</span>
       </div>
       <div class="top-banner-right">
-        <span>WEB SOLUTIONS THAT TURN IDEAS INTO OPPORTUNITIES</span>
+        <span>BUILD • INNOVATE • ELEVATE</span>
       </div>
     </div>
   </aside>
@@ -73,6 +74,7 @@
           <li><a href="#device-stage" class="nav-link">Showcase</a></li>
           <li><a href="#services" class="nav-link">Services</a></li>
           <li><a href="#portfolio" class="nav-link">Projects</a></li>
+          <li><a href="#liveArchitectureEstimator" class="nav-link">Estimator ⚡</a></li>
           <li><a href="#speed" class="nav-link">Performance</a></li>
           <li><a href="#process" class="nav-link">Blueprint</a></li>
           <li><a href="#faq" class="nav-link">FAQ</a></li>
@@ -201,6 +203,41 @@
             <p>Modern, responsive designs tailored for perfection across desktop, tablet, and mobile screens.</p>
           </article>
 
+        </div>
+      </div>
+
+      <!-- Kinetic Infinite Marquee Ticker (Kota Style) -->
+      <div class="kota-marquee-wrap" aria-label="Studio Capabilities Ticker">
+        <div class="kota-marquee-track">
+          <div class="marquee-item"><span class="highlight">BESPOKE ARCHITECTURE</span></div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <div class="marquee-item">SUB-SECOND LCP SPEED</div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <div class="marquee-item"><span class="highlight">DYNAMIC SAAS PORTALS</span></div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <div class="marquee-item">LUXURY UI/UX DESIGN</div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <div class="marquee-item"><span class="highlight">ZERO TEMPLATE BLOAT</span></div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <div class="marquee-item">EDGE-DEPLOYED NEXT.JS 15</div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <div class="marquee-item"><span class="highlight">100% CODE OWNERSHIP</span></div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <!-- Repeat for Seamless Loop -->
+          <div class="marquee-item"><span class="highlight">BESPOKE ARCHITECTURE</span></div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <div class="marquee-item">SUB-SECOND LCP SPEED</div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <div class="marquee-item"><span class="highlight">DYNAMIC SAAS PORTALS</span></div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <div class="marquee-item">LUXURY UI/UX DESIGN</div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <div class="marquee-item"><span class="highlight">ZERO TEMPLATE BLOAT</span></div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <div class="marquee-item">EDGE-DEPLOYED NEXT.JS 15</div>
+          <div class="marquee-dot" aria-hidden="true"></div>
+          <div class="marquee-item"><span class="highlight">100% CODE OWNERSHIP</span></div>
+          <div class="marquee-dot" aria-hidden="true"></div>
         </div>
       </div>
     </section>
@@ -585,7 +622,10 @@
                   <span class="stat-highlight">0.38s LCP</span> • <span>100% Offline Resilience</span>
                 </div>
                 <div class="project-actions-group">
-                  <a href="https://denbooks.in/" target="_blank" rel="noopener" class="btn-live-preview" title="Open live production platform at denbooks.in">
+                  <button type="button" class="btn-live-preview" data-preview-url="https://denbooks.in/" data-preview-title="DenBooks — Operating Suite for Citizen Service Centers" title="Interactive In-Page Preview of denbooks.in">
+                    <span>⚡ Quick Preview</span>
+                  </button>
+                  <a href="https://denbooks.in/" target="_blank" rel="noopener" class="btn-live-preview" style="background:transparent; border-color:var(--border-gold-subtle);" title="Open live production platform in new tab">
                     <span>Visit Live Site</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                   </a>
@@ -635,7 +675,10 @@
                   <span class="stat-highlight">0.32s Edge TTFB</span> • <span>Next.js 15 SSR</span>
                 </div>
                 <div class="project-actions-group">
-                  <a href="https://digital-den-gamma.vercel.app/" target="_blank" rel="noopener" class="btn-live-preview" title="Open live production platform at digital-den-gamma.vercel.app">
+                  <button type="button" class="btn-live-preview" data-preview-url="https://digital-den-gamma.vercel.app/" data-preview-title="DIGITAL DEN 360 — Digital Solutions Hub & Booking Engine" title="Interactive In-Page Preview of digital-den-gamma.vercel.app">
+                    <span>⚡ Quick Preview</span>
+                  </button>
+                  <a href="https://digital-den-gamma.vercel.app/" target="_blank" rel="noopener" class="btn-live-preview" style="background:transparent; border-color:var(--border-gold-subtle);" title="Open live production platform in new tab">
                     <span>Visit Live Site</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                   </a>
@@ -752,6 +795,137 @@
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         INTERACTIVE ARCHITECTURE ESTIMATOR (Kota Dynamic Tool Feature)
+         ======================================================================= -->
+    <section class="live-estimator-section" id="liveArchitectureEstimator">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Interactive Architecture Engine</span>
+          <h2 class="section-title">Calculate Your Build &amp; Timeline</h2>
+          <p class="section-desc">
+            Tailor your architecture requirements below. Watch real-time pricing and delivery sprint estimates calculate dynamically.
+          </p>
+        </div>
+
+        <div class="estimator-card">
+          <!-- Step 1: Select Architecture Tier -->
+          <div class="estimator-types-grid">
+            
+            <div class="estimator-type-card active" data-name="Custom Business Landing Page" data-base-inr="25000" data-base-days="5">
+              <div class="estimator-type-icon">🚀</div>
+              <div class="estimator-type-title">Landing Page</div>
+              <div class="estimator-type-desc">High-converting landing page with 3D interactions and sub-0.5s loading.</div>
+            </div>
+
+            <div class="estimator-type-card" data-name="Dynamic Portal &amp; Tools" data-base-inr="48000" data-base-days="12">
+              <div class="estimator-type-icon">⚡</div>
+              <div class="estimator-type-title">Dynamic Portal</div>
+              <div class="estimator-type-desc">Client authentication, internal workflows, automated dashboards &amp; tools.</div>
+            </div>
+
+            <div class="estimator-type-card" data-name="Bespoke Full-Stack SaaS" data-base-inr="95000" data-base-days="21">
+              <div class="estimator-type-icon">🏛️</div>
+              <div class="estimator-type-title">Full-Stack SaaS</div>
+              <div class="estimator-type-desc">Enterprise database, payment gateways, thermal POS, and real-time APIs.</div>
+            </div>
+
+          </div>
+
+          <!-- Step 2: Add-Ons & Delivery Sprints -->
+          <div class="estimator-options-row">
+            
+            <div class="estimator-addons-col">
+              <h4>Included Modules &amp; Add-ons</h4>
+              <div class="estimator-checkbox-group">
+                <label class="estimator-checkbox-label">
+                  <div>
+                    <input type="checkbox" class="estimator-addon-input" data-price-inr="12000" data-days="2" checked>
+                    <span>Sub-Second Google Core Web Vitals Optimization</span>
+                  </div>
+                  <span class="addon-meta-pill">+₹12k / 2d</span>
+                </label>
+
+                <label class="estimator-checkbox-label">
+                  <div>
+                    <input type="checkbox" class="estimator-addon-input" data-price-inr="15000" data-days="3">
+                    <span>Intelligent AI Assistant ("Rizu AI" Chatbot)</span>
+                  </div>
+                  <span class="addon-meta-pill">+₹15k / 3d</span>
+                </label>
+
+                <label class="estimator-checkbox-label">
+                  <div>
+                    <input type="checkbox" class="estimator-addon-input" data-price-inr="18000" data-days="4">
+                    <span>Automated WhatsApp &amp; SMS Business API</span>
+                  </div>
+                  <span class="addon-meta-pill">+₹18k / 4d</span>
+                </label>
+
+                <label class="estimator-checkbox-label">
+                  <div>
+                    <input type="checkbox" class="estimator-addon-input" data-price-inr="14000" data-days="3">
+                    <span>Custom Thermal POS / ESC Receipt Printing</span>
+                  </div>
+                  <span class="addon-meta-pill">+₹14k / 3d</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="estimator-speed-col">
+              <h4>Sprint Delivery Velocity</h4>
+              <div class="estimator-checkbox-group">
+                <label class="estimator-radio-label">
+                  <div>
+                    <input type="radio" name="velocityTier" class="estimator-speed-input" data-price-mult="1.0" data-day-reduction="0" checked>
+                    <span>Standard Agile Sprint</span>
+                  </div>
+                  <span class="addon-meta-pill">Standard</span>
+                </label>
+
+                <label class="estimator-radio-label">
+                  <div>
+                    <input type="radio" name="velocityTier" class="estimator-speed-input" data-price-mult="1.25" data-day-reduction="2">
+                    <span>⚡ Priority Fast-Track Sprint</span>
+                  </div>
+                  <span class="addon-meta-pill">+25% speed</span>
+                </label>
+
+                <label class="estimator-radio-label">
+                  <div>
+                    <input type="radio" name="velocityTier" class="estimator-speed-input" data-price-mult="1.45" data-day-reduction="4">
+                    <span>🔥 Rapid Launch Rush (Dedicated)</span>
+                  </div>
+                  <span class="addon-meta-pill">+45% speed</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Dynamic Output Bar -->
+          <div class="estimator-summary-bar">
+            <div class="summary-col-item">
+              <span class="summary-label">Estimated Architecture Investment</span>
+              <span class="estimator-total-price">₹37,000</span>
+            </div>
+
+            <div class="summary-col-item">
+              <span class="summary-label">Target Delivery Sprint</span>
+              <span class="estimator-total-timeline">7–9 Business Days</span>
+            </div>
+
+            <button type="button" class="btn-book-estimate">
+              <span>Lock This Architecture →</span>
+            </button>
+          </div>
+
+        </div>
+
       </div>
     </section>
 
@@ -1219,6 +1393,39 @@
       <div style="margin-top: 14px;">
         <span style="font-size: 0.85rem; color: var(--gold-300); font-weight: 600;">BUILD • INNOVATE • ELEVATE</span>
       </div>
+    </div>
+  </dialog>
+
+  <!-- =======================================================================
+       LIVE PROJECT PREVIEW DRAWER / MODAL (Kota Framer Preview Feature)
+       ======================================================================= -->
+  <dialog id="projectPreviewModal" aria-label="Live Project Preview">
+    <div class="preview-modal-bar">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="screen-dots">
+          <span class="screen-dot red"></span>
+          <span class="screen-dot yellow"></span>
+          <span class="screen-dot green"></span>
+        </div>
+        <div class="preview-address-pill">
+          <span class="green-dot"></span>
+          <span class="preview-modal-url">denbooks.in</span>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="preview-modal-title" style="font-size:0.82rem; font-weight:700; color:var(--gold-300);"></span>
+        <a href="#" target="_blank" rel="noopener" class="preview-open-ext" style="color:var(--text-secondary); text-decoration:none; font-size:0.8rem; font-weight:600;" title="Open in new window">
+          Open Full Tab ↗
+        </a>
+        <button type="button" class="modal-close-btn" data-close-modal aria-label="Close live preview" style="background:none; border:none; color:#AAA; font-size:1.6rem; cursor:pointer;">&times;</button>
+      </div>
+    </div>
+    <div class="preview-body-frame">
+      <div class="preview-loading-spinner">
+        <div class="spinner-ring"></div>
+        <span>Connecting to Live Architecture...</span>
+      </div>
+      <iframe class="preview-iframe" title="Interactive Web Platform Preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
     </div>
   </dialog>
 
