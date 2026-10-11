@@ -454,8 +454,14 @@ function initConsultationForm() {
         submitBtn.innerHTML = `<span>Dispatching Proposal...</span>`;
       }
 
-      // 2. Prepare pre-filled WhatsApp message
-      const waMessage = `Hi SRB Studio! 👋\n\nI just submitted a project proposal on your website:\n• Client: ${name}\n• Email: ${email}\n• Service: ${service}\n• Requirements: ${notes}\n\nLet's discuss my project!`;
+      // 2. Prepare pre-filled WhatsApp message (Safe encoding across all platforms)
+      const waMessage = `*SRB STUDIO — Project Inquiry*\n\n` +
+        `I just submitted a project proposal on your website:\n` +
+        `• *Client*: ${name}\n` +
+        `• *Email*: ${email}\n` +
+        `• *Service*: ${service}\n` +
+        `• *Requirements*: ${notes}\n\n` +
+        `Let's connect and discuss my project!`;
       const waUrl = `https://wa.me/917559084152?text=${encodeURIComponent(waMessage)}`;
       if (successWhatsappBtn) {
         successWhatsappBtn.href = waUrl;
