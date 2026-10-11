@@ -635,46 +635,6 @@ body.cursor-active .custom-cursor {
   color: var(--gold-300);
 }
 
-.btn-secondary-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 22px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-hairline-light);
-  color: #FFFFFF;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s var(--ease-out-expo);
-}
-
-.pulse-recording {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #EF4444;
-  box-shadow: 0 0 10px #EF4444;
-  animation: pulseRed 1.8s infinite ease-in-out;
-}
-
-@keyframes pulseRed {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.5; }
-}
-
-.reel-badge {
-  color: var(--gold-300);
-  font-weight: 700;
-  font-size: 0.8rem;
-}
-
-.btn-secondary-pill:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(245, 158, 11, 0.4);
-  transform: translateY(-2px);
-}
 
 /* Hero Showcase Frame (The Visual Anchor) */
 .hero-showcase-frame {

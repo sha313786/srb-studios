@@ -16,8 +16,7 @@ A bespoke, high-performance website for **SRB Studio**, crafted with a luxury da
   4. **Optimized UI/UX**: Fluid responsiveness across Desktop, Tablet, Mobile, and Laptop devices.
 - **Interactive Multi-Device Stage**:
   - Live 3D-styled device views for 4K Desktop, MacBook, Tablet, and Mobile.
-  - Interactive tabs to zoom and inspect individual screen designs.
-  - Lightbox viewer for the original promotional poster artwork.
+  - Interactive in-page live project preview drawer with seamless iframe architecture.
 - **Interactive Services & Solutions**:
   - Custom Landing Pages
   - Dynamic Portals & Tools

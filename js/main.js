@@ -388,9 +388,7 @@ function initStudioClock() {
    ========================================================================== */
 function initModals() {
   const consultationModal = document.getElementById('consultationModal');
-  const posterModal = document.getElementById('posterModal');
   const openConsultationBtns = document.querySelectorAll('[data-open-consultation]');
-  const openPosterBtns = document.querySelectorAll('[data-open-poster]');
   const closeBtns = document.querySelectorAll('[data-close-modal], .modal-close-btn');
 
   openConsultationBtns.forEach(btn => {
@@ -404,12 +402,6 @@ function initModals() {
     });
   });
 
-  openPosterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      posterModal?.showModal();
-    });
-  });
-
   closeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const dialog = btn.closest('dialog');
@@ -419,7 +411,7 @@ function initModals() {
 
   // Close when clicking on backdrop
   const projectPreviewModal = document.getElementById('projectPreviewModal');
-  [consultationModal, posterModal, projectPreviewModal].forEach(dialog => {
+  [consultationModal, projectPreviewModal].forEach(dialog => {
     dialog?.addEventListener('click', (e) => {
       if (e.target === dialog) {
         dialog.close();
