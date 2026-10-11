@@ -492,7 +492,7 @@ function initConsultationForm() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            username: "SRB Studio Lead Bot",
+            username: "SRB Studios",
             avatar_url: "https://raw.githubusercontent.com/sha313786/srb-studios/main/assets/images/srb-logo.png",
             embeds: [{
               title: "🚀 New Project Proposal Submitted!",
@@ -505,7 +505,7 @@ function initConsultationForm() {
                 { name: "📝 Vision & Requirements", value: notes, inline: false },
                 { name: "💬 Quick WhatsApp Action", value: `[Open WhatsApp with ${name}](${waUrl})`, inline: false }
               ],
-              footer: { text: "SRB Studio • Lead Routing System" },
+              footer: { text: "SRB Studios • Lead Routing System" },
               timestamp: new Date().toISOString()
             }]
           })
