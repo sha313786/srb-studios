@@ -335,9 +335,9 @@ function initPerformanceGauge() {
    7. FAQ ACCORDION (Kota Direct Answers)
    ========================================================================== */
 function initFaqAccordion() {
-  const faqItems = document.querySelectorAll('.faq-item');
+  const faqItems = document.querySelectorAll('.faq-accordion-item, .faq-item');
   faqItems.forEach(item => {
-    const btn = item.querySelector('.faq-header-btn');
+    const btn = item.querySelector('.faq-btn, .faq-header-btn');
     btn?.addEventListener('click', () => {
       const isOpen = item.classList.contains('is-open');
 
@@ -345,7 +345,7 @@ function initFaqAccordion() {
       faqItems.forEach(i => {
         if (i !== item) {
           i.classList.remove('is-open');
-          i.querySelector('.faq-header-btn')?.setAttribute('aria-expanded', 'false');
+          i.querySelector('.faq-btn, .faq-header-btn')?.setAttribute('aria-expanded', 'false');
         }
       });
 
