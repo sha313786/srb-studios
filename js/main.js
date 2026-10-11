@@ -398,6 +398,12 @@ function initModals() {
       if (service && select) {
         select.value = service;
       }
+      const form = document.getElementById('consultationForm');
+      const successState = document.getElementById('modalSuccessState');
+      if (form && successState) {
+        form.style.display = 'block';
+        successState.style.display = 'none';
+      }
       consultationModal?.showModal();
     });
   });
@@ -421,28 +427,105 @@ function initModals() {
 }
 
 /* ==========================================================================
-   10. CONSULTATION FORM SUBMISSION
+   10. CONSULTATION FORM SUBMISSION (Multi-Channel Dispatch: Email + WhatsApp + Discord)
    ========================================================================== */
+// Optional: Paste your Discord Webhook URL here to receive instant channel alerts!
+const DISCORD_WEBHOOK_URL = '';
+
 function initConsultationForm() {
   const form = document.getElementById('consultationForm');
   const successState = document.getElementById('modalSuccessState');
   const successLeadName = document.getElementById('successLeadName');
+  const successWhatsappBtn = document.getElementById('successWhatsappBtn');
+  const submitBtn = form?.querySelector('button[type="submit"]');
 
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = document.getElementById('clientName')?.value || 'Client';
-      const email = document.getElementById('clientEmail')?.value || '';
+      const name = document.getElementById('clientName')?.value?.trim() || 'Client';
+      const email = document.getElementById('clientEmail')?.value?.trim() || '';
       const service = document.getElementById('projectTypeSelect')?.value || 'General';
-      const notes = document.getElementById('projectNotes')?.value || '';
+      const notes = document.getElementById('projectNotes')?.value?.trim() || 'None provided';
 
+      // 1. Show UI loading state
+      const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Dispatching Proposal...</span>`;
+      }
+
+      // 2. Prepare pre-filled WhatsApp message
+      const waMessage = `Hi SRB Studio! 👋\n\nI just submitted a project proposal on your website:\n• Client: ${name}\n• Email: ${email}\n• Service: ${service}\n• Requirements: ${notes}\n\nLet's discuss my project!`;
+      const waUrl = `https://wa.me/917559084152?text=${encodeURIComponent(waMessage)}`;
+      if (successWhatsappBtn) {
+        successWhatsappBtn.href = waUrl;
+      }
+
+      // 3. Dispatch to FormSubmit (Direct email to srbstudiosofficial@gmail.com)
+      const emailPromise = fetch('https://formsubmit.co/ajax/srbstudiosofficial@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          'Client Name': name,
+          'Client Email': email,
+          'Service Category': service,
+          'Project Requirements': notes,
+          '_subject': `🚀 [SRB Studio Proposal] ${name} — ${service}`,
+          '_template': 'table',
+          '_captcha': 'false'
+        })
+      }).catch(err => console.warn('Email dispatch notice:', err));
+
+      // 4. Dispatch to Discord Webhook (if configured)
+      let discordPromise = Promise.resolve();
+      if (DISCORD_WEBHOOK_URL) {
+        discordPromise = fetch(DISCORD_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: "SRB Studio Lead Bot",
+            avatar_url: "https://raw.githubusercontent.com/sha313786/srb-studios/main/assets/images/srb-logo.png",
+            embeds: [{
+              title: "🚀 New Project Proposal Submitted!",
+              color: 0xF59E0B,
+              fields: [
+                { name: "👤 Client / Company", value: name, inline: true },
+                { name: "📧 Email", value: email, inline: true },
+                { name: "🛠️ Service Category", value: service, inline: false },
+                { name: "📝 Vision & Requirements", value: notes, inline: false }
+              ],
+              footer: { text: "SRB Studio • Lead Routing System" },
+              timestamp: new Date().toISOString()
+            }]
+          })
+        }).catch(err => console.warn('Discord webhook notice:', err));
+      }
+
+      // 5. Local server fallback / leads.json
+      fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, service, notes, budget: service })
+      }).catch(() => {});
+
+      // Await or timeout slightly so user sees prompt feedback
+      await Promise.race([
+        Promise.allSettled([emailPromise, discordPromise]),
+        new Promise(res => setTimeout(res, 1000))
+      ]);
+
+      // 6. Transition to Success Screen
       if (successLeadName) successLeadName.textContent = name;
       form.style.display = 'none';
       if (successState) successState.style.display = 'block';
 
-      // Pre-compose WhatsApp backup link
-      const text = `New Project Inquiry from ${name} (${email}) for ${service}: ${notes}`;
-      console.log('Project Brief Submitted:', { name, email, service, notes });
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+      }
     });
   }
 }
