@@ -2227,6 +2227,37 @@ textarea.input-control {
   gap: 6px;
 }
 
+.screen-dots .dot.red {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.screen-dots .dot.red:hover {
+  transform: scale(1.25);
+}
+
+.preview-open-ext {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid var(--gold-400);
+  color: var(--gold-300) !important;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.preview-open-ext:hover {
+  background: var(--gold-400);
+  color: #060608 !important;
+  box-shadow: 0 0 16px var(--gold-glow);
+  transform: translateY(-1px);
+}
+
 .preview-url-badge {
   display: inline-flex;
   align-items: center;
@@ -2256,6 +2287,7 @@ textarea.input-control {
   width: 100%;
   height: 100%;
   border: none;
+  background: #000;
 }
 
 .preview-spinner {
@@ -2270,6 +2302,7 @@ textarea.input-control {
   font-size: 0.85rem;
   background: #08080c;
   z-index: 1;
+  transition: opacity 0.25s ease;
 }
 
 .spinner-circle {

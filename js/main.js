@@ -418,7 +418,8 @@ function initModals() {
   });
 
   // Close when clicking on backdrop
-  [consultationModal, posterModal].forEach(dialog => {
+  const projectPreviewModal = document.getElementById('projectPreviewModal');
+  [consultationModal, posterModal, projectPreviewModal].forEach(dialog => {
     dialog?.addEventListener('click', (e) => {
       if (e.target === dialog) {
         dialog.close();
@@ -459,28 +460,61 @@ function initConsultationForm() {
    ========================================================================== */
 function initProjectPreviewModal() {
   const modal = document.getElementById('projectPreviewModal');
+  if (!modal) return;
+
   const previewBtns = document.querySelectorAll('[data-preview-url]');
-  const iframe = modal?.querySelector('.preview-iframe');
-  const spinner = modal?.querySelector('.preview-loading-spinner');
-  const urlDisplay = modal?.querySelector('.preview-modal-url');
-  const titleDisplay = modal?.querySelector('.preview-modal-title');
-  const openExtBtn = modal?.querySelector('.preview-open-ext');
+  const iframe = modal.querySelector('.preview-iframe');
+  const spinner = modal.querySelector('.preview-spinner');
+  const urlDisplay = modal.querySelector('.preview-modal-url');
+  const titleDisplay = modal.querySelector('.preview-modal-title');
+  const openExtBtn = modal.querySelector('.preview-open-ext');
+  const fallbackLink = modal.querySelector('.preview-fallback-link');
+
+  let loadTimeout = null;
+
+  function hideSpinner() {
+    if (spinner) {
+      spinner.style.opacity = '0';
+      setTimeout(() => {
+        spinner.style.display = 'none';
+        spinner.style.opacity = '';
+      }, 200);
+    }
+  }
+
+  function showSpinner() {
+    if (spinner) {
+      spinner.style.display = 'flex';
+      spinner.style.opacity = '1';
+    }
+  }
 
   previewBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const url = btn.getAttribute('data-preview-url');
       const title = btn.getAttribute('data-preview-title') || 'Live Project';
 
-      if (modal && iframe && url) {
-        if (spinner) spinner.style.display = 'flex';
-        iframe.src = url;
+      if (iframe && url) {
+        showSpinner();
 
-        if (urlDisplay) urlDisplay.textContent = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        const cleanDomain = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+        if (urlDisplay) urlDisplay.textContent = cleanDomain;
         if (titleDisplay) titleDisplay.textContent = title;
         if (openExtBtn) openExtBtn.href = url;
+        if (fallbackLink) fallbackLink.href = url;
+
+        // Reset and assign iframe URL
+        iframe.src = url;
+
+        // Auto-dismiss spinner fallback (e.g. 2.5s) in case cross-origin/shields delayed onload
+        clearTimeout(loadTimeout);
+        loadTimeout = setTimeout(() => {
+          hideSpinner();
+        }, 2500);
 
         iframe.onload = () => {
-          if (spinner) spinner.style.display = 'none';
+          clearTimeout(loadTimeout);
+          hideSpinner();
         };
 
         modal.showModal();
@@ -488,8 +522,10 @@ function initProjectPreviewModal() {
     });
   });
 
-  modal?.addEventListener('close', () => {
+  modal.addEventListener('close', () => {
+    clearTimeout(loadTimeout);
     if (iframe) iframe.src = '';
+    showSpinner();
   });
 }
 

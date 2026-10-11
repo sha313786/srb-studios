@@ -1056,7 +1056,7 @@
     <div class="preview-head">
       <div style="display:flex; align-items:center; gap:12px;">
         <div class="screen-dots">
-          <span class="dot red"></span>
+          <span class="dot red" data-close-modal title="Close Preview"></span>
           <span class="dot yellow"></span>
           <span class="dot green"></span>
         </div>
@@ -1067,18 +1067,21 @@
       </div>
       <div style="display:flex; align-items:center; gap:14px;">
         <span class="preview-modal-title" style="font-size:0.82rem; font-weight:700; color:var(--gold-300);"></span>
-        <a href="#" target="_blank" rel="noopener" class="preview-open-ext" style="color:var(--text-secondary); text-decoration:none; font-size:0.8rem; font-weight:600;" title="Open in new window">
-          Open Full Tab ↗
+        <a href="#" target="_blank" rel="noopener" class="preview-open-ext" title="Open live website in a new tab">
+          <span>Open Full Tab ↗</span>
         </a>
-        <button type="button" class="btn-close-modal" data-close-modal aria-label="Close preview" style="background:none; border:none; color:#AAA; font-size:1.6rem; cursor:pointer;">&times;</button>
+        <button type="button" class="btn-close-modal" data-close-modal aria-label="Close preview" style="background:none; border:none; color:#AAA; font-size:1.6rem; cursor:pointer; line-height:1;">&times;</button>
       </div>
     </div>
     <div class="preview-frame-wrap">
       <div class="preview-spinner">
         <div class="spinner-circle"></div>
         <span>Connecting to Live Architecture...</span>
+        <p class="preview-fallback-text" style="font-size:0.78rem; color:#888; margin-top:8px;">
+          Taking longer or blocked by browser shields? <a href="#" target="_blank" rel="noopener" class="preview-fallback-link" style="color:var(--gold-400); text-decoration:underline; font-weight:600;">Open Live Site Directly ↗</a>
+        </p>
       </div>
-      <iframe class="preview-iframe" title="Interactive Web Platform Preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+      <iframe class="preview-iframe" title="Interactive Web Platform Preview" allow="clipboard-write; fullscreen"></iframe>
     </div>
   </dialog>
 
