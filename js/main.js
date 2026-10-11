@@ -272,8 +272,8 @@ function initPortfolioFilter() {
       const filterVal = btn.getAttribute('data-filter');
 
       projectCards.forEach(card => {
-        const cardCat = card.getAttribute('data-category');
-        if (filterVal === 'all' || cardCat === filterVal) {
+        const cardCat = card.getAttribute('data-category') || '';
+        if (filterVal === 'all' || cardCat.includes(filterVal)) {
           card.style.display = 'block';
           card.style.animation = 'fadeInUp 0.4s ease forwards';
         } else {
