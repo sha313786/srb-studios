@@ -328,17 +328,17 @@ body.cursor-active .custom-cursor {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
   padding: 6px 16px 6px 18px;
   border-radius: 9999px;
-  background: rgba(12, 12, 18, 0.8);
+  background: rgba(12, 12, 18, 0.85);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-hairline-light);
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.04);
   transition: all 0.3s var(--ease-out-expo);
-  width: 100%;
-  max-width: 980px;
+  width: max-content;
+  max-width: calc(100% - 24px);
 }
 
 .navbar.scrolled {
@@ -353,6 +353,7 @@ body.cursor-active .custom-cursor {
   gap: 10px;
   text-decoration: none;
   color: var(--text-primary);
+  flex-shrink: 0;
 }
 
 .brand-emblem {
@@ -388,15 +389,16 @@ body.cursor-active .custom-cursor {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 4px;
+  gap: 2px;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-link {
   display: inline-block;
-  padding: 7px 13px;
+  padding: 6px 11px;
   border-radius: 9999px;
-  font-size: 0.82rem;
+  font-size: 0.81rem;
   font-weight: 600;
   color: var(--text-secondary);
   text-decoration: none;
@@ -450,12 +452,13 @@ body.cursor-active .custom-cursor {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .nav-social-icon {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -465,6 +468,7 @@ body.cursor-active .custom-cursor {
   border: 1px solid var(--border-hairline);
   background: rgba(255, 255, 255, 0.03);
   transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .nav-social-icon.nav-whatsapp-icon:hover {
@@ -489,12 +493,12 @@ body.cursor-active .custom-cursor {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
+  padding: 7px 16px;
   border-radius: 9999px;
   background: #FFFFFF;
   color: #060608;
   font-family: var(--font-main);
-  font-size: 0.82rem;
+  font-size: 0.81rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   border: none;
@@ -502,6 +506,7 @@ body.cursor-active .custom-cursor {
   white-space: nowrap;
   box-shadow: 0 2px 14px rgba(255, 255, 255, 0.12);
   transition: background 0.25s var(--ease-out-expo), color 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo), transform 0.25s var(--ease-out-expo);
+  flex-shrink: 0;
 }
 
 .btn-nav-cta:hover {
@@ -542,7 +547,14 @@ body.cursor-active .custom-cursor {
   transition: all 0.3s ease;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1040px) {
+  .navbar {
+    width: 100%;
+    max-width: 100%;
+    padding: 6px 14px;
+    gap: 12px;
+  }
+
   .nav-menu {
     display: none;
     position: absolute;
