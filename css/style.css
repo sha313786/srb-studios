@@ -402,6 +402,44 @@ body.cursor-active .custom-cursor {
   background: rgba(255, 255, 255, 0.07);
 }
 
+.banner-nexus-link {
+  color: var(--gold-300);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.banner-nexus-link:hover {
+  color: #FFFFFF;
+}
+
+.nav-nexus-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  background: rgba(245, 158, 11, 0.08);
+  color: var(--gold-300) !important;
+  font-weight: 700;
+}
+
+.nav-nexus-badge:hover {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: var(--gold-400);
+  color: #FFFFFF !important;
+  box-shadow: 0 0 14px var(--gold-glow);
+}
+
+.badge-dot-live {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+  animation: dotPulse 2s infinite ease-in-out;
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
