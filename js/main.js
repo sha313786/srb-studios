@@ -366,7 +366,7 @@ function initFaqAccordion() {
    ========================================================================== */
 function initStudioClock() {
   const clockEl = document.getElementById('studioLiveClock');
-  if (!clockEl) return;
+  const footerClockEl = document.getElementById('footerClock');
 
   function updateClock() {
     const options = {
@@ -377,7 +377,9 @@ function initStudioClock() {
       hour12: true
     };
     const formatter = new Intl.DateTimeFormat([], options);
-    clockEl.textContent = `${formatter.format(new Date())} IST`;
+    const timeStr = `${formatter.format(new Date())} IST`;
+    if (clockEl) clockEl.textContent = timeStr;
+    if (footerClockEl) footerClockEl.textContent = timeStr;
   }
 
   updateClock();

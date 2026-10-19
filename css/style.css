@@ -2278,85 +2278,349 @@ body.cursor-active .custom-cursor {
 }
 
 /* ==========================================================================
-   11. STUDIO FOOTER
+   11. LUXURY EDITORIAL STUDIO FOOTER
    ========================================================================== */
 .footer-block {
-  padding: 50px 0 35px;
-  border-top: 1px solid var(--border-hairline);
-  font-size: 0.8rem;
+  position: relative;
+  overflow: hidden;
+  background: #06070B;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 80px 0 35px;
   color: var(--text-muted);
 }
 
-.footer-layout {
+.footer-ambient-glow {
+  position: absolute;
+  bottom: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 450px;
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08) 0%, rgba(217, 119, 6, 0.03) 50%, transparent 75%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mega Brand Header & Availability Band */
+.footer-hero-band {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-brand-meta {
+  max-width: 520px;
+}
+
+.footer-brand-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-family: 'Space Grotesk', var(--font-primary), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.footer-brand-title strong {
+  color: var(--gold-400);
+}
+
+.footer-logo-emblem {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #0C0E17;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.footer-brand-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #94A3B8;
+  margin-bottom: 18px;
+}
+
+.footer-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: #CBD5E1;
+  letter-spacing: 0.04em;
+}
+
+.footer-availability-card {
+  padding: 24px 28px;
+  border-radius: 20px;
+  background: rgba(14, 16, 26, 0.7);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  backdrop-filter: blur(12px);
+  min-width: 300px;
+}
+
+.avail-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--gold-400);
+}
+
+.avail-status {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+/* Multi-Column Navigation Grid */
+.footer-columns-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 36px;
+  margin: 60px 0 45px;
+}
+
+.footer-col-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--gold-400);
+  margin-bottom: 20px;
+}
+
+.footer-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-nav-list li {
+  display: block;
+}
+
+.footer-page-link, .footer-preview-link, .footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  color: #94A3B8;
+  font-size: 0.84rem;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.footer-page-link:hover, .footer-preview-link:hover, .footer-contact-link:hover {
+  color: #FFFFFF;
+  transform: translateX(3px);
+}
+
+.footer-preview-link:hover span:first-child {
+  color: var(--gold-300);
+}
+
+.link-arrow {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.footer-page-link:hover .link-arrow, .footer-preview-link:hover .link-arrow {
+  color: var(--gold-400);
+  transform: translate(2px, -2px);
+}
+
+.footer-contact-link {
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.contact-icon {
+  font-size: 0.9rem;
+}
+
+.footer-contact-link.whatsapp:hover { color: #25D366; }
+.footer-contact-link.email:hover { color: var(--gold-300); }
+.footer-contact-link.discord:hover { color: #5865F2; }
+.footer-contact-link.insta:hover { color: #E1306C; }
+.footer-contact-link.hub:hover { color: #00D2FF; }
+
+/* The SRB Standard Guarantee Card */
+.footer-guarantee-card {
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.guarantee-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.guarantee-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.guarantee-row strong {
+  display: block;
+  font-size: 0.82rem;
+  color: #FFFFFF;
+  margin-bottom: 2px;
+}
+
+.guarantee-row p {
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+/* Giant Monolithic Brand Wordmark Backdrop */
+.footer-monolith-brand {
+  margin: 30px 0 20px;
+  text-align: center;
+  user-select: none;
+  pointer-events: none;
+}
+
+.footer-monolith-brand span {
+  font-family: 'Space Grotesk', var(--font-primary), sans-serif;
+  font-size: clamp(3.5rem, 11vw, 9.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+  -webkit-background-clip: text;
+  display: block;
+  line-height: 0.9;
+}
+
+/* Bottom Hairline Bar */
+.footer-bottom-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px;
+  font-size: 0.76rem;
 }
 
-.footer-left {
+.bottom-bar-left {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #FFFFFF;
-  text-decoration: none;
-  font-weight: 800;
-}
-
-.footer-motto {
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  color: var(--gold-400);
-  font-weight: 700;
-}
-
-.footer-links {
-  display: flex;
-  align-items: center;
-  list-style: none;
-  gap: 18px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
-.footer-links a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.footer-links a:hover {
-  color: #FFFFFF;
-}
-
-.footer-right {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.btn-back-top {
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  font-size: 0.8rem;
+.motto-pill {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
   font-weight: 700;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.btn-back-top:hover {
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
   color: var(--gold-300);
 }
 
-@media (max-width: 860px) {
-  .footer-layout {
+.btn-footer-backtop {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 7px 16px;
+  border-radius: 9999px;
+  color: #CBD5E1;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-footer-backtop:hover {
+  background: var(--gold-400);
+  border-color: var(--gold-300);
+  color: #060608;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--gold-glow);
+}
+
+.backtop-arrow {
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+.btn-footer-backtop:hover .backtop-arrow {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+  .footer-columns-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-block {
+    padding: 60px 0 30px;
+  }
+  .footer-hero-band {
+    flex-direction: column;
+  }
+  .footer-availability-card {
+    min-width: 100%;
+    width: 100%;
+  }
+  .footer-columns-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .footer-bottom-bar {
     flex-direction: column;
     align-items: flex-start;
   }
