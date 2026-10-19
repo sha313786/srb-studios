@@ -54,6 +54,11 @@
   padding: 0;
 }
 
+button, input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
@@ -323,8 +328,8 @@ body.cursor-active .custom-cursor {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 28px;
-  padding: 7px 12px 7px 16px;
+  gap: 24px;
+  padding: 6px 16px 6px 18px;
   border-radius: 9999px;
   background: rgba(12, 12, 18, 0.8);
   backdrop-filter: blur(24px);
@@ -333,7 +338,7 @@ body.cursor-active .custom-cursor {
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.04);
   transition: all 0.3s var(--ease-out-expo);
   width: 100%;
-  max-width: 960px;
+  max-width: 980px;
 }
 
 .navbar.scrolled {
@@ -484,26 +489,32 @@ body.cursor-active .custom-cursor {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 9999px;
   background: #FFFFFF;
   color: #060608;
+  font-family: var(--font-main);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   border: none;
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.25s var(--ease-out-expo);
+  box-shadow: 0 2px 14px rgba(255, 255, 255, 0.12);
+  transition: background 0.25s var(--ease-out-expo), color 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo), transform 0.25s var(--ease-out-expo);
 }
 
 .btn-nav-cta:hover {
   background: var(--gold-300);
-  box-shadow: 0 0 20px var(--gold-glow);
+  color: #060608;
+  box-shadow: 0 4px 22px var(--gold-glow);
   transform: translateY(-1px);
 }
 
 .btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.2s ease;
 }
 
@@ -554,6 +565,24 @@ body.cursor-active .custom-cursor {
 
   .mobile-toggle {
     display: flex;
+  }
+}
+
+@media (max-width: 680px) {
+  .nav-social-icon {
+    display: none;
+  }
+  .navbar {
+    padding: 6px 12px 6px 14px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .btn-nav-cta {
+    padding: 7px 13px;
+    font-size: 0.76rem;
+    gap: 5px;
   }
 }
 
@@ -2638,6 +2667,23 @@ dialog {
   width: 92%;
   margin: auto;
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.95);
+  font-family: var(--font-main);
+  color: var(--text-primary);
+}
+
+dialog[open] {
+  animation: modalEnter 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 dialog::backdrop {

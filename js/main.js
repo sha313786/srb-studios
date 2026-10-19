@@ -645,6 +645,7 @@ function initMagneticElements() {
   const magneticTargets = document.querySelectorAll('.magnetic-target');
   magneticTargets.forEach(el => {
     el.addEventListener('mousemove', (e) => {
+      el.style.transition = 'transform 0.08s ease-out';
       const rect = el.getBoundingClientRect();
       const x = e.clientX - (rect.left + rect.width / 2);
       const y = e.clientY - (rect.top + rect.height / 2);
@@ -652,7 +653,11 @@ function initMagneticElements() {
     });
 
     el.addEventListener('mouseleave', () => {
+      el.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
       el.style.transform = '';
+      setTimeout(() => {
+        el.style.transition = '';
+      }, 350);
     });
   });
 }
