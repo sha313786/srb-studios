@@ -16,10 +16,10 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/logo.png">
 
-  <!-- Google Fonts: Plus Jakarta Sans & Inter (Clean, Modern, Swiss Agency Typography) -->
+  <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, Inter & Space Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
@@ -128,60 +128,109 @@
          1. HERO SECTION (Clean, Balanced, High-End Agency Showcase)
          ======================================================================= -->
     <section class="hero-section" id="hero">
+      <!-- Background Ambient Grid Glow -->
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="hero-ambient-glow" aria-hidden="true"></div>
+
       <div class="container hero-container">
         
-        <!-- Status Pill -->
+        <!-- Technical HUD Status Pill -->
         <div class="hero-status-pill">
           <span class="status-dot"></span>
-          <span>SRB STUDIO • BESPOKE DIGITAL ARCHITECTURE</span>
+          <span class="pill-text">AVAILABLE FOR BESPOKE ARCHITECTURE</span>
+          <span class="pill-divider">•</span>
+          <span class="pill-badge">Q2 2026 RADAR</span>
         </div>
 
-        <!-- Sharp, Confident Editorial Headline -->
+        <!-- High-Impact Editorial Headline -->
         <h1 class="hero-headline">
-          Elevate Your <br>
-          <span class="gold-gradient-text">Online Presence.</span>
+          ENGINEERING <span class="gold-gradient-text">DIGITAL EMPIRES</span><br>
+          FOR VISIONARIES.
         </h1>
 
-        <!-- High-Contrast Subtitle -->
+        <!-- High-Contrast Editorial Subtitle -->
         <p class="hero-subtitle">
-          We design &amp; engineer motion-rich, high-converting digital architectures, bespoke client portals, and sub-second web platforms that turn visitors into loyal clients.
+          We architect ultra-high-performance web platforms, bespoke Discord ecosystems, and revenue-driving digital experiences that turn visitors into devoted clients.
         </p>
 
-        <!-- CTA Buttons -->
+        <!-- Powerhouse Dual CTA Cluster -->
         <div class="hero-cta-cluster">
           <button type="button" class="btn-primary-gold magnetic-target" data-open-consultation>
             <span>START YOUR PROJECT</span>
-            <span class="btn-circle-arrow">›</span>
+            <span class="btn-circle-arrow">→</span>
           </button>
-
+          <a href="#work" class="btn-secondary-ghost magnetic-target">
+            <span class="pulse-spark">⚡</span>
+            <span>EXPLORE 3 LIVE ARCHITECTURES</span>
+            <span class="btn-ghost-arrow">↓</span>
+          </a>
         </div>
 
-        <!-- Hero Interactive Showcase Frame (Visual Proof) -->
-        <div class="hero-showcase-frame">
+        <!-- Immediate Above-The-Fold Live Credibility & Proof Strip -->
+        <div class="hero-proof-strip">
+          <div class="proof-pill">
+            <span class="proof-icon">⚡</span>
+            <span class="proof-text"><strong>100%</strong> Core Web Vitals</span>
+          </div>
+          <div class="proof-pill">
+            <span class="proof-icon">🚀</span>
+            <span class="proof-text"><strong>0.38s</strong> Instant LCP</span>
+          </div>
+          <div class="proof-pill">
+            <span class="proof-icon">💎</span>
+            <span class="proof-text"><strong>Zero</strong> Template Bloat</span>
+          </div>
+          <div class="proof-pill">
+            <span class="proof-icon">🔒</span>
+            <span class="proof-text"><strong>100%</strong> Code Ownership</span>
+          </div>
+        </div>
+
+        <!-- Hero Interactive Multi-Platform Showcase Stage (Visual Anchor) -->
+        <div class="hero-showcase-frame" id="heroShowcaseStage">
           <div class="showcase-frame-header">
             <div class="frame-dots">
               <span class="dot red"></span>
               <span class="dot yellow"></span>
               <span class="dot green"></span>
             </div>
-            <div class="frame-url-pill">
-              <span class="url-lock">🔒</span>
-              <span>srbstudio.io / showcase / live-production</span>
+
+            <!-- Interactive Architecture Switcher Tabs -->
+            <div class="showcase-tabs-nav" role="tablist" aria-label="Flagship Architecture Switcher">
+              <button type="button" class="stage-tab-btn active" data-stage-id="denbooks" role="tab" aria-selected="true">
+                <span class="tab-dot"></span>
+                <span>DenBooks 360</span>
+              </button>
+              <button type="button" class="stage-tab-btn" data-stage-id="nexus" role="tab" aria-selected="false">
+                <span class="tab-dot"></span>
+                <span>SRB NEXUS</span>
+              </button>
+              <button type="button" class="stage-tab-btn" data-stage-id="studio" role="tab" aria-selected="false">
+                <span class="tab-dot"></span>
+                <span>Digital Den</span>
+              </button>
             </div>
+
             <div class="frame-status-tag">
-              <span class="live-dot"></span>
-              <span>100% LIGHTHOUSE • 0.38s LCP</span>
+              <span class="live-dot pulse"></span>
+              <span>LIVE IN PRODUCTION</span>
             </div>
           </div>
 
+          <!-- Showcase Screen Body (Interactive Crossfade) -->
           <div class="showcase-frame-body">
-            <div class="showcase-preview-card">
-              <img src="assets/images/denbooks-poster.png" alt="DenBooks 360 Operating Suite" class="showcase-img">
+            
+            <!-- Slide 1: DenBooks 360 -->
+            <div class="showcase-slide active" data-slide="denbooks">
+              <img src="assets/images/denbooks-poster.png" alt="DenBooks 360 Operating Suite" class="showcase-img" loading="eager">
               <div class="showcase-overlay">
                 <div class="showcase-overlay-info">
-                  <span class="showcase-tag">FEATURED ARCHITECTURE</span>
+                  <div class="showcase-badge-row">
+                    <span class="showcase-tag">FLAGSHIP 01 // ENTERPRISE FINTECH</span>
+                    <span class="showcase-meta-tag">NEXT.js 15 • CLOUD ERP</span>
+                  </div>
                   <h3>DenBooks 360 &amp; Digital Den Operating Suite</h3>
-                  <p>Next.js 15 • Real-time Cloud Ledger • Thermal POS • Sub-0.4s Edge Speed</p>
+                  <p>Real-time Cloud Ledger • Thermal POS Terminal • Sub-0.4s Edge Speed • 100% Uptime</p>
                 </div>
                 <div class="showcase-overlay-action">
                   <button type="button" class="btn-preview-pill" data-preview-url="https://denbooks.in/" data-preview-title="DenBooks 360 — Live Production Suite">
@@ -190,6 +239,47 @@
                 </div>
               </div>
             </div>
+
+            <!-- Slide 2: SRB NEXUS -->
+            <div class="showcase-slide" data-slide="nexus">
+              <img src="assets/images/nexus-poster.png" alt="SRB NEXUS Web Platform" class="showcase-img" loading="lazy">
+              <div class="showcase-overlay">
+                <div class="showcase-overlay-info">
+                  <div class="showcase-badge-row">
+                    <span class="showcase-tag">FLAGSHIP 02 // WEB &amp; DISCORD ECOSYSTEM</span>
+                    <span class="showcase-meta-tag">PARALLAX STACK • DISCORD API</span>
+                  </div>
+                  <h3>SRB NEXUS — Next-Gen Web &amp; Bot Ecosystem</h3>
+                  <p>Velocity Anti-Raid • Canvas Welcomer • Dynamic Stacking Showcase • Live On Render</p>
+                </div>
+                <div class="showcase-overlay-action">
+                  <button type="button" class="btn-preview-pill" data-preview-url="https://srb-nexus-eyaj.onrender.com/" data-preview-title="SRB NEXUS — Live Web Platform">
+                    <span>⚡ Test Live Demo</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3: Digital Den Studio -->
+            <div class="showcase-slide" data-slide="studio">
+              <img src="assets/images/srb-studio-poster.jpg" alt="SRB Studio Motion Engine" class="showcase-img" loading="lazy">
+              <div class="showcase-overlay">
+                <div class="showcase-overlay-info">
+                  <div class="showcase-badge-row">
+                    <span class="showcase-tag">FLAGSHIP 03 // BESPOKE AGENCY CORE</span>
+                    <span class="showcase-meta-tag">VANILLA MOTION • ZERO BLOAT</span>
+                  </div>
+                  <h3>Digital Den &amp; SRB Studio Agency Architecture</h3>
+                  <p>Sub-0.38s Core Web Vitals • Multi-Channel Lead Routing • 100% Code Ownership</p>
+                </div>
+                <div class="showcase-overlay-action">
+                  <button type="button" class="btn-preview-pill" data-preview-url="https://denbooks.in/" data-preview-title="Digital Den 360 Ecosystem">
+                    <span>⚡ Test Live Demo</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
           </div>
 
           <!-- Quick Metrics Bar -->
@@ -217,7 +307,7 @@
         <div class="hero-scroll-cue">
           <a href="#work" class="scroll-link">
             <span class="cue-arrow">↓</span>
-            <span>Scroll to explore selected works</span>
+            <span>Scroll to explore full project archive</span>
           </a>
         </div>
 
@@ -310,6 +400,7 @@
          4. SELECTED WORKS (Sticky Stacked Framer Showcase Cards)
          ======================================================================= -->
     <section class="section-block works-section" id="work">
+      <div id="portfolio" style="position:relative; top:-90px; visibility:hidden;"></div>
       <div class="container">
         
         <div class="section-header-row">
@@ -408,6 +499,52 @@
                   <span>⚡ Quick In-Page Preview</span>
                 </button>
                 <a href="https://digital-den-gamma.vercel.app/" target="_blank" rel="noopener" class="btn-project-external">
+                  <span>Visit Live Platform</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 03: SRB NEXUS -->
+          <article class="project-card" data-cursor-project="SRB NEXUS">
+            <div class="project-card-header">
+              <span class="project-number">PROJECT 03 / AUTOMATION &amp; BOT PLATFORM</span>
+              <div class="project-status">
+                <span class="status-pulse-dot"></span>
+                <span>LIVE PRODUCTION</span>
+              </div>
+            </div>
+
+            <div class="project-viewport">
+              <img src="assets/images/nexus-poster.png" alt="SRB NEXUS All-in-One Discord Platform" class="project-img" loading="lazy">
+              <div class="project-viewport-overlay">
+                <span class="hover-view-badge">EXPLORE PLATFORM ↗</span>
+              </div>
+            </div>
+
+            <div class="project-card-body">
+              <div class="project-text-side">
+                <span class="project-meta-pill">SRB NEXUS • CLOUD INFRASTRUCTURE</span>
+                <h3 class="project-title">SRB NEXUS — All-in-One Discord Moderation, Invites &amp; Automation Platform</h3>
+                <p class="project-description">
+                  Enterprise-grade community infrastructure and web control panel replacing fragmented bots. Engineered with Discord.js v14, Fastify REST APIs, and indexed PostgreSQL persistence. Features real-time invite tracking with auto-assigned roles, sliding-window sub-second anti-raid velocity mitigation (&lt;150ms), native 1024×450 canvas welcome cards, and interactive support ticket desks with cloud HTML transcripts.
+                </p>
+                <div class="project-tags">
+                  <span class="tag">Discord.js v14</span>
+                  <span class="tag">Fastify REST</span>
+                  <span class="tag">PostgreSQL</span>
+                  <span class="tag">@napi-rs/canvas</span>
+                  <span class="tag">37 Slash Commands</span>
+                  <span class="tag">Sub-150ms Velocity</span>
+                </div>
+              </div>
+
+              <div class="project-actions-side">
+                <button type="button" class="btn-project-preview" data-preview-url="https://srb-nexus-eyaj.onrender.com/" data-preview-title="SRB NEXUS — Discord Automation Suite">
+                  <span>⚡ Quick In-Page Preview</span>
+                </button>
+                <a href="https://srb-nexus-eyaj.onrender.com/" target="_blank" rel="noopener" class="btn-project-external">
                   <span>Visit Live Platform</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 </a>

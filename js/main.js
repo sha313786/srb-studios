@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjectPreviewModal();
   initBackToTop();
   initMagneticElements();
+  initHeroStageSwitcher();
 });
 
 /* ==========================================================================
@@ -119,7 +120,7 @@ function initDynamicCursor() {
   requestAnimationFrame(animateCursor);
 
   // Link & Button hover state
-  const interactiveTargets = document.querySelectorAll('a, button, input, select, textarea, .tier-card, .addon-checkbox-card');
+  const interactiveTargets = document.querySelectorAll('a, button, input, select, textarea, .tier-card, .addon-checkbox-card, .stage-tab-btn, .proof-pill');
   interactiveTargets.forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.classList.add('is-hovering');
@@ -130,7 +131,7 @@ function initDynamicCursor() {
   });
 
   // Project cards hover state (Transforms cursor to "EXPLORE" badge)
-  const projectCards = document.querySelectorAll('.sticky-project-card, .project-media-viewport');
+  const projectCards = document.querySelectorAll('.project-card, .project-viewport, .sticky-project-card, .project-media-viewport');
   projectCards.forEach(card => {
     card.addEventListener('mouseenter', () => {
       cursor.classList.add('is-project');
@@ -605,6 +606,17 @@ function initProjectPreviewModal() {
     });
   });
 
+  // Also open preview when clicking the card's viewport directly
+  document.querySelectorAll('.project-card').forEach(card => {
+    const viewport = card.querySelector('.project-viewport');
+    const previewBtn = card.querySelector('.btn-project-preview');
+    if (viewport && previewBtn) {
+      viewport.addEventListener('click', () => {
+        previewBtn.click();
+      });
+    }
+  });
+
   modal.addEventListener('close', () => {
     clearTimeout(loadTimeout);
     if (iframe) iframe.src = '';
@@ -642,3 +654,66 @@ function initMagneticElements() {
     });
   });
 }
+
+/* ==========================================================================
+   14. HERO SHOWCASE STAGE SWITCHER (Multi-Platform Interactive Stage)
+   ========================================================================== */
+function initHeroStageSwitcher() {
+  const stage = document.getElementById('heroShowcaseStage');
+  if (!stage) return;
+
+  const tabs = stage.querySelectorAll('.stage-tab-btn');
+  const slides = stage.querySelectorAll('.showcase-slide');
+  if (!tabs.length || !slides.length) return;
+
+  let currentIndex = 0;
+  let autoTimer = null;
+  let isUserInteracting = false;
+
+  function setStage(index) {
+    currentIndex = index;
+    tabs.forEach((tab, i) => {
+      const isActive = i === index;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    const targetStageId = tabs[index]?.getAttribute('data-stage-id');
+    slides.forEach(slide => {
+      const match = slide.getAttribute('data-slide') === targetStageId;
+      slide.classList.toggle('active', match);
+    });
+  }
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      isUserInteracting = true;
+      clearInterval(autoTimer);
+      setStage(index);
+    });
+  });
+
+  // Gentle auto-tour when idle (paused on hover)
+  function startAutoTour() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => {
+      if (!isUserInteracting) {
+        const nextIndex = (currentIndex + 1) % tabs.length;
+        setStage(nextIndex);
+      }
+    }, 6500);
+  }
+
+  stage.addEventListener('mouseenter', () => {
+    isUserInteracting = true;
+    clearInterval(autoTimer);
+  });
+
+  stage.addEventListener('mouseleave', () => {
+    isUserInteracting = false;
+    startAutoTour();
+  });
+
+  startAutoTour();
+}
+
