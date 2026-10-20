@@ -321,17 +321,17 @@ function initInteractiveLiveEstimator() {
 
     // Direct WhatsApp Link update
     if (bookBtn) {
-      let waText = `*SRB STUDIO — Architecture Inquiry*\n\n` +
-        `Hello SRB Studio! I configured a bespoke architecture on your website estimator:\n\n` +
-        `• *Architecture Tier*: ${activeTier.name}\n` +
-        `• *Estimated Investment*: ${formattedPrice}\n` +
-        `• *Estimated Sprint*: ${finalDays}–${finalDays + 2} Business Days\n` +
-        `• *Velocity Sprint*: ${speedLabel}\n`;
+      let waText = `*SRB STUDIO — Project Inquiry*\n\n` +
+        `Hi SRB Studio! I configured an estimate on your website:\n\n` +
+        `• *Project Type*: ${activeTier.name}\n` +
+        `• *Estimated Total*: ${formattedPrice}\n` +
+        `• *Estimated Timeline*: ${finalDays}–${finalDays + 2} Business Days\n` +
+        `• *Delivery Pace*: ${speedLabel}\n`;
 
       if (selectedAddons.length > 0) {
-        waText += `• *Selected Modules & Add-ons*:\n  - ${selectedAddons.join('\n  - ')}\n`;
+        waText += `• *Selected Add-ons*:\n  - ${selectedAddons.join('\n  - ')}\n`;
       }
-      waText += `\nI would like to lock this architecture and discuss kickoff details!`;
+      waText += `\nI'd like to discuss this project and get started!`;
 
       const waUrl = `https://wa.me/917559084152?text=${encodeURIComponent(waText)}`;
       bookBtn.setAttribute('href', waUrl);
@@ -506,12 +506,12 @@ function initConsultationForm() {
 
       // 2. Prepare pre-filled WhatsApp message (Safe encoding across all platforms)
       const waMessage = `*SRB STUDIO — Project Inquiry*\n\n` +
-        `I just submitted a project proposal on your website:\n` +
-        `• *Client*: ${name}\n` +
+        `Hi SRB Studio, I just submitted an inquiry on your website:\n` +
+        `• *Name*: ${name}\n` +
         `• *Email*: ${email}\n` +
         `• *Service*: ${service}\n` +
-        `• *Requirements*: ${notes}\n\n` +
-        `Let's connect and discuss my project!`;
+        `• *Project Details*: ${notes}\n\n` +
+        `Let's connect and discuss next steps!`;
       const waUrl = `https://wa.me/917559084152?text=${encodeURIComponent(waMessage)}`;
       if (successWhatsappBtn) {
         successWhatsappBtn.href = waUrl;
