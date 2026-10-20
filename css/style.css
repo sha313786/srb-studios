@@ -2718,6 +2718,7 @@ dialog {
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.95);
   font-family: var(--font-main);
   color: var(--text-primary);
+  color-scheme: dark;
 }
 
 dialog[open] {
@@ -2801,14 +2802,47 @@ dialog::backdrop {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-hairline-light);
   color: #FFFFFF;
+  color-scheme: dark;
   font-family: var(--font-main);
   font-size: 0.88rem;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.input-control::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
 }
 
 .input-control:focus {
   border-color: var(--gold-400);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+select.input-control {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #0c0d15;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f59e0b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 42px;
+  cursor: pointer;
+}
+
+select.input-control option {
+  background-color: #0d0f17;
+  color: #FFFFFF;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+}
+
+select.input-control option:checked,
+select.input-control option:hover {
+  background-color: #1a1c29;
+  color: var(--gold-300);
 }
 
 textarea.input-control {
