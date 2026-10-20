@@ -120,7 +120,7 @@ function initDynamicCursor() {
   requestAnimationFrame(animateCursor);
 
   // Link & Button hover state
-  const interactiveTargets = document.querySelectorAll('a, button, input, select, textarea, .tier-card, .addon-checkbox-card, .stage-tab-btn, .proof-pill');
+  const interactiveTargets = document.querySelectorAll('a, button, input, select, textarea, .tier-select-card, .tier-card, .module-check-item, .velocity-pill, .addon-checkbox-card, .stage-tab-btn, .proof-pill');
   interactiveTargets.forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.classList.add('is-hovering');
@@ -183,7 +183,7 @@ function initKotaScrollReveal() {
    5. INTERACTIVE ARCHITECTURE ESTIMATOR
    ========================================================================== */
 function initInteractiveLiveEstimator() {
-  const tierCards = document.querySelectorAll('.tier-card');
+  const tierCards = document.querySelectorAll('.tier-select-card, .tier-card');
   const addonInputs = document.querySelectorAll('.estimator-addon-input');
   const speedInputs = document.querySelectorAll('.estimator-speed-input');
   const priceDisplay = document.getElementById('calcPriceDisplay');
@@ -206,18 +206,32 @@ function initInteractiveLiveEstimator() {
       currencyBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentCurrency = btn.getAttribute('data-currency') || 'INR';
+      updateCurrencyVisuals();
       updateEstimator();
-      updateServicePricings();
     });
   });
 
-  function updateServicePricings() {
-    const priceVals = document.querySelectorAll('.price-val');
-    priceVals.forEach(val => {
-      if (currentCurrency === 'USD') {
-        val.textContent = val.getAttribute('data-price-usd') || '$149';
-      } else {
-        val.textContent = val.getAttribute('data-price-inr') || '₹12,499';
+  function updateCurrencyVisuals() {
+    // 1. Tier card prices
+    document.querySelectorAll('.tier-base-price').forEach(el => {
+      el.textContent = currentCurrency === 'USD' 
+        ? el.getAttribute('data-price-usd') || '$149' 
+        : el.getAttribute('data-price-inr') || 'From ₹12,499';
+    });
+
+    // 2. Add-on badges
+    document.querySelectorAll('.module-check-info .badge').forEach(el => {
+      el.textContent = currentCurrency === 'USD'
+        ? el.getAttribute('data-badge-usd') || '+$60 / 2d'
+        : el.getAttribute('data-badge-inr') || '+₹4,999 / 2d';
+    });
+
+    // 3. Service cards outside estimator if present
+    document.querySelectorAll('.pricing-amount, .price-val').forEach(val => {
+      if (val.hasAttribute('data-price-usd') && val.hasAttribute('data-price-inr')) {
+        val.textContent = currentCurrency === 'USD'
+          ? val.getAttribute('data-price-usd')
+          : val.getAttribute('data-price-inr');
       }
     });
   }
@@ -236,8 +250,25 @@ function initInteractiveLiveEstimator() {
     });
   });
 
-  addonInputs.forEach(input => input.addEventListener('change', updateEstimator));
-  speedInputs.forEach(input => input.addEventListener('change', updateEstimator));
+  addonInputs.forEach(input => {
+    input.addEventListener('change', () => {
+      const parent = input.closest('.module-check-item');
+      if (parent) {
+        parent.classList.toggle('is-checked', input.checked);
+      }
+      updateEstimator();
+    });
+  });
+
+  speedInputs.forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.velocity-pill').forEach(pill => {
+        const inp = pill.querySelector('input[type="radio"]');
+        pill.classList.toggle('active', inp && inp.checked);
+      });
+      updateEstimator();
+    });
+  });
 
   function updateEstimator() {
     let totalPriceINR = activeTier.basePriceINR;
@@ -245,60 +276,76 @@ function initInteractiveLiveEstimator() {
     const selectedAddons = [];
 
     addonInputs.forEach(input => {
+      const parent = input.closest('.module-check-item');
+      if (parent) {
+        parent.classList.toggle('is-checked', input.checked);
+      }
       if (input.checked) {
         totalPriceINR += parseFloat(input.getAttribute('data-price-inr') || '0');
         totalDays += parseInt(input.getAttribute('data-days') || '0', 10);
-        const cardTitle = input.closest('.addon-checkbox-card')?.querySelector('.addon-title')?.textContent;
-        if (cardTitle) selectedAddons.push(cardTitle);
+        const cardTitle = input.closest('.module-check-item, .addon-checkbox-card')?.querySelector('.title, .addon-title')?.textContent;
+        if (cardTitle) selectedAddons.push(cardTitle.trim());
       }
     });
 
     let speedMultiplier = 1.0;
     let dayReduction = 0;
+    let speedLabel = 'Standard Agile Sprint (1.0x)';
+
     speedInputs.forEach(radio => {
+      const parentPill = radio.closest('.velocity-pill');
+      if (parentPill) {
+        parentPill.classList.toggle('active', radio.checked);
+      }
       if (radio.checked) {
         speedMultiplier = parseFloat(radio.getAttribute('data-price-mult') || '1.0');
         dayReduction = parseInt(radio.getAttribute('data-day-reduction') || '0', 10);
+        speedLabel = radio.nextElementSibling?.textContent?.trim() || radio.closest('label')?.textContent?.trim() || 'Sprint';
       }
     });
 
     totalPriceINR = Math.round(totalPriceINR * speedMultiplier);
     const finalDays = Math.max(3, totalDays - dayReduction);
 
+    const formattedPrice = currentCurrency === 'USD'
+      ? `$${Math.round(totalPriceINR / USD_RATE).toLocaleString('en-US')}`
+      : `₹${totalPriceINR.toLocaleString('en-IN')}`;
+
     if (priceDisplay) {
-      if (currentCurrency === 'USD') {
-        const priceUSD = Math.round(totalPriceINR / USD_RATE);
-        priceDisplay.textContent = `$${priceUSD.toLocaleString()}`;
-      } else {
-        priceDisplay.textContent = `₹${totalPriceINR.toLocaleString('en-IN')}`;
-      }
+      priceDisplay.textContent = formattedPrice;
     }
 
     if (timelineDisplay) {
       timelineDisplay.textContent = `${finalDays}–${finalDays + 2} Business Days`;
     }
 
-    // Update WhatsApp Direct Action Link
+    // Direct WhatsApp Link update
     if (bookBtn) {
-      bookBtn.onclick = () => {
-        const formattedPrice = currentCurrency === 'USD' 
-          ? `$${Math.round(totalPriceINR / USD_RATE)}` 
-          : `₹${totalPriceINR.toLocaleString('en-IN')}`;
-        
-        let msg = `Hello SRB Studio! I calculated a project architecture on your website:%0A%0A`;
-        msg += `• Tier: ${encodeURIComponent(activeTier.name)}%0A`;
-        msg += `• Estimated Investment: ${encodeURIComponent(formattedPrice)}%0A`;
-        msg += `• Estimated Sprint: ${finalDays}-${finalDays + 2} Business Days%0A`;
-        if (selectedAddons.length > 0) {
-          msg += `• Modules: ${encodeURIComponent(selectedAddons.join(', '))}%0A`;
-        }
-        msg += `%0AI would like to lock this architecture and discuss kickoff details!`;
+      let waText = `*SRB STUDIO — Architecture Inquiry*\n\n` +
+        `Hello SRB Studio! I configured a bespoke architecture on your website estimator:\n\n` +
+        `• *Architecture Tier*: ${activeTier.name}\n` +
+        `• *Estimated Investment*: ${formattedPrice}\n` +
+        `• *Estimated Sprint*: ${finalDays}–${finalDays + 2} Business Days\n` +
+        `• *Velocity Sprint*: ${speedLabel}\n`;
 
-        window.open(`https://wa.me/917559084152?text=${msg}`, '_blank');
+      if (selectedAddons.length > 0) {
+        waText += `• *Selected Modules & Add-ons*:\n  - ${selectedAddons.join('\n  - ')}\n`;
+      }
+      waText += `\nI would like to lock this architecture and discuss kickoff details!`;
+
+      const waUrl = `https://wa.me/917559084152?text=${encodeURIComponent(waText)}`;
+      bookBtn.setAttribute('href', waUrl);
+      bookBtn.onclick = (e) => {
+        if (bookBtn.tagName.toLowerCase() !== 'a') {
+          e.preventDefault();
+          window.open(waUrl, '_blank');
+        }
       };
     }
   }
 
+  // Initial setup
+  updateCurrencyVisuals();
   updateEstimator();
 }
 

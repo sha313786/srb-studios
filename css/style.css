@@ -1783,6 +1783,23 @@ body.cursor-active .custom-cursor {
   font-size: 1.4rem;
 }
 
+.tier-base-price {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-hairline);
+  padding: 3px 8px;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.tier-select-card.active .tier-base-price {
+  border-color: rgba(245, 158, 11, 0.4);
+  color: var(--gold-300);
+  background: rgba(245, 158, 11, 0.1);
+}
+
 .sprint-tag {
   font-size: 0.68rem;
   font-weight: 700;
@@ -1825,6 +1842,12 @@ body.cursor-active .custom-cursor {
 
 .module-check-item:hover {
   background: rgba(255, 255, 255, 0.04);
+}
+
+.module-check-item.is-checked {
+  border-color: rgba(245, 158, 11, 0.45);
+  background: rgba(245, 158, 11, 0.06);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.08);
 }
 
 .module-check-item input[type="checkbox"] {
@@ -1877,6 +1900,13 @@ body.cursor-active .custom-cursor {
   color: #FFFFFF;
 }
 
+.velocity-pill.active {
+  border-color: var(--gold-400);
+  background: rgba(245, 158, 11, 0.12);
+  color: #FFFFFF;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.1);
+}
+
 .velocity-pill input[type="radio"] {
   accent-color: var(--gold-400);
 }
@@ -1918,12 +1948,18 @@ body.cursor-active .custom-cursor {
 }
 
 .btn-whatsapp-estimate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   padding: 14px 24px;
   border-radius: 9999px;
   background: #FFFFFF;
   color: #060608;
+  font-family: var(--font-main);
   font-size: 0.88rem;
   font-weight: 700;
+  text-decoration: none;
   border: none;
   cursor: pointer;
   transition: all 0.25s var(--ease-out-expo);
@@ -1932,6 +1968,7 @@ body.cursor-active .custom-cursor {
 
 .btn-whatsapp-estimate:hover {
   background: var(--gold-300);
+  color: #060608;
   box-shadow: 0 4px 20px var(--gold-glow);
   transform: translateY(-2px);
 }
