@@ -453,7 +453,10 @@ function initModals() {
       if (form && successState) {
         form.style.display = 'block';
         successState.style.display = 'none';
+        const alertBox = document.getElementById('formValidationAlert');
+        if (alertBox) alertBox.style.display = 'none';
       }
+      SpamCatcher.recordFormOpened();
       consultationModal?.showModal();
     });
   });
@@ -477,8 +480,98 @@ function initModals() {
 }
 
 /* ==========================================================================
-   10. CONSULTATION FORM SUBMISSION (Multi-Channel Dispatch: Email + WhatsApp + Discord)
+   10. SPAM CATCHER MODULE & SHIELD (Multi-Layer Anti-Bot, Honeypot & Rate Limiter)
    ========================================================================== */
+const SpamCatcher = {
+  formRenderedAt: Date.now(),
+  minHumanDurationMs: 2000, // Humans take >= 2s to fill and submit
+  cooldownPeriodMs: 45000,  // 45-second submission cooldown per client
+
+  disposableDomains: new Set([
+    'mailinator.com', 'guerrillamail.com', 'tempmail.com', '10minutemail.com',
+    'trashmail.com', 'dispostable.com', 'getairmail.com', 'sharklasers.com',
+    'throwawaymail.com', 'yopmail.com', 'burnermail.io', 'fakeinbox.com',
+    'tempail.com', 'dropmail.me'
+  ]),
+
+  spamPatterns: [
+    /\b(casino|viagra|cialis|crypto\s*giveaway|bitcoin\s*investment)\b/i,
+    /\b(seo\s*backlinks?|rank\s*#1|telegram\s*blast|whatsapp\s*blaster)\b/i,
+    /\b(adult\s*cam|hack\s*account)\b/i,
+    /t\.me\/[a-zA-Z0-9_]+/i
+  ],
+
+  recordFormOpened() {
+    this.formRenderedAt = Date.now();
+  },
+
+  validateSubmission({ name, email, notes, honeypotValue }) {
+    // 1. Honeypot check (Stealth trap: if filled, 100% automated script)
+    if (honeypotValue && honeypotValue.trim().length > 0) {
+      console.warn('🛡️ [SPAM CATCHER] Honeypot triggered. Silent bot drop.');
+      return { isSpam: true, reason: 'honeypot_triggered', stealthDrop: true };
+    }
+
+    // 2. Time-trap check (Bots submit in < 2.0s)
+    const elapsed = Date.now() - this.formRenderedAt;
+    if (elapsed < this.minHumanDurationMs) {
+      console.warn(`🛡️ [SPAM CATCHER] Form submitted too fast (${elapsed}ms). Bot trap triggered.`);
+      return { isSpam: true, reason: 'time_trap_triggered', stealthDrop: true };
+    }
+
+    // 3. Client cooldown / rate limit
+    const lastSub = parseInt(localStorage.getItem('srb_last_lead_timestamp') || '0', 10);
+    if (Date.now() - lastSub < this.cooldownPeriodMs) {
+      const waitSec = Math.ceil((this.cooldownPeriodMs - (Date.now() - lastSub)) / 1000);
+      return {
+        isSpam: true,
+        reason: 'rate_limited',
+        stealthDrop: false,
+        userMessage: `Please wait ${waitSec}s before submitting another request.`
+      };
+    }
+
+    // 4. Valid email structure
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return {
+        isSpam: true,
+        reason: 'invalid_email',
+        stealthDrop: false,
+        userMessage: 'Please enter a valid business or personal email address.'
+      };
+    }
+
+    // 5. Disposable / Burner domain check
+    const domain = email.split('@')[1]?.toLowerCase();
+    if (domain && this.disposableDomains.has(domain)) {
+      return {
+        isSpam: true,
+        reason: 'disposable_email',
+        stealthDrop: false,
+        userMessage: 'Disposable or burner email addresses are not accepted. Please provide a standard address.'
+      };
+    }
+
+    // 6. Spam keyword heuristics
+    const fullText = `${name} ${notes}`;
+    for (const pattern of this.spamPatterns) {
+      if (pattern.test(fullText)) {
+        console.warn('🛡️ [SPAM CATCHER] Keyword heuristic matched:', pattern);
+        return { isSpam: true, reason: 'keyword_heuristic', stealthDrop: true };
+      }
+    }
+
+    return { isSpam: false };
+  },
+
+  recordSuccessfulSubmission() {
+    try {
+      localStorage.setItem('srb_last_lead_timestamp', Date.now().toString());
+    } catch (_) {}
+  }
+};
+
 // Discord Webhook URL for SRB Studio Lead Notifications (Protected from scanner auto-revocation)
 const DISCORD_WEBHOOK_URL = atob('aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTU1ODk0MDA4ODA4NjQzODAyOC9DWDZEblJIZnQ3X2djMi1zMWpweTl6R2FYanlacDA1N0pHc0tGRzRBZXcxNzU1TC1YU045eWpHT1BZb2p2dDE0aXMycw==');
 
@@ -488,14 +581,45 @@ function initConsultationForm() {
   const successLeadName = document.getElementById('successLeadName');
   const successWhatsappBtn = document.getElementById('successWhatsappBtn');
   const submitBtn = form?.querySelector('button[type="submit"]');
+  const alertBox = document.getElementById('formValidationAlert');
 
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (alertBox) alertBox.style.display = 'none';
+
       const name = document.getElementById('clientName')?.value?.trim() || 'Client';
       const email = document.getElementById('clientEmail')?.value?.trim() || '';
       const service = document.getElementById('projectTypeSelect')?.value || 'General';
       const notes = document.getElementById('projectNotes')?.value?.trim() || 'None provided';
+      const honeypotValue = document.getElementById('hp_company_website')?.value || '';
+
+      // Run Spam Catcher Shield
+      const spamCheck = SpamCatcher.validateSubmission({ name, email, notes, honeypotValue });
+
+      if (spamCheck.isSpam) {
+        if (spamCheck.stealthDrop) {
+          // Silent bot trap: show fake success screen so bot does not learn or retry, but DO NOT dispatch notifications
+          console.warn(`🛡️ [SPAM CATCHER] Silent drop executed (${spamCheck.reason})`);
+          fetch('/api/consultation', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, service, notes, company_website_url: honeypotValue, isSpam: true, reason: spamCheck.reason })
+          }).catch(() => {});
+
+          if (successLeadName) successLeadName.textContent = name;
+          form.style.display = 'none';
+          if (successState) successState.style.display = 'block';
+          return;
+        } else {
+          // Friendly user feedback for legit users (e.g. cooldown or disposable email)
+          if (alertBox) {
+            alertBox.textContent = spamCheck.userMessage || 'Validation notice: Please check your input.';
+            alertBox.style.display = 'block';
+          }
+          return;
+        }
+      }
 
       // 1. Show UI loading state
       const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
@@ -555,7 +679,7 @@ function initConsultationForm() {
                 { name: "📝 Vision & Requirements", value: notes, inline: false },
                 { name: "💬 Quick WhatsApp Action", value: `[Open WhatsApp with ${name}](${waUrl})`, inline: false }
               ],
-              footer: { text: "SRB Studios • Lead Routing System" },
+              footer: { text: "SRB Studios • Verified Lead Routing Shield" },
               timestamp: new Date().toISOString()
             }]
           })
@@ -568,6 +692,9 @@ function initConsultationForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, service, notes, budget: service })
       }).catch(() => {});
+
+      // Record successful human submission
+      SpamCatcher.recordSuccessfulSubmission();
 
       // Await or timeout slightly so user sees prompt feedback
       await Promise.race([
@@ -639,19 +766,41 @@ function initProjectPreviewModal() {
         // Reset and assign iframe URL
         iframe.src = url;
 
-        // Auto-dismiss spinner fallback (e.g. 2.5s) in case cross-origin/shields delayed onload
+        // Progressive feedback for cloud platforms (e.g. Render/Vercel)
         clearTimeout(loadTimeout);
+        if (typeof wakeTimeout !== 'undefined') clearTimeout(wakeTimeout);
+
+        const spinnerStatus = modal.querySelector('.preview-spinner span');
+        let wakeTimeout = setTimeout(() => {
+          if (spinnerStatus && spinner && spinner.style.display !== 'none') {
+            spinnerStatus.textContent = (url && url.includes('onrender.com'))
+              ? 'Waking cloud deployment (Render spin-up may take 15–25s)...'
+              : 'Connecting to live cloud platform...';
+          }
+        }, 3000);
+
+        // Safe fallback timeout (15s) so spinner stays until real load or idle notice
         loadTimeout = setTimeout(() => {
           hideSpinner();
-        }, 2500);
+        }, 15000);
 
         iframe.onload = () => {
           clearTimeout(loadTimeout);
+          if (typeof wakeTimeout !== 'undefined') clearTimeout(wakeTimeout);
           hideSpinner();
         };
 
         modal.showModal();
       }
+    });
+  });
+
+  // Also open preview when clicking the hero showcase slides directly
+  document.querySelectorAll('.showcase-slide').forEach(slide => {
+    slide.addEventListener('click', (e) => {
+      if (e.target.closest('.btn-preview-pill')) return;
+      const pill = slide.querySelector('.btn-preview-pill');
+      if (pill) pill.click();
     });
   });
 

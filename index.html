@@ -1359,6 +1359,12 @@
 
       <div class="modal-contents">
         <form id="consultationForm">
+          <!-- Anti-Bot Honeypot Trap (Invisible to humans, traps automated form-filling bots) -->
+          <div class="field-item hp-trap" style="position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none; height: 0; overflow: hidden;" aria-hidden="true">
+            <label for="hp_company_website">Leave this field blank</label>
+            <input type="text" id="hp_company_website" name="company_website_url" tabindex="-1" autocomplete="off" value="">
+          </div>
+
           <div class="field-item">
             <label for="clientName">Your Name / Company *</label>
             <input type="text" id="clientName" class="input-control" placeholder="e.g. Alex Morgan, Apex Media" required>
@@ -1383,6 +1389,8 @@
             <label for="projectNotes">Project Details &amp; Goals</label>
             <textarea id="projectNotes" class="input-control" placeholder="Tell us about your project, key features, reference websites, or ideal timeline..."></textarea>
           </div>
+
+          <div id="formValidationAlert" style="display: none; padding: 10px 14px; margin-top: 10px; border-radius: 8px; font-size: 0.82rem; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #fca5a5; text-align: left;"></div>
 
           <button type="submit" class="btn-primary-gold" style="width: 100%; justify-content: center; margin-top: 10px;">
             <span>Send Project Inquiry</span>
