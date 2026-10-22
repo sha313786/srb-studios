@@ -7,11 +7,21 @@
   <meta name="description" content="SRB Studio is a web development and digital engineering studio. We build fast, high-converting websites, web apps, and custom automation tools with clean code and sub-second load times.">
   <meta name="theme-color" content="#060608">
 
+    <link rel="canonical" href="https://sha313786.github.io/">
+
   <!-- Open Graph / Meta -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sha313786.github.io/">
   <meta property="og:title" content="SRB STUDIO — High-Impact Web Architecture &amp; Motion">
   <meta property="og:description" content="High-performance websites, full-stack web applications, and custom automation tools built to scale.">
-  <meta property="og:image" content="assets/images/srb-studio-poster.jpg">
+  <meta property="og:image" content="https://sha313786.github.io/assets/images/srb-studio-poster.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sha313786.github.io/">
+  <meta name="twitter:title" content="SRB STUDIO — High-Impact Web Architecture &amp; Motion">
+  <meta name="twitter:description" content="High-performance websites, full-stack web applications, and custom automation tools built to scale.">
+  <meta name="twitter:image" content="https://sha313786.github.io/assets/images/srb-studio-poster.jpg">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/logo.png">
@@ -56,7 +66,7 @@
         </div>
       </div>
       <div class="top-banner-center">
-        <span>FEATURED LAUNCH: <a href="#nexus" class="banner-nexus-link">SRB NEXUS All-in-One Discord Platform ↗</a></span>
+        <span>FEATURED LAUNCH: <a href="#project-nexus" class="banner-nexus-link">SRB NEXUS All-in-One Discord Platform ↗</a></span>
       </div>
       <div class="top-banner-right">
         <span>BUILD • INNOVATE • ELEVATE</span>
@@ -144,7 +154,7 @@
           <span class="status-dot"></span>
           <span class="pill-text">AVAILABLE FOR NEW PROJECTS</span>
           <span class="pill-divider">•</span>
-          <span class="pill-badge">Q2 2026 SCHEDULE</span>
+          <span class="pill-badge">AUTUMN / WINTER 2026 SCHEDULE</span>
         </div>
 
         <!-- High-Impact Editorial Headline -->
@@ -202,19 +212,19 @@
 
             <!-- Interactive Architecture Switcher Tabs -->
             <div class="showcase-tabs-nav" role="tablist" aria-label="Featured Projects Switcher">
-              <button type="button" class="stage-tab-btn active" data-stage-id="denbooks" role="tab" aria-selected="true">
+              <button type="button" class="stage-tab-btn active" data-stage-key="denbooks" role="tab" aria-selected="true">
                 <span class="tab-dot"></span>
                 <span>DenBooks 360</span>
               </button>
-              <button type="button" class="stage-tab-btn" data-stage-id="alhashimi" role="tab" aria-selected="false">
+              <button type="button" class="stage-tab-btn" data-stage-key="alhashimi" role="tab" aria-selected="false">
                 <span class="tab-dot"></span>
                 <span>Al Hashimi LLC</span>
               </button>
-              <button type="button" class="stage-tab-btn" data-stage-id="nexus" role="tab" aria-selected="false">
+              <button type="button" class="stage-tab-btn" data-stage-key="nexus" role="tab" aria-selected="false">
                 <span class="tab-dot"></span>
                 <span>SRB NEXUS</span>
               </button>
-              <button type="button" class="stage-tab-btn" data-stage-id="digitalden" role="tab" aria-selected="false">
+              <button type="button" class="stage-tab-btn" data-stage-key="digitalden" role="tab" aria-selected="false">
                 <span class="tab-dot"></span>
                 <span>Digital Den 360</span>
               </button>
@@ -491,7 +501,7 @@
           </article>
 
           <!-- PROJECT 02: Al Hashimi LLC -->
-          <article class="project-card" id="alhashimi" data-cursor-project="AL HASHIMI LLC">
+          <article class="project-card" id="project-alhashimi" data-cursor-project="AL HASHIMI LLC">
             <div class="project-card-header">
               <span class="project-number">PROJECT 02 / CORPORATE MEP &amp; ENGINEERING</span>
               <div class="project-status">
@@ -582,7 +592,7 @@
           </article>
 
           <!-- PROJECT 04: SRB NEXUS -->
-          <article class="project-card" id="nexus" data-cursor-project="SRB NEXUS">
+          <article class="project-card" id="project-nexus" data-cursor-project="SRB NEXUS">
             <div class="project-card-header">
               <span class="project-number">PROJECT 04 / AUTOMATION &amp; BOT PLATFORM</span>
               <div class="project-status">
@@ -826,7 +836,7 @@
               <label class="module-check-item is-checked">
                 <input type="checkbox" class="estimator-addon-input" data-price-inr="4999" data-days="2" checked>
                 <div class="module-check-info">
-                  <span class="title">Sub-Second Core Web Vitals (100% Score)</span>
+                  <span class="title">Optimized Core Web Vitals (95+ Architecture)</span>
                   <span class="badge" data-badge-inr="+₹4,999 / 2d" data-badge-usd="+$60 / 2d">+₹4,999 / 2d</span>
                 </div>
               </label>
@@ -927,7 +937,7 @@
             </div>
 
             <button type="button" class="btn-run-benchmark magnetic-target" id="runAuditBtn">
-              <span>⚡ Run Live Speed Benchmark</span>
+              <span>⚡ Measure Live Browser Speed</span>
             </button>
           </div>
 
@@ -935,9 +945,9 @@
           <div class="gauge-card">
             <div class="gauge-ring">
               <span class="gauge-number" id="gaugeScoreVal">100</span>
-              <span class="gauge-tag">LIGHTHOUSE SCORE</span>
+              <span class="gauge-tag" id="gaugeTagText">SPEED PERFORMANCE</span>
             </div>
-            <p class="gauge-caption">Verified 100% Performance • 100% Accessibility • 100% SEO</p>
+            <p class="gauge-caption" id="gaugeMetricsCaption">Engineered for sub-second DOM &amp; LCP delivery. <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fsha313786.github.io%2F" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:underline; margin-left:6px;">Verify on Google PageSpeed ↗</a></p>
           </div>
         </div>
 
@@ -1192,8 +1202,8 @@
 
         <div class="footer-hero-actions">
           <div class="footer-availability-card">
-            <span class="avail-tag">Q2 / 2026 CLIENT INTAKE</span>
-            <span class="avail-status">⚡ 1 of 3 Client Slots Remaining</span>
+            <span class="avail-tag">AUTUMN / WINTER 2026 INTAKE</span>
+            <span class="avail-status">⚡ Accepting Client Inquiries &amp; Custom Engineering</span>
             <button type="button" class="btn-primary-gold magnetic-target" data-open-consultation>
               <span>DISCUSS YOUR PROJECT</span>
               <span class="btn-circle-arrow">→</span>
@@ -1300,7 +1310,7 @@
               <span class="guarantee-icon">⚡</span>
               <div>
                 <strong>100% Core Web Vitals</strong>
-                <p>Guaranteed sub-second LCP on edge networks.</p>
+                <p>Engineered for sub-second LCP and edge-cached delivery.</p>
               </div>
             </div>
             <div class="guarantee-row">

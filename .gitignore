@@ -1,0 +1,17 @@
+# Customer Data & Submissions
+leads.json
+.data/
+*.log
+
+# Environment & Secrets
+.env
+.env.*
+
+# Binaries & Decompilation Artifacts
+*.dex
+*.apk
+
+# Dependencies & OS Artifacts
+node_modules/
+.DS_Store
+Thumbs.db

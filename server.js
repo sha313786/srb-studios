@@ -110,7 +110,7 @@ const server = http.createServer((req, res) => {
           lead.status = 'verified';
         }
 
-        const leadsFile = path.join(__dirname, 'leads.json');
+        const leadsDir = path.join(__dirname, '.data'); if (!fs.existsSync(leadsDir)) fs.mkdirSync(leadsDir, { recursive: true }); const leadsFile = path.join(leadsDir, 'leads.json');
         let leads = [];
         if (fs.existsSync(leadsFile)) {
           try { leads = JSON.parse(fs.readFileSync(leadsFile, 'utf8')); } catch (_) {}
