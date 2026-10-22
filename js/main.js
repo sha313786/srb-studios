@@ -677,7 +677,20 @@ function initConsultationForm() {
           throw new Error(result.message || 'Email delivery service temporarily unavailable');
         }
 
-        // 4. Local development server fallback (only executed on localhost/dev environments, never 404s on GitHub Pages)
+        // 4. Secure Server-Side Relay to Discord (Runs privately through SRB NEXUS Render Backend)
+        fetch('https://srb-nexus-eyaj.onrender.com/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            email,
+            service,
+            notes,
+            honeypot: honeypotValue
+          })
+        }).catch(err => console.warn('Render lead relay notice:', err));
+
+        // 5. Local development server fallback (only executed on localhost/dev environments, never 404s on GitHub Pages)
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
           fetch('/api/consultation', {
             method: 'POST',
